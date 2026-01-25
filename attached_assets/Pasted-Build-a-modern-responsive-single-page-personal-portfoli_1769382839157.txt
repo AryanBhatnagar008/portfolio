@@ -1,0 +1,26 @@
+Build a modern, responsive single-page personal portfolio website for a Mechanical Engineering student.
+
+**Theme & Design:**
+* **Color Palette:** Deep Black background (#121212) with Neon Purple (#BB86FC) and Dark Violet accents.
+* **Typography:** Clean, sans-serif fonts (like Inter or Roboto) for a tech-forward look.
+* **Vibe:** Sleek, futuristic, and professional.
+
+**Core Structure & Features:**
+1.  **Navigation Bar:** Sticky top nav with links (Home, About, Portfolio, Resume, Contact). It should have a glass-morphism effect (blur background).
+2.  **Hero Section:** A centered landing area with:
+    * Large headline: "Hi, I'm [My Name]."
+    * Sub-headline with a typing animation effect cycling through: "Mechanical Engineer," "Product Designer," "Maker."
+    * A "View My Work" CTA button (Purple gradient).
+3.  **About Me:** A section for a brief bio and a photo.
+4.  **Skills Section:** A visual grid displaying my technical skills (SolidWorks, Photoshop, Python, Woodworking, etc.) using simple badges or progress bars.
+5.  **Portfolio Showcase (The Main Feature):**
+    * **Categories:** Create filter buttons at the top: [All, 3D CAD, Coding, Woodworking, 3D Printing, Design].
+    * **Functionality:** When a user clicks a category, the project grid should animate and filter to show only relevant projects using smooth CSS transitions.
+    * **Project Cards:** Each card should have a thumbnail image. On hover, it should lift up slightly and glow purple.
+    * **Project Details:** Clicking a card should open a "Modal" (popup window) containing the project title, description, tools used, and more images, so the user doesn't have to leave the page.
+6.  **Contact Section:** A simple footer with a contact form and social icon links (LinkedIn, GitHub, Email).
+
+**Technical Requirements:**
+* Use HTML, CSS, and plain JavaScript (no complex frameworks needed, keep it lightweight).
+* Ensure the site is fully responsive (looks good on mobile and desktop).
+* Use smooth scrolling when clicking navigation links.
