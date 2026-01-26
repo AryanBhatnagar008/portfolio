@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ZoomIn, X, Palette, Wrench } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -12,9 +12,6 @@ import magazineCover from "@assets/Magazine_Cover_-_Aryan_Bhatnagar_copy_1769383
 import logoVariations from "@assets/Logo_Variations_-_Aryan_Bhatnagar_1769383707762.png";
 import adDesign from "@assets/Ad_Design_-_Aryan_Bhatnagar_copy_1769383707762.jpg";
 
-// ==========================================
-// DESIGN PROJECTS DATA - Edit this array easily!
-// ==========================================
 const designProjects = [
   {
     id: "comic",
@@ -243,10 +240,8 @@ const designProjects = [
 ];
 
 export function DesignShowcase() {
-  const [activeTab, setActiveTab] = useState(designProjects[0].id);
-  const [zoomOpen, setZoomOpen] = useState(false);
-
-  const activeProject = designProjects.find(p => p.id === activeTab) || designProjects[0];
+  const [selectedProject, setSelectedProject] = useState<typeof designProjects[0] | null>(null);
+  const [zoomImage, setZoomImage] = useState(false);
 
   return (
     <section id="design-showcase" className="py-24 bg-[#121212]">
@@ -263,175 +258,144 @@ export function DesignShowcase() {
           </span>
           <h2 className="font-display font-bold text-4xl mb-4">Design Showcase</h2>
           <p className="text-muted-foreground">
-            A curated selection of my Illustrator and Photoshop work, showcasing both concept and technical execution.
+            A curated selection of my Illustrator and Photoshop work. Click any project to view details.
           </p>
         </motion.div>
 
-        {/* Tabbed Navigation with Thumbnails */}
+        {/* Project Grid */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3 mb-12"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
         >
-          {designProjects.map((project) => (
-            <button
+          {designProjects.map((project, idx) => (
+            <motion.button
               key={project.id}
-              onClick={() => setActiveTab(project.id)}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05 }}
+              onClick={() => setSelectedProject(project)}
               data-testid={`tab-${project.id}`}
-              className={`group relative rounded-xl overflow-hidden transition-all ${
-                activeTab === project.id
-                  ? "ring-2 ring-[#BB86FC] shadow-[0_0_20px_rgba(187,134,252,0.4)]"
-                  : "ring-1 ring-white/10 hover:ring-[#BB86FC]/50"
-              }`}
+              className="group relative aspect-square rounded-xl overflow-hidden border border-white/10 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)]"
             >
-              {/* Thumbnail Image */}
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className={`w-full h-full object-cover transition-all duration-300 ${
-                    activeTab === project.id
-                      ? "scale-105"
-                      : "group-hover:scale-105 opacity-70 group-hover:opacity-100"
-                  }`}
-                />
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="font-mono text-sm font-medium text-white">{project.title}</h3>
               </div>
-              {/* Title Overlay */}
-              <div className={`absolute inset-0 flex items-end ${
-                activeTab === project.id
-                  ? "bg-gradient-to-t from-[#BB86FC]/90 to-transparent"
-                  : "bg-gradient-to-t from-black/80 to-transparent"
-              }`}>
-                <span className={`w-full px-2 py-1.5 text-[10px] font-mono font-medium text-center truncate ${
-                  activeTab === project.id ? "text-black" : "text-white"
-                }`}>
-                  {project.title}
-                </span>
-              </div>
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
-        {/* Split-Screen Layout */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeProject.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="grid lg:grid-cols-2 gap-8 items-start"
-          >
-            {/* Left Side - Image */}
-            <div className="relative group">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-secondary/20 border border-white/10">
-                <img
-                  src={activeProject.image}
-                  alt={activeProject.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  data-testid={`image-${activeProject.id}`}
-                />
-              </div>
-              
-              {/* Zoom Button */}
-              <button
-                onClick={() => setZoomOpen(true)}
-                data-testid="button-zoom"
-                className="absolute top-4 right-4 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black"
-              >
-                <ZoomIn className="w-5 h-5" />
-              </button>
-
-              {/* Decorative glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#BB86FC]/20 to-purple-900/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
-            </div>
-
-            {/* Right Side - Details */}
-            <div className="bg-secondary/10 border border-white/5 rounded-2xl p-6 lg:p-8">
-              <h3 className="font-display font-bold text-2xl mb-6 text-white flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-[#BB86FC]" />
-                {activeProject.title}
-              </h3>
-
-              <ScrollArea className="h-[400px] pr-4">
-                {/* The Concept */}
-                <div className="mb-8">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Palette className="w-4 h-4 text-[#BB86FC]" />
-                    <h4 className="font-display font-semibold text-lg text-white">The Concept</h4>
+        {/* Project Modal */}
+        <Dialog open={!!selectedProject && !zoomImage} onOpenChange={(open) => !open && setSelectedProject(null)}>
+          <DialogContent className="max-w-4xl max-h-[90vh] p-0 bg-[#1a1a1a] border-white/10 overflow-hidden">
+            <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
+            <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
+            
+            {selectedProject && (
+              <div className="flex flex-col h-full max-h-[90vh]">
+                {/* Header with Image */}
+                <div className="relative h-56 flex-shrink-0 group cursor-pointer" onClick={() => setZoomImage(true)}>
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent" />
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    data-testid="design-modal-close"
+                    className="absolute top-4 right-4 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all z-10"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setZoomImage(true); }}
+                    data-testid="design-zoom-btn"
+                    className="absolute top-4 left-4 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+                  >
+                    <ZoomIn className="w-5 h-5" />
+                  </button>
+                  <div className="absolute bottom-4 left-6 right-6">
+                    <h3 className="font-display font-bold text-3xl text-white">{selectedProject.title}</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed" data-testid={`concept-${activeProject.id}`}>
-                    {activeProject.concept}
-                  </p>
                 </div>
 
-                {/* Technical Process - Visual Timeline */}
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <Wrench className="w-4 h-4 text-[#BB86FC]" />
-                    <h4 className="font-display font-semibold text-lg text-white">Technical Process</h4>
-                  </div>
-                  <div className="space-y-4" data-testid={`process-${activeProject.id}`}>
-                    {activeProject.technicalProcess.map((phase, phaseIndex) => (
-                      <motion.div
-                        key={phase.phase}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: phaseIndex * 0.1 }}
-                        className="relative"
-                      >
-                        {/* Phase Header */}
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-8 h-8 rounded-lg bg-[#BB86FC] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
-                            {phaseIndex + 1}
+                {/* Content */}
+                <ScrollArea className="flex-1 p-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Left Column - Concept */}
+                    <div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Palette className="w-4 h-4 text-[#BB86FC]" />
+                        <h4 className="font-display font-semibold text-white">The Concept</h4>
+                      </div>
+                      <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`concept-${selectedProject.id}`}>
+                        {selectedProject.concept}
+                      </p>
+                    </div>
+
+                    {/* Right Column - Technical Process */}
+                    <div>
+                      <div className="flex items-center gap-2 mb-4">
+                        <Wrench className="w-4 h-4 text-[#BB86FC]" />
+                        <h4 className="font-display font-semibold text-white">Technical Process</h4>
+                      </div>
+                      <div className="space-y-4" data-testid={`process-${selectedProject.id}`}>
+                        {selectedProject.technicalProcess.map((phase, phaseIndex) => (
+                          <div key={phase.phase} className="relative">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="w-8 h-8 rounded-lg bg-[#BB86FC] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
+                                {phaseIndex + 1}
+                              </div>
+                              <h5 className="font-mono font-semibold text-[#BB86FC] text-sm">{phase.phase}</h5>
+                            </div>
+                            <div className="ml-4 pl-7 border-l-2 border-[#BB86FC]/30 space-y-2 pb-4">
+                              {phase.steps.map((step, stepIndex) => (
+                                <div key={stepIndex} className="flex items-start gap-2">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC]/60 mt-2 flex-shrink-0" />
+                                  <span className="text-sm text-muted-foreground">{step}</span>
+                                </div>
+                              ))}
+                            </div>
                           </div>
-                          <h5 className="font-mono font-semibold text-[#BB86FC] text-sm">{phase.phase}</h5>
-                        </div>
-                        {/* Phase Steps */}
-                        <div className="ml-4 pl-7 border-l-2 border-[#BB86FC]/30 space-y-2 pb-4">
-                          {phase.steps.map((step, stepIndex) => (
-                            <motion.div
-                              key={stepIndex}
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: phaseIndex * 0.1 + stepIndex * 0.05 }}
-                              className="flex items-start gap-2"
-                            >
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC]/60 mt-2 flex-shrink-0" />
-                              <span className="text-sm text-muted-foreground">{step}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    ))}
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </ScrollArea>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+                </ScrollArea>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
 
         {/* Zoom Modal */}
-        <Dialog open={zoomOpen} onOpenChange={setZoomOpen}>
+        <Dialog open={zoomImage} onOpenChange={setZoomImage}>
           <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 bg-black/95 border-white/10 overflow-hidden">
-            <DialogTitle className="sr-only">{activeProject.title} - Full View</DialogTitle>
-            <DialogDescription className="sr-only">
-              Full resolution view of {activeProject.title}
-            </DialogDescription>
+            <DialogTitle className="sr-only">{selectedProject?.title} - Full View</DialogTitle>
+            <DialogDescription className="sr-only">Full resolution view</DialogDescription>
             <button
-              onClick={() => setZoomOpen(false)}
+              onClick={() => setZoomImage(false)}
               data-testid="button-close-zoom"
               className="absolute top-4 right-4 z-50 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
             >
               <X className="w-5 h-5" />
             </button>
-            <img
-              src={activeProject.image}
-              alt={activeProject.title}
-              className="w-full h-full object-contain max-h-[85vh]"
-              data-testid="zoomed-image"
-            />
+            {selectedProject && (
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full h-full object-contain max-h-[85vh]"
+                data-testid="zoomed-image"
+              />
+            )}
           </DialogContent>
         </Dialog>
       </div>

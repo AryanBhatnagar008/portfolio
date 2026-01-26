@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ZoomIn, X, Code, Clock, Users, Terminal } from "lucide-react";
+import { motion } from "framer-motion";
+import { X, Code, Clock, Users, Terminal, Lightbulb } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -104,10 +104,7 @@ const programmingProjects = [
 ];
 
 export function ProgrammingShowcase() {
-  const [activeTab, setActiveTab] = useState(programmingProjects[0].id);
-  const [zoomOpen, setZoomOpen] = useState(false);
-
-  const activeProject = programmingProjects.find(p => p.id === activeTab) || programmingProjects[0];
+  const [selectedProject, setSelectedProject] = useState<typeof programmingProjects[0] | null>(null);
 
   return (
     <section id="programming-showcase" className="py-24 bg-[#121212]">
@@ -124,205 +121,169 @@ export function ProgrammingShowcase() {
           </span>
           <h2 className="font-display font-bold text-4xl mb-4">Programming Projects</h2>
           <p className="text-muted-foreground">
-            Software development projects showcasing game development, machine learning, and algorithmic problem-solving.
+            Software development projects showcasing game development, machine learning, and algorithmic problem-solving. Click any project to view details.
           </p>
         </motion.div>
 
-        {/* Tabbed Navigation with Thumbnails */}
+        {/* Project Grid */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex justify-center gap-4 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto"
         >
-          {programmingProjects.map((project) => (
-            <button
+          {programmingProjects.map((project, idx) => (
+            <motion.button
               key={project.id}
-              onClick={() => setActiveTab(project.id)}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              onClick={() => setSelectedProject(project)}
               data-testid={`prog-tab-${project.id}`}
-              className={`group relative rounded-xl overflow-hidden transition-all w-40 ${
-                activeTab === project.id
-                  ? "ring-2 ring-[#BB86FC] shadow-[0_0_20px_rgba(187,134,252,0.4)]"
-                  : "ring-1 ring-white/10 hover:ring-[#BB86FC]/50"
-              }`}
+              className="group relative rounded-2xl overflow-hidden border border-white/10 bg-secondary/20 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)] text-left"
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              {/* Image */}
+              <div className="aspect-video overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className={`w-full h-full object-cover transition-all duration-300 ${
-                    activeTab === project.id
-                      ? "scale-105"
-                      : "group-hover:scale-105 opacity-70 group-hover:opacity-100"
-                  }`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/40 to-transparent" />
               </div>
-              <div className={`absolute inset-0 flex items-end ${
-                activeTab === project.id
-                  ? "bg-gradient-to-t from-[#BB86FC]/90 to-transparent"
-                  : "bg-gradient-to-t from-black/80 to-transparent"
-              }`}>
-                <span className={`w-full px-3 py-2 text-xs font-mono font-medium text-center truncate ${
-                  activeTab === project.id ? "text-black" : "text-white"
-                }`}>
-                  {project.title}
-                </span>
-              </div>
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Split-Screen Layout */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeProject.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="grid lg:grid-cols-2 gap-8 items-start"
-          >
-            {/* Left Side - Image & Meta */}
-            <div className="space-y-6">
-              <div className="relative group">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-secondary/20 border border-white/10">
-                  <img
-                    src={activeProject.image}
-                    alt={activeProject.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    data-testid={`prog-image-${activeProject.id}`}
-                  />
-                </div>
-                <button
-                  onClick={() => setZoomOpen(true)}
-                  data-testid={`prog-zoom-${activeProject.id}`}
-                  className="absolute bottom-4 right-4 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity"
-                >
-                  <ZoomIn className="w-5 h-5 text-white" />
-                </button>
-              </div>
-
-              {/* Project Meta */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                  <Clock className="w-5 h-5 text-[#BB86FC] mb-2" />
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Duration</p>
-                  <p className="font-mono text-sm" data-testid={`prog-duration-${activeProject.id}`}>{activeProject.duration}</p>
-                </div>
-                <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                  <Users className="w-5 h-5 text-[#BB86FC] mb-2" />
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Team</p>
-                  <p className="font-mono text-sm" data-testid={`prog-team-${activeProject.id}`}>{activeProject.team}</p>
-                </div>
-              </div>
-
-              {/* Technologies */}
-              <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                <Terminal className="w-5 h-5 text-[#BB86FC] mb-3" />
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">Technologies</p>
-                <div className="flex flex-wrap gap-2">
-                  {activeProject.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs font-mono bg-[#BB86FC]/10 text-[#BB86FC] rounded-full border border-[#BB86FC]/20"
-                    >
+              
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <h3 className="font-display font-bold text-xl text-white mb-1">{project.title}</h3>
+                <p className="text-sm text-muted-foreground line-clamp-2">{project.overview}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <span key={tech} className="px-2 py-1 text-xs font-mono bg-[#BB86FC]/20 text-[#BB86FC] rounded-full">
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.button>
+          ))}
+        </motion.div>
 
-            {/* Right Side - Content */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-display font-bold text-2xl mb-3" data-testid={`prog-title-${activeProject.id}`}>
-                  {activeProject.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed" data-testid={`prog-overview-${activeProject.id}`}>
-                  {activeProject.overview}
-                </p>
-              </div>
-
-              {/* Build Process - Visual Timeline */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Code className="w-5 h-5 text-[#BB86FC]" />
-                  <h4 className="font-display font-semibold text-lg">Development Process</h4>
+        {/* Project Modal */}
+        <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
+          <DialogContent className="max-w-4xl max-h-[90vh] p-0 bg-[#1a1a1a] border-white/10 overflow-hidden">
+            <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
+            <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
+            
+            {selectedProject && (
+              <div className="flex flex-col h-full max-h-[90vh]">
+                {/* Header with Image */}
+                <div className="relative h-48 flex-shrink-0">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/60 to-transparent" />
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    data-testid="prog-modal-close"
+                    className="absolute top-4 right-4 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <div className="absolute bottom-4 left-6 right-6">
+                    <h3 className="font-display font-bold text-3xl text-white">{selectedProject.title}</h3>
+                  </div>
                 </div>
-                <ScrollArea className="h-[350px] pr-4" data-testid={`prog-process-${activeProject.id}`}>
-                  <div className="space-y-4">
-                    {activeProject.buildProcess.map((phase, phaseIndex) => (
-                      <motion.div
-                        key={phase.phase}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: phaseIndex * 0.1 }}
-                        className="relative"
-                      >
-                        {/* Phase Header */}
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-8 h-8 rounded-lg bg-[#BB86FC] flex items-center justify-center text-black font-bold text-sm">
-                            {phaseIndex + 1}
-                          </div>
-                          <h5 className="font-mono font-semibold text-[#BB86FC]">{phase.phase}</h5>
+
+                {/* Content */}
+                <ScrollArea className="flex-1 p-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Left Column */}
+                    <div className="space-y-6">
+                      {/* Meta */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
+                          <Clock className="w-5 h-5 text-[#BB86FC] mb-2" />
+                          <p className="text-xs text-muted-foreground uppercase mb-1">Duration</p>
+                          <p className="font-mono text-sm text-white">{selectedProject.duration}</p>
                         </div>
-                        {/* Phase Steps */}
-                        <div className="ml-4 pl-7 border-l-2 border-[#BB86FC]/30 space-y-2 pb-4">
-                          {phase.steps.map((step, stepIndex) => (
-                            <motion.div
-                              key={stepIndex}
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: phaseIndex * 0.1 + stepIndex * 0.05 }}
-                              className="flex items-start gap-2"
-                            >
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC]/60 mt-2 flex-shrink-0" />
-                              <span className="text-sm text-muted-foreground">{step}</span>
-                            </motion.div>
+                        <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
+                          <Users className="w-5 h-5 text-[#BB86FC] mb-2" />
+                          <p className="text-xs text-muted-foreground uppercase mb-1">Team</p>
+                          <p className="font-mono text-sm text-white">{selectedProject.team}</p>
+                        </div>
+                      </div>
+
+                      {/* Overview */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-3">
+                          <Lightbulb className="w-4 h-4 text-[#BB86FC]" />
+                          <h4 className="font-display font-semibold text-white">Overview</h4>
+                        </div>
+                        <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`prog-overview-${selectedProject.id}`}>
+                          {selectedProject.overview}
+                        </p>
+                      </div>
+
+                      {/* Technologies */}
+                      <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
+                        <Terminal className="w-5 h-5 text-[#BB86FC] mb-3" />
+                        <p className="text-xs text-muted-foreground uppercase mb-3">Technologies</p>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedProject.technologies.map((tech) => (
+                            <span key={tech} className="px-3 py-1 text-xs font-mono bg-[#BB86FC]/10 text-[#BB86FC] rounded-full border border-[#BB86FC]/20">
+                              {tech}
+                            </span>
                           ))}
                         </div>
-                      </motion.div>
-                    ))}
+                      </div>
+
+                      {/* Skills */}
+                      <div>
+                        <p className="text-xs text-muted-foreground uppercase mb-3">Skills Applied</p>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedProject.skills.map((skill) => (
+                            <span key={skill} className="px-3 py-1.5 text-xs font-mono bg-white/5 text-white/80 rounded-lg border border-white/10">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Column - Build Process */}
+                    <div>
+                      <div className="flex items-center gap-2 mb-4">
+                        <Code className="w-5 h-5 text-[#BB86FC]" />
+                        <h4 className="font-display font-semibold text-white">Development Process</h4>
+                      </div>
+                      <div className="space-y-4" data-testid={`prog-process-${selectedProject.id}`}>
+                        {selectedProject.buildProcess.map((phase, phaseIndex) => (
+                          <div key={phase.phase} className="relative">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="w-8 h-8 rounded-lg bg-[#BB86FC] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
+                                {phaseIndex + 1}
+                              </div>
+                              <h5 className="font-mono font-semibold text-[#BB86FC] text-sm">{phase.phase}</h5>
+                            </div>
+                            <div className="ml-4 pl-7 border-l-2 border-[#BB86FC]/30 space-y-2 pb-4">
+                              {phase.steps.map((step, stepIndex) => (
+                                <div key={stepIndex} className="flex items-start gap-2">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC]/60 mt-2 flex-shrink-0" />
+                                  <span className="text-sm text-muted-foreground">{step}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </ScrollArea>
               </div>
-
-              {/* Skills */}
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">Skills Applied</p>
-                <div className="flex flex-wrap gap-2">
-                  {activeProject.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 text-xs font-mono bg-white/5 text-white/80 rounded-lg border border-white/10"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Zoom Dialog */}
-        <Dialog open={zoomOpen} onOpenChange={setZoomOpen}>
-          <DialogContent className="max-w-4xl bg-[#1a1a1a] border-white/10 p-2">
-            <DialogTitle className="sr-only">{activeProject.title} - Full View</DialogTitle>
-            <DialogDescription className="sr-only">Full size view of the project image</DialogDescription>
-            <button
-              onClick={() => setZoomOpen(false)}
-              className="absolute top-4 right-4 z-10 p-2 bg-black/60 backdrop-blur-sm rounded-full"
-              data-testid="prog-zoom-close"
-            >
-              <X className="w-5 h-5 text-white" />
-            </button>
-            <img
-              src={activeProject.image}
-              alt={activeProject.title}
-              className="w-full h-auto rounded-lg"
-            />
+            )}
           </DialogContent>
         </Dialog>
       </div>
