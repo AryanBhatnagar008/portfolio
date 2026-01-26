@@ -120,25 +120,48 @@ export function DesignShowcase() {
           </p>
         </motion.div>
 
-        {/* Tabbed Navigation */}
+        {/* Tabbed Navigation with Thumbnails */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3 mb-12"
         >
           {designProjects.map((project) => (
             <button
               key={project.id}
               onClick={() => setActiveTab(project.id)}
               data-testid={`tab-${project.id}`}
-              className={`px-5 py-2.5 rounded-full text-sm font-mono transition-all border ${
+              className={`group relative rounded-xl overflow-hidden transition-all ${
                 activeTab === project.id
-                  ? "bg-[#BB86FC] text-black border-[#BB86FC] shadow-[0_0_20px_rgba(187,134,252,0.5)]"
-                  : "bg-transparent text-muted-foreground border-white/10 hover:border-[#BB86FC]/50 hover:text-white"
+                  ? "ring-2 ring-[#BB86FC] shadow-[0_0_20px_rgba(187,134,252,0.4)]"
+                  : "ring-1 ring-white/10 hover:ring-[#BB86FC]/50"
               }`}
             >
-              {project.title}
+              {/* Thumbnail Image */}
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={`w-full h-full object-cover transition-all duration-300 ${
+                    activeTab === project.id
+                      ? "scale-105"
+                      : "group-hover:scale-105 opacity-70 group-hover:opacity-100"
+                  }`}
+                />
+              </div>
+              {/* Title Overlay */}
+              <div className={`absolute inset-0 flex items-end ${
+                activeTab === project.id
+                  ? "bg-gradient-to-t from-[#BB86FC]/90 to-transparent"
+                  : "bg-gradient-to-t from-black/80 to-transparent"
+              }`}>
+                <span className={`w-full px-2 py-1.5 text-[10px] font-mono font-medium text-center truncate ${
+                  activeTab === project.id ? "text-black" : "text-white"
+                }`}>
+                  {project.title}
+                </span>
+              </div>
             </button>
           ))}
         </motion.div>

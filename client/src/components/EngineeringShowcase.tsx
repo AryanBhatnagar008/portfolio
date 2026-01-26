@@ -316,6 +316,54 @@ Animation & Refinement (Days 6+):
   complex animation (lag when moving parts)`,
     materials: ["Onshape CAD", "Snail Cams", "Offset Cams", "Connecting Rods"],
     skills: ["CAD Animation", "Mechanism Design", "Cam Profiles", "Assembly Mates"]
+  },
+  {
+    id: "birdhouse",
+    title: "Bird House",
+    image: "https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&q=80&w=800",
+    duration: "2 Weeks",
+    team: "Aryan & Adhiraj",
+    overview: "A multi-compartment birdhouse designed for New Jersey bird species (Blue Jays, Sparrows, Mockingbirds). Features three nesting areas, integrated bird feeder, sloped roofs for drainage, and bevel-jointed construction. Designed to be transformed into a STEM kit for elementary/middle school education.",
+    buildProcess: `Research & Design Phase:
+- Studied bird species native to New Jersey
+- Researched entrance hole sizing (1-1.25" diameter)
+- Determined mounting preferred over hanging for bird security
+- Created multiple design concepts in Onshape
+- Selected complex multi-house design with bird feeder
+
+Design Specifications:
+- Base: 5" x 5" x 0.41" thick
+- Roof panels: 3.2" x 5" (10 pieces)
+- Front arrow-shaped panels: 7" x 5" (2 pieces)
+- Back panels: 10" x 5" (4 pieces)
+- Large front: 15" x 5"
+- Side arrow panels: 10" x 10" (2 pieces)
+- Top house sides: 5" x 5" (2 pieces)
+- Total material: 880 sq inches
+
+Fabrication Process:
+- Cut all pieces per cut list using scroll saw
+- Created pilot holes (1.25" diameter) with scroll saw
+- Nailed side panels of small birdhouse together
+- Glued side panels of second small birdhouse
+- Assembled large center house to base with wood glue
+- Attached 5x5 panels to unoccupied edges
+
+Roof & Final Assembly:
+- Adjusted roof dimensions using bandsaw
+- Created bevel joints by angling bandsaw table
+- Glued roofs together at bevel joint
+- Attached roofs with tape to hold during cure
+- Built bird feeder from scrap wood (5x5 + 5x1)
+- Feeder fits precisely between miniature houses
+
+Lessons Learned:
+- Nail gun would provide stronger joints than glue alone
+- Account for wood thickness in cut list measurements
+- Set realistic time goals to avoid rushing
+- Precision cuts require dedicated focus time`,
+    materials: ["Plywood (0.41\" thick)", "Wood Glue", "Nails", "Scroll Saw", "Bandsaw"],
+    skills: ["Woodworking", "Joinery", "Bevel Cuts", "STEM Education Design"]
   }
 ];
 
@@ -344,25 +392,48 @@ export function EngineeringShowcase() {
           </p>
         </motion.div>
 
-        {/* Tabbed Navigation */}
+        {/* Tabbed Navigation with Thumbnails */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-12"
         >
           {engineeringProjects.map((project) => (
             <button
               key={project.id}
               onClick={() => setActiveTab(project.id)}
               data-testid={`eng-tab-${project.id}`}
-              className={`px-5 py-2.5 rounded-full text-sm font-mono transition-all border ${
+              className={`group relative rounded-xl overflow-hidden transition-all ${
                 activeTab === project.id
-                  ? "bg-[#BB86FC] text-black border-[#BB86FC] shadow-[0_0_20px_rgba(187,134,252,0.5)]"
-                  : "bg-transparent text-muted-foreground border-white/10 hover:border-[#BB86FC]/50 hover:text-white"
+                  ? "ring-2 ring-[#BB86FC] shadow-[0_0_20px_rgba(187,134,252,0.4)]"
+                  : "ring-1 ring-white/10 hover:ring-[#BB86FC]/50"
               }`}
             >
-              {project.title}
+              {/* Thumbnail Image */}
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={`w-full h-full object-cover transition-all duration-300 ${
+                    activeTab === project.id
+                      ? "scale-105"
+                      : "group-hover:scale-105 opacity-70 group-hover:opacity-100"
+                  }`}
+                />
+              </div>
+              {/* Title Overlay */}
+              <div className={`absolute inset-0 flex items-end ${
+                activeTab === project.id
+                  ? "bg-gradient-to-t from-[#BB86FC]/90 to-transparent"
+                  : "bg-gradient-to-t from-black/80 to-transparent"
+              }`}>
+                <span className={`w-full px-3 py-2 text-xs font-mono font-medium text-center truncate ${
+                  activeTab === project.id ? "text-black" : "text-white"
+                }`}>
+                  {project.title}
+                </span>
+              </div>
             </button>
           ))}
         </motion.div>
