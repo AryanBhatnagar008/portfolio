@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
-import { useSkills, useProjects, useSendMessage } from "@/hooks/use-portfolio";
+import { useSkills, useSendMessage } from "@/hooks/use-portfolio";
 import { Navigation } from "@/components/Navigation";
-import { ProjectCard } from "@/components/ProjectCard";
 import { SkillBar } from "@/components/SkillBar";
 import { Footer } from "@/components/Footer";
 import { DesignShowcase } from "@/components/DesignShowcase";
@@ -235,76 +234,6 @@ function Skills() {
   );
 }
 
-// --- Portfolio Section ---
-function Portfolio() {
-  const { data: projects, isLoading } = useProjects();
-  const [filter, setFilter] = useState("All");
-
-  const categories = ["All", "3D CAD", "Coding", "Woodworking", "3D Printing", "Design"];
-  
-  const filteredProjects = projects?.filter(
-    (p) => filter === "All" || p.category === filter
-  );
-
-  return (
-    <section id="portfolio" className="py-24 bg-secondary/20">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">Selected Works</span>
-            <h2 className="font-display font-bold text-4xl">Featured Projects</h2>
-          </motion.div>
-
-          <motion.div
-             initial={{ opacity: 0, x: 20 }}
-             whileInView={{ opacity: 1, x: 0 }}
-             viewport={{ once: true }}
-             className="flex flex-wrap gap-2"
-          >
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-mono transition-all border ${
-                  filter === cat
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-transparent text-muted-foreground border-transparent hover:border-white/10 hover:bg-white/5"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </motion.div>
-        </div>
-
-        {isLoading ? (
-          <div className="flex justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          </div>
-        ) : (
-          <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatePresence>
-              {filteredProjects?.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        )}
-        
-        {filteredProjects?.length === 0 && (
-          <div className="text-center py-20 text-muted-foreground font-mono">
-            No projects found in this category.
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
 // --- Contact Section ---
 function Contact() {
   const { toast } = useToast();
@@ -442,7 +371,6 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
-        <Portfolio />
         <DesignShowcase />
         <EngineeringShowcase />
         <Contact />

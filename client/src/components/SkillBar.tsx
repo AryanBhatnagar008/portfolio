@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 interface SkillBarProps {
   name: string;
@@ -7,32 +6,19 @@ interface SkillBarProps {
   delay?: number;
 }
 
-export function SkillBar({ name, proficiency = 0, delay = 0 }: SkillBarProps) {
+export function SkillBar({ name, delay = 0 }: SkillBarProps) {
   return (
-    <div className="group">
-      <div className="flex justify-between mb-2">
-        <span className="font-mono text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors">
-          {name}
-        </span>
-        <span className="font-mono text-xs text-muted-foreground/50">
-          {proficiency}%
-        </span>
-      </div>
-      <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${proficiency}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: delay * 0.1, ease: "easeOut" }}
-          className={cn(
-            "h-full rounded-full relative",
-            "bg-gradient-to-r from-primary/80 to-accent/80",
-            "group-hover:from-primary group-hover:to-accent transition-all duration-300"
-          )}
-        >
-          <div className="absolute inset-0 bg-white/20 animate-[shimmer_2s_infinite]" />
-        </motion.div>
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3, delay: delay * 0.05 }}
+      className="group flex items-center gap-3 py-2"
+    >
+      <span className="w-2 h-2 rounded-full bg-primary/60 group-hover:bg-primary transition-colors" />
+      <span className="font-mono text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors">
+        {name}
+      </span>
+    </motion.div>
   );
 }

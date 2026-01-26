@@ -222,37 +222,100 @@ Vision Sensor Programming:
     skills: ["Robotics", "C++ Programming", "Sensor Integration", "Mechanical Design"]
   },
   {
-    id: "lego-robots",
-    title: "LEGO Robots",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
-    duration: "1 Day",
-    team: "Aryan & Anikait",
-    overview: "A rapid prototyping challenge to design functional robots from LEGO kits. Created two robots: one capable of carrying a hammer 10 meters, and another designed to push objects across distances.",
-    buildProcess: `Robot #1: Hammer Carrier
-Challenge: Carry a hammer 36 inches (extended to 10m)
-- Built stable base for hammer weight distribution
-- Limited materials required creative solutions
-- Added T-shaped retention pieces to prevent slipping
-- Tested with actual hammer weight
-- Achieved 10-meter carry distance
+    id: "ardc",
+    title: "Home Renovation",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800",
+    duration: "6 Weeks",
+    team: "Aryan & Jascha",
+    overview: "Architectural Renovation Design Challenge - A complete home renovation design project creating floor plans for a two-story family home with 2-car garage, great room, family kitchen, master suite, nursery, den, and outdoor living space. Designed using Planner5D with attention to building codes and setback requirements.",
+    buildProcess: `Research Phase (Week 1):
+- Studied bedroom size requirements & building codes
+- Researched kitchen work triangle layouts
+- Explored garage standards (24x24 ft)
+- Created comprehensive mind map for each room
+- Evaluated software options (Floorplanner vs Planner5D)
 
-Robot #2: Object Pusher
-Challenge: Push an object 10 meters
-- Attached wheels to base for mobility
-- Designed front-mounted pushing claw
-- Initial design too complicated - poor results
-- Simplified by removing unnecessary parts
-- Extended robot length for stability
-- Final design achieved consistent pushing
+Design Requirements:
+- 2-car garage with breezeway connection
+- Great room living area
+- Family kitchen with inclusive dining
+- Laundry/utility room & powder room
+- Master bedroom with ensuite bath
+- Nursery and den/study
+- Upstairs separate bathroom
+- Outdoor living space (patio/deck)
 
-Design Lessons Learned:
-- Simplicity often beats complexity
-- Foundation stability is critical
-- Test early and iterate quickly
-- Material constraints drive innovation
-- Focus on core functionality first`,
-    materials: ["LEGO Technic", "LEGO Standard Bricks", "Wheels", "Axles"],
-    skills: ["Rapid Prototyping", "Mechanical Design", "Problem Solving", "Iteration"]
+Floor Plan Development (Weeks 2-3):
+- Drafted first floor in Planner5D
+- Entry opens to living area with stairs visible
+- Guest bedroom positioned top-left (9x12')
+- Great room combined living/kitchen (9x12')
+- Bathroom and laundry room (9x7' each)
+- Living room: 15x14'
+
+Second Floor Layout:
+- Cut-in portions: 8x6' (left) and 6x6' (right)
+- Master suite with private bath
+- Nursery adjacent to master
+- Den/study with natural lighting
+
+Peer Review & Refinement (Weeks 4-6):
+- Received feedback to swap bottom floor locations
+- Combined best elements from both partners' designs
+- Added furniture: beds, cribs, kitchen appliances
+- Designed right-triangle kitchen countertop
+- Added breezeway and garage connection
+- Finalized with bookshelves, carpets, TV placement`,
+    materials: ["Planner5D", "Floor Plans", "Building Codes", "Architectural Standards"],
+    skills: ["Architectural Design", "Space Planning", "CAD Software", "Building Codes"]
+  },
+  {
+    id: "automata",
+    title: "Gladiator Automata",
+    image: "https://images.unsplash.com/photo-1569144157591-c60f3f82f137?auto=format&fit=crop&q=80&w=800",
+    duration: "2 Weeks",
+    team: "Aryan & Zielig",
+    overview: "A mechanical automaton featuring a gladiator figure with moving sword and shield arms, powered by a hand-crank mechanism using snail cams and offset cams. Designed entirely in Onshape with full animation capabilities.",
+    buildProcess: `Research & Concept (Day 1):
+- Studied motion direction mechanisms
+- Researched different cam types:
+  - Snail cams for sword motion
+  - Offset cams for shield motion
+- Analyzed material options
+- Created 4 initial prototype sketches
+- Selected gladiator concept for build
+
+Onshape CAD Modeling (Days 2-3):
+- Sketched gladiator outline from reference image
+- Modeled base structure
+- Created snail cams using parametric values
+  (Followed tutorial for precise cam profiles)
+- Designed offset cams for shield
+- Built gladiator body as fixed part
+- Modeled arms separately for articulation
+- Added connecting rods for cam-to-arm linkage
+
+Assembly Challenges (Days 4-5):
+- Connected arms to body with proper mates
+- Attached rods to snail cams
+- Issue: Rods floating instead of following cams
+- Solution: Added fillets on joining faces
+- Used tangent mates for smooth motion
+- Fixed base and body parts (non-moving)
+
+Animation & Refinement (Days 6+):
+- Configured rotation mates for crank
+- Set up slider-crank mechanism
+- Troubleshot rod sliding against arm issue
+- Applied position constraints
+- Final animation shows:
+  - Crank rotation drives cams
+  - Cams push rods up/down
+  - Rods articulate sword and shield arms
+- Note: Onshape performance decreased with
+  complex animation (lag when moving parts)`,
+    materials: ["Onshape CAD", "Snail Cams", "Offset Cams", "Connecting Rods"],
+    skills: ["CAD Animation", "Mechanism Design", "Cam Profiles", "Assembly Mates"]
   }
 ];
 
