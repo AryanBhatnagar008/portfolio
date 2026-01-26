@@ -21,77 +21,224 @@ const designProjects = [
     title: "Comic Art",
     image: comicArt,
     concept: "A dynamic illustration inspired by popular anime aesthetics, capturing the essence of a determined protagonist. The piece explores bold color blocking and dramatic posing to convey strength and resolve.",
-    technicalProcess: `- Vector-traced the character outline using the Pen Tool in Illustrator
-- Applied flat color fills with carefully selected palette
-- Used clipping masks for shadow and highlight layers
-- Exported at 300 DPI for print-quality resolution
-- Color grading adjustments in Photoshop for final polish`
+    technicalProcess: [
+      {
+        phase: "Line Art & Outline",
+        steps: [
+          "Vector-traced the character outline using Pen Tool",
+          "Created clean linework in Adobe Illustrator",
+          "Established proportions and pose dynamics"
+        ]
+      },
+      {
+        phase: "Color Application",
+        steps: [
+          "Applied flat color fills with curated palette",
+          "Used clipping masks for shadow layers",
+          "Added highlight layers for depth"
+        ]
+      },
+      {
+        phase: "Finishing Touches",
+        steps: [
+          "Exported at 300 DPI for print quality",
+          "Color grading adjustments in Photoshop",
+          "Final polish and contrast enhancement"
+        ]
+      }
+    ]
   },
   {
     id: "surrealist",
     title: "Surrealist Scene",
     image: surrealistScene,
     concept: "A surrealist composition blending retro automotive aesthetics with sci-fi elements. The piece explores themes of adventure and the unknown, featuring a classic muscle car facing a portal in a desolate landscape.",
-    technicalProcess: `- Composited 8+ stock images using layer masks in Photoshop
-- Used perspective warp to align the car with the horizon
-- Created the portal effect with radial blur and glow overlays
-- Applied color grading with gradient maps for cohesive look
-- Added atmospheric haze using soft brushes at low opacity`
+    technicalProcess: [
+      {
+        phase: "Image Sourcing",
+        steps: [
+          "Curated 8+ stock images for composition",
+          "Selected car, landscape, and portal elements",
+          "Ensured lighting consistency across sources"
+        ]
+      },
+      {
+        phase: "Compositing",
+        steps: [
+          "Used layer masks for seamless blending",
+          "Applied perspective warp to align car with horizon",
+          "Created portal effect with radial blur and glow"
+        ]
+      },
+      {
+        phase: "Atmospheric Effects",
+        steps: [
+          "Added gradient maps for cohesive color grading",
+          "Applied atmospheric haze with soft brushes",
+          "Enhanced lighting with glow overlays"
+        ]
+      }
+    ]
   },
   {
     id: "minimalist",
     title: "Minimalist Icons",
     image: minimalistIcons,
     concept: "A series of minimalist superhero icons reducing complex characters to their most essential visual elements. Each icon uses geometric shapes and a muted color palette to create instantly recognizable symbols.",
-    technicalProcess: `- Created all shapes using basic geometry in Illustrator
-- Maintained consistent stroke weights across all icons
-- Used a limited 6-color palette for visual cohesion
-- Applied rounded corners for a friendly aesthetic
-- Exported as SVG for perfect scalability`
+    technicalProcess: [
+      {
+        phase: "Geometric Design",
+        steps: [
+          "Created all shapes using basic geometry",
+          "Used circles, rectangles, and paths",
+          "Maintained consistent proportions"
+        ]
+      },
+      {
+        phase: "Style Consistency",
+        steps: [
+          "Applied consistent stroke weights across icons",
+          "Limited palette to 6 colors for cohesion",
+          "Added rounded corners for friendly aesthetic"
+        ]
+      },
+      {
+        phase: "Export & Optimization",
+        steps: [
+          "Exported as SVG for perfect scalability",
+          "Optimized vector paths for file size",
+          "Tested at various display sizes"
+        ]
+      }
+    ]
   },
   {
     id: "song-collage",
     title: "Song Collage",
     image: songCollage,
     concept: "A dramatic photo manipulation interpreting music lyrics through visual metaphor. The fiery composition uses silhouettes and typography to evoke feelings of passion, rebellion, and aspiration.",
-    technicalProcess: `- Blended multiple fire and smoke stock images
-- Used layer blend modes (Screen, Overlay) for fire effects
-- Created silhouettes using threshold adjustments
-- Typography set in custom script fonts
-- Added dreamcatcher element with careful masking`
+    technicalProcess: [
+      {
+        phase: "Fire Effects",
+        steps: [
+          "Blended multiple fire and smoke stocks",
+          "Used Screen and Overlay blend modes",
+          "Controlled intensity with opacity adjustments"
+        ]
+      },
+      {
+        phase: "Silhouette Integration",
+        steps: [
+          "Created silhouettes using threshold adjustments",
+          "Positioned figures for dramatic composition",
+          "Added dreamcatcher with careful masking"
+        ]
+      },
+      {
+        phase: "Typography",
+        steps: [
+          "Set lyrics in custom script fonts",
+          "Integrated text with visual elements",
+          "Balanced readability with artistic style"
+        ]
+      }
+    ]
   },
   {
     id: "magazine",
     title: "Magazine Cover",
     image: magazineCover,
     concept: "A futuristic magazine cover exploring themes of AI rights and consciousness. The dystopian aesthetic combines industrial imagery with thought-provoking headlines about artificial intelligence.",
-    technicalProcess: `- Composited robot model with prison bar overlays
-- Applied dripping text effect using custom brushes
-- Used gradient overlays for metallic color grading
-- Typography hierarchy established with varying weights
-- Added grain texture for editorial print feel`
+    technicalProcess: [
+      {
+        phase: "Image Compositing",
+        steps: [
+          "Composited robot model with prison overlays",
+          "Applied metallic color grading with gradients",
+          "Created industrial dystopian atmosphere"
+        ]
+      },
+      {
+        phase: "Text Effects",
+        steps: [
+          "Applied dripping text effect with custom brushes",
+          "Established typography hierarchy",
+          "Used varying weights for visual interest"
+        ]
+      },
+      {
+        phase: "Editorial Finishing",
+        steps: [
+          "Added grain texture for print feel",
+          "Applied final color corrections",
+          "Balanced visual elements with text"
+        ]
+      }
+    ]
   },
   {
     id: "logo",
     title: "Logo Variations",
     image: logoVariations,
     concept: "A comprehensive logo design exploration for 'Newton' brand, showcasing the iterative design process from initial sketches to refined variations. The designs reference Newton's cradle and geometric forms.",
-    technicalProcess: `- Started with hand sketches scanned at 600 DPI
-- Vectorized concepts in Adobe Illustrator
-- Created modular components for flexible layouts
-- Developed monochrome and color variations
-- Tested legibility at various scales (favicon to billboard)`
+    technicalProcess: [
+      {
+        phase: "Concept Development",
+        steps: [
+          "Started with hand sketches scanned at 600 DPI",
+          "Explored multiple conceptual directions",
+          "Selected strongest concepts for vectorization"
+        ]
+      },
+      {
+        phase: "Vectorization",
+        steps: [
+          "Vectorized concepts in Adobe Illustrator",
+          "Created modular components for flexibility",
+          "Refined curves and proportions"
+        ]
+      },
+      {
+        phase: "Variation Testing",
+        steps: [
+          "Developed monochrome and color variations",
+          "Tested legibility at various scales",
+          "Validated from favicon to billboard sizes"
+        ]
+      }
+    ]
   },
   {
     id: "ad",
     title: "Ad Design",
     image: adDesign,
     concept: "A striking advertisement exploring transhumanism themes. The cyberpunk aesthetic combines organic and mechanical elements to create a visually arresting promotional piece for a fictional product.",
-    technicalProcess: `- Photo manipulation of anatomical and mechanical elements
-- Used frequency separation for skin retouching
-- Applied custom lightning brush strokes
-- Color grading with split-toning (teal/magenta)
-- Typography integration with blend modes`
+    technicalProcess: [
+      {
+        phase: "Photo Manipulation",
+        steps: [
+          "Composited anatomical and mechanical elements",
+          "Used frequency separation for skin retouching",
+          "Blended organic and synthetic textures"
+        ]
+      },
+      {
+        phase: "Effects & Lighting",
+        steps: [
+          "Applied custom lightning brush strokes",
+          "Created cyberpunk glow effects",
+          "Enhanced depth with shadow work"
+        ]
+      },
+      {
+        phase: "Color & Typography",
+        steps: [
+          "Applied split-toning (teal/magenta)",
+          "Integrated typography with blend modes",
+          "Final color grading for cohesive look"
+        ]
+      }
+    ]
   }
 ];
 
@@ -219,18 +366,46 @@ export function DesignShowcase() {
                   </p>
                 </div>
 
-                {/* Technical Process */}
+                {/* Technical Process - Visual Timeline */}
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-2 mb-4">
                     <Wrench className="w-4 h-4 text-[#BB86FC]" />
                     <h4 className="font-display font-semibold text-lg text-white">Technical Process</h4>
                   </div>
-                  <pre
-                    className="font-mono text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed bg-black/30 p-4 rounded-lg border border-white/5"
-                    data-testid={`process-${activeProject.id}`}
-                  >
-                    {activeProject.technicalProcess}
-                  </pre>
+                  <div className="space-y-4" data-testid={`process-${activeProject.id}`}>
+                    {activeProject.technicalProcess.map((phase, phaseIndex) => (
+                      <motion.div
+                        key={phase.phase}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: phaseIndex * 0.1 }}
+                        className="relative"
+                      >
+                        {/* Phase Header */}
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-8 h-8 rounded-lg bg-[#BB86FC] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
+                            {phaseIndex + 1}
+                          </div>
+                          <h5 className="font-mono font-semibold text-[#BB86FC] text-sm">{phase.phase}</h5>
+                        </div>
+                        {/* Phase Steps */}
+                        <div className="ml-4 pl-7 border-l-2 border-[#BB86FC]/30 space-y-2 pb-4">
+                          {phase.steps.map((step, stepIndex) => (
+                            <motion.div
+                              key={stepIndex}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: phaseIndex * 0.1 + stepIndex * 0.05 }}
+                              className="flex items-start gap-2"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC]/60 mt-2 flex-shrink-0" />
+                              <span className="text-sm text-muted-foreground">{step}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </ScrollArea>
             </div>

@@ -7,6 +7,7 @@ import { SkillBar } from "@/components/SkillBar";
 import { Footer } from "@/components/Footer";
 import { DesignShowcase } from "@/components/DesignShowcase";
 import { EngineeringShowcase } from "@/components/EngineeringShowcase";
+import { ProgrammingShowcase } from "@/components/ProgrammingShowcase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertMessageSchema, type InsertMessage } from "@shared/schema";
-import { Loader2, Send, Download, ChevronRight, CircuitBoard } from "lucide-react";
+import { Loader2, Send, Download, ChevronRight, CircuitBoard, Palette, Wrench, Code } from "lucide-react";
 
 // --- Hero Section ---
 const roles = ["Mechanical Engineer", "Product Designer", "Maker", "Innovator"];
@@ -234,6 +235,105 @@ function Skills() {
   );
 }
 
+// --- Portfolio Section with 3 Tabs ---
+function Portfolio() {
+  const portfolioTabs = [
+    {
+      id: "design",
+      title: "Design",
+      icon: Palette,
+      description: "Adobe Creative Suite work",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=400",
+      targetSection: "design-showcase"
+    },
+    {
+      id: "engineering",
+      title: "Engineering",
+      icon: Wrench,
+      description: "Hands-on builds & CAD",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=400",
+      targetSection: "engineering-showcase"
+    },
+    {
+      id: "programming",
+      title: "Programming",
+      icon: Code,
+      description: "Code & algorithms",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=400",
+      targetSection: "programming-showcase"
+    }
+  ];
+
+  return (
+    <section id="portfolio" className="py-24 bg-secondary/10 relative">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto mb-16"
+        >
+          <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">
+            Explore My Work
+          </span>
+          <h2 className="font-display font-bold text-4xl mb-4">Portfolio</h2>
+          <p className="text-muted-foreground">
+            Browse through my creative and technical projects across design, engineering, and programming.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {portfolioTabs.map((tab, idx) => (
+            <motion.div
+              key={tab.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.15 }}
+            >
+              <ScrollLink
+                to={tab.targetSection}
+                smooth={true}
+                duration={800}
+                offset={-50}
+                className="block cursor-pointer"
+              >
+                <div
+                  className="group relative rounded-2xl overflow-hidden border border-white/10 bg-secondary/20 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.2)]"
+                  data-testid={`portfolio-tab-${tab.id}`}
+                >
+                  {/* Image */}
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={tab.image}
+                      alt={tab.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-80"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/60 to-transparent" />
+                  </div>
+                  
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-[#BB86FC]/20 border border-[#BB86FC]/30 flex items-center justify-center mb-4 group-hover:bg-[#BB86FC]/30 transition-colors">
+                      <tab.icon className="w-8 h-8 text-[#BB86FC]" />
+                    </div>
+                    <h3 className="font-display font-bold text-2xl mb-2 text-white">{tab.title}</h3>
+                    <p className="text-sm text-muted-foreground">{tab.description}</p>
+                    <div className="mt-4 flex items-center gap-2 text-[#BB86FC] text-sm font-mono opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span>View Projects</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
+              </ScrollLink>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // --- Contact Section ---
 function Contact() {
   const { toast } = useToast();
@@ -371,8 +471,10 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
+        <Portfolio />
         <DesignShowcase />
         <EngineeringShowcase />
+        <ProgrammingShowcase />
         <Contact />
       </main>
       <Footer />

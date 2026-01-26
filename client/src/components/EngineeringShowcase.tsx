@@ -15,29 +15,44 @@ const engineeringProjects = [
     duration: "4 Days",
     team: "Solo Project",
     overview: "A custom headphone and phone stand designed to solve a personal organization problem. The stand features a built-in charger holder for convenient headphone charging, combining functionality with aesthetic appeal using popsicle sticks and balsa wood.",
-    buildProcess: `Day 1: Problem Definition & Sketching
-- Identified need for headphone storage with integrated charging
-- Sketched 4 different designs (2 popsicle stick, 2 cardboard)
-- Selected popsicle stick design for durability
-- Chose design with charger integration feature
-
-Day 2: Base Construction
-- Built the base using popsicle sticks with cut edges
-- Added balsa wood accents for premium look
-- Created foundation structure with cross-supports
-- Tested stability with headphone weight
-
-Day 3: Vertical Assembly
-- Cut vertical support sticks to headphone height
-- Constructed the headphone rest/head piece
-- Added decorative detailing on sides
-- Attached small balsa wood trim pieces
-
-Day 4: Final Modifications
-- Added phone stand attachment
-- Integrated charger cable routing
-- Final assembly and testing
-- Achieved dual-device functionality`,
+    buildProcess: [
+      {
+        phase: "Day 1: Problem Definition & Sketching",
+        steps: [
+          "Identified need for headphone storage with integrated charging",
+          "Sketched 4 different designs (2 popsicle stick, 2 cardboard)",
+          "Selected popsicle stick design for durability",
+          "Chose design with charger integration feature"
+        ]
+      },
+      {
+        phase: "Day 2: Base Construction",
+        steps: [
+          "Built the base using popsicle sticks with cut edges",
+          "Added balsa wood accents for premium look",
+          "Created foundation structure with cross-supports",
+          "Tested stability with headphone weight"
+        ]
+      },
+      {
+        phase: "Day 3: Vertical Assembly",
+        steps: [
+          "Cut vertical support sticks to headphone height",
+          "Constructed the headphone rest/head piece",
+          "Added decorative detailing on sides",
+          "Attached small balsa wood trim pieces"
+        ]
+      },
+      {
+        phase: "Day 4: Final Modifications",
+        steps: [
+          "Added phone stand attachment",
+          "Integrated charger cable routing",
+          "Final assembly and testing",
+          "Achieved dual-device functionality"
+        ]
+      }
+    ],
     materials: ["Popsicle Sticks", "Balsa Wood", "Hot Glue", "Wood Glue"],
     skills: ["Woodworking", "Design Thinking", "Prototyping"]
   },
@@ -48,29 +63,44 @@ Day 4: Final Modifications
     duration: "14 Days",
     team: "Aryan & Elijah",
     overview: "\"Turbo the Snail-a-Pult\" - A precision catapult designed to launch a tennis ball (droid) into a target ship. Achieved 20/20 perfect accuracy in final testing. Features a snail-themed decorative design with googly eyes.",
-    buildProcess: `Design Phase (Days 1-3):
-- Brainstormed 4 catapult concepts
-- Created decision matrix scoring functionality, design, durability, accuracy
-- Selected traditional catapult with rubber band propulsion
-- Drafted top-down and side-view technical drawings
-
-Construction Phase (Days 4-8):
-- Cut 12"x5" wooden base using hand saw
-- Reduced dowels from 12" to 8" for optimal leverage
-- Built support structure with hot glue + popsicle sticks
-- Arm length: 10.5 inches for trajectory control
-
-Mechanism Development (Days 9-11):
-- Tested cardboard, tape, and string for arm pivot (all failed)
-- Solution: Plastic straw on thin wood dowel for rotation
-- Attached rubber bands for launch force
-- Added nail reinforcements after initial failure
-
-Final Assembly (Days 12-14):
-- Reinforced with additional hot glue and tape
-- Added snail decorations (cardboard shell, googly eyes)
-- Calibrated for 10-foot launch distance
-- Final test: 20/20 successful launches into target box`,
+    buildProcess: [
+      {
+        phase: "Design Phase (Days 1-3)",
+        steps: [
+          "Brainstormed 4 catapult concepts",
+          "Created decision matrix scoring functionality, design, durability, accuracy",
+          "Selected traditional catapult with rubber band propulsion",
+          "Drafted top-down and side-view technical drawings"
+        ]
+      },
+      {
+        phase: "Construction Phase (Days 4-8)",
+        steps: [
+          "Cut 12\"x5\" wooden base using hand saw",
+          "Reduced dowels from 12\" to 8\" for optimal leverage",
+          "Built support structure with hot glue + popsicle sticks",
+          "Arm length: 10.5 inches for trajectory control"
+        ]
+      },
+      {
+        phase: "Mechanism Development (Days 9-11)",
+        steps: [
+          "Tested cardboard, tape, and string for arm pivot (all failed)",
+          "Solution: Plastic straw on thin wood dowel for rotation",
+          "Attached rubber bands for launch force",
+          "Added nail reinforcements after initial failure"
+        ]
+      },
+      {
+        phase: "Final Assembly (Days 12-14)",
+        steps: [
+          "Reinforced with additional hot glue and tape",
+          "Added snail decorations (cardboard shell, googly eyes)",
+          "Calibrated for 10-foot launch distance",
+          "Final test: 20/20 successful launches into target box"
+        ]
+      }
+    ],
     materials: ["Wooden Dowels", "Popsicle Sticks", "Rubber Bands", "Hot Glue", "Plastic Straw", "Cardboard"],
     skills: ["Mechanical Design", "Physics", "Iteration", "Problem Solving"]
   },
@@ -81,239 +111,288 @@ Final Assembly (Days 12-14):
     duration: "3 Weeks",
     team: "Aryan & Elijah",
     overview: "A CAD design challenge creating themed beverage holders: a chicken-shaped kettle for hot drinks and an egg-shaped mug with chicken feet for cold drinks. Explores the question \"What came first - the chicken or the egg?\"",
-    buildProcess: `Research Phase:
-- Analyzed 30 existing beverage holder designs
-- Documented pros/cons of dispensers, mugs, bottles, thermoses
-- Created mind map exploring hot vs cold holder differences
-- Selected "Chicken & Egg" theme for cohesive design story
-
-Onshape CAD - Chicken Kettle:
-- Used Loft tool for organic body shape
-- Revolve for main body structure
-- Extrude for wings/handles
-- Added Wattle and Comb details
-- Created curved lid using projected curves
-- Applied Fillet for smooth transitions
-
-Onshape CAD - Egg Mug:
-- Ellipse sketch (4.5" height, 1.09" radius opening)
-- Revolve for egg shape generation
-- Shell tool to hollow interior
-- Extrude:remove for drinking opening
-- Shifted planes for handle placement
-- Created chicken feet with Loft tool
-
-Assembly:
-- Designed custom packaging/boxes
-- Created claws using multiple plane shifts
-- Added realistic toe details with circular extrudes
-- Final renders with materials applied`,
-    materials: ["Onshape CAD", "3D Modeling", "Digital Prototyping"],
-    skills: ["CAD Design", "Revolve", "Loft", "Shell", "Boolean Operations"]
+    buildProcess: [
+      {
+        phase: "Research Phase",
+        steps: [
+          "Analyzed 30 existing beverage holder designs",
+          "Documented pros/cons of dispensers, mugs, bottles, thermoses",
+          "Created mind map exploring hot vs cold holder differences",
+          "Selected \"Chicken & Egg\" theme for cohesive design story"
+        ]
+      },
+      {
+        phase: "Onshape CAD - Chicken Kettle",
+        steps: [
+          "Used Loft tool for organic body shape",
+          "Revolve for main body structure",
+          "Extrude for wings/handles",
+          "Added Wattle and Comb details",
+          "Created curved lid using projected curves",
+          "Applied Fillet for smooth transitions"
+        ]
+      },
+      {
+        phase: "Onshape CAD - Egg Mug",
+        steps: [
+          "Ellipse sketch (4.5\" height, 1.09\" radius opening)",
+          "Revolve for egg shape generation",
+          "Shell tool for hollow interior",
+          "Designed chicken feet with claw geometry",
+          "Circle pattern for toe arrangement",
+          "Combined elements using boolean operations"
+        ]
+      },
+      {
+        phase: "Final Presentation",
+        steps: [
+          "Exploded view assembly in Onshape",
+          "Rendered both designs with realistic materials",
+          "Documented CAD techniques used",
+          "Created design rationale presentation"
+        ]
+      }
+    ],
+    materials: ["Onshape CAD", "Loft Tool", "Revolve", "Shell", "Fillet", "Boolean"],
+    skills: ["CAD Modeling", "Surface Design", "Creative Problem Solving", "3D Visualization"]
   },
   {
-    id: "bridge",
+    id: "ktruss-bridge",
     title: "K-Truss Bridge",
-    image: "https://images.unsplash.com/photo-1545296664-39db56ad95bd?auto=format&fit=crop&q=80&w=800",
-    duration: "6 Weeks",
-    team: "Solo Project",
-    overview: "A structural engineering project building a K-Truss bridge from balsa wood. The K-Truss design improves upon the Pratt Truss by shortening vertical compression members, increasing resistance to buckling while maintaining load capacity.",
-    buildProcess: `Engineering Research:
-- Studied 6 basic bridge forms (Beam, Truss, Arch, Suspension, Cantilever, Cable-Stayed)
-- Analyzed forces: Tension, Compression, Torsion, Shear
-- Researched Warren, Howe, K, and Pratt truss designs
-- Selected K-Truss for superior buckling resistance
-
-Design Specifications:
-- Bottom chord: 12 inches
-- Top chord: 9 inches (tapered design)
-- Height: According to K-truss ratios
-- Scale: 1:2 for prototype
-
-Cut List Calculations:
-- Top Chords: 2x 10" (1/4" balsa) = 20"
-- Bottom Chords: 2x 12" (1/4" balsa) = 24"
-- Vertical Members: 12x 3" (1/4" balsa) = 36"
-- Diagonal Members: 16x 3" (1/8" balsa) = 48"
-- Floor Beams: 8x 3" (1/4" balsa) = 24"
-- Total: 134" of 1/4" + 78" of 1/8" balsa
-
-Construction Process:
-- Scored balsa with utility knife (multiple passes)
-- Assembled trusses on graph paper template
-- Used white glue with masking tape clamps
-- Tested incrementally with increasing weight`,
-    materials: ["1/4\" Balsa Wood", "1/8\" Balsa Wood", "White Glue", "Masking Tape"],
-    skills: ["Structural Engineering", "Load Analysis", "Precision Cutting", "Technical Drawing"]
+    image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
+    duration: "2 Weeks",
+    team: "Aryan, Elijah, Nivan",
+    overview: "A structural engineering project designing a K-truss bridge to support maximum load. Achieved 90N capacity (target: 80N) using optimized popsicle stick construction. Scored 87/100 on evaluation.",
+    buildProcess: [
+      {
+        phase: "Research & Design",
+        steps: [
+          "Studied 6 truss types: Pratt, Howe, Warren, K-Truss, Baltimore, Quadrangular",
+          "Selected K-Truss for superior load distribution",
+          "Calculated optimal member angles",
+          "Created scaled blueprints with measurements"
+        ]
+      },
+      {
+        phase: "Material Preparation",
+        steps: [
+          "Measured and marked all popsicle sticks",
+          "Cut sticks to required lengths",
+          "Prepared jigs for consistent angles",
+          "Organized materials by component"
+        ]
+      },
+      {
+        phase: "Assembly",
+        steps: [
+          "Built two identical side trusses",
+          "Connected sides with cross-bracing",
+          "Reinforced joint connections",
+          "Added diagonal K-members for stability"
+        ]
+      },
+      {
+        phase: "Testing & Results",
+        steps: [
+          "Conducted incremental load testing",
+          "Bridge supported 90N (exceeded 80N target)",
+          "Documented failure mode for analysis",
+          "Final score: 87/100 on project evaluation"
+        ]
+      }
+    ],
+    materials: ["Popsicle Sticks", "Wood Glue", "Clamps", "Measuring Tools"],
+    skills: ["Structural Engineering", "Load Analysis", "Teamwork", "Precision Construction"]
   },
   {
-    id: "ironman",
+    id: "ironman-helmet",
     title: "Iron Man Helmet",
     image: "https://images.unsplash.com/photo-1635863138275-d9b33299680b?auto=format&fit=crop&q=80&w=800",
-    duration: "11 Days",
-    team: "Aryan & Aran",
-    overview: "A wearable Iron Man helmet built using CAD design, laser cutting, 3D printing, and Arduino electronics. Features motorized face plate mechanism with custom circuitry and coding.",
-    buildProcess: `CAD Design (Days 1-2):
-- Designed helmet in Onshape
-- Sketched face outline using Pen tool
-- Applied Projectile Curve for 3D surface
-- Created outer shell as separate sub-assembly
-- Generated 2D patterns for laser cutting
-
-Laser Cutting Prep (Days 3-4):
-- Traced CAD patterns in Adobe Illustrator
-- Scaled drawings for proper fit
-- Outlined all pieces for laser recognition
-- Cut initial cardboard prototype pieces
-
-Fabrication (Days 5-7):
-- Laser cut all cardboard panels
-- Assembled head dome section
-- Glued panels with proper alignment
-- 3D printed custom connector pieces
-- Created face plate hinge mechanism
-
-Electronics Integration (Days 8-11):
-- Programmed Arduino for motor control
-- Wired servo motor for face plate
-- Integrated push-button trigger
-- Assembled wiring harness
-- Final testing of motorized opening`,
-    materials: ["Cardboard", "3D Printed PLA", "Arduino", "Servo Motor", "Hot Glue", "Spray Paint"],
-    skills: ["CAD/CAM", "Laser Cutting", "3D Printing", "Arduino", "Electronics"]
+    duration: "4 Weeks",
+    team: "Solo Project",
+    overview: "A CAD project designing a wearable Iron Man helmet in Onshape. Features ergonomic fit based on head measurements, with detailed surface modeling for the iconic look.",
+    buildProcess: [
+      {
+        phase: "Reference & Planning",
+        steps: [
+          "Gathered reference images from multiple angles",
+          "Took head measurements for proper fit",
+          "Planned component breakdown",
+          "Selected Onshape for parametric modeling"
+        ]
+      },
+      {
+        phase: "Base Geometry",
+        steps: [
+          "Created main helmet shell using loft",
+          "Shaped faceplate contours",
+          "Designed eye apertures with precise curves",
+          "Built jaw section separately for articulation"
+        ]
+      },
+      {
+        phase: "Detail Modeling",
+        steps: [
+          "Added panel lines and surface details",
+          "Created ear sections with vents",
+          "Modeled forehead crest geometry",
+          "Applied fillets for smooth transitions"
+        ]
+      },
+      {
+        phase: "Assembly & Refinement",
+        steps: [
+          "Assembled all components in Onshape",
+          "Verified measurements for wearability",
+          "Created exploded view for documentation",
+          "Rendered final design with metallic materials"
+        ]
+      }
+    ],
+    materials: ["Onshape CAD", "Loft", "Extrude", "Fillet", "Surface Modeling"],
+    skills: ["Advanced CAD", "Organic Modeling", "Ergonomic Design", "Attention to Detail"]
   },
   {
-    id: "security-bot",
+    id: "security-robot",
     title: "Security Robot",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800",
-    duration: "3 Weeks",
-    team: "Aryan, Arnav & Anikait",
-    overview: "An autonomous security robot with a rotating vision sensor, built-in catapult defense system, and alarm. Patrols a 5x5 ft area, detects intruders, and can be controlled remotely by the owner.",
-    buildProcess: `Hardware Assembly:
-- Mounted rotating vision sensor on motor
-- Attached front-facing distance sensor
-- Built catapult arm with rubber band propulsion
-- Changed gear ratio for stronger motor torque
-- Tightened all loose screws on chassis
-- Connected all motors to VEX brain
-
-Catapult Mechanism:
-- Positioned rubber bands for maximum force
-- Extended arm length for better trajectory
-- Added rewind capability via gear system
-- Calibrated launch angle for accuracy
-
-Software Development (Pseudocode):
-1. Initialize robot and sensors
-2. Set variables: intruderDetected, objectMissing
-3. Loop: Move in circular patrol path
-4. Check sensors continuously
-5. If intruder detected → Activate catapult
-6. If object missing → Sound alarm
-7. Remote override for owner control
-
-Vision Sensor Programming:
-- Configured object detection thresholds
-- Implemented continuous scanning loop
-- Added alarm melody sequences
-- Tested sensor reliability across trials
-- Fine-tuned distance sensor integration`,
-    materials: ["VEX Robotics Kit", "Vision Sensor", "Distance Sensor", "Motors", "Rubber Bands"],
-    skills: ["Robotics", "C++ Programming", "Sensor Integration", "Mechanical Design"]
-  },
-  {
-    id: "ardc",
-    title: "Home Renovation",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800",
     duration: "6 Weeks",
-    team: "Aryan & Jascha",
-    overview: "Architectural Renovation Design Challenge - A complete home renovation design project creating floor plans for a two-story family home with 2-car garage, great room, family kitchen, master suite, nursery, den, and outdoor living space. Designed using Planner5D with attention to building codes and setback requirements.",
-    buildProcess: `Research Phase (Week 1):
-- Studied bedroom size requirements & building codes
-- Researched kitchen work triangle layouts
-- Explored garage standards (24x24 ft)
-- Created comprehensive mind map for each room
-- Evaluated software options (Floorplanner vs Planner5D)
-
-Design Requirements:
-- 2-car garage with breezeway connection
-- Great room living area
-- Family kitchen with inclusive dining
-- Laundry/utility room & powder room
-- Master bedroom with ensuite bath
-- Nursery and den/study
-- Upstairs separate bathroom
-- Outdoor living space (patio/deck)
-
-Floor Plan Development (Weeks 2-3):
-- Drafted first floor in Planner5D
-- Entry opens to living area with stairs visible
-- Guest bedroom positioned top-left (9x12')
-- Great room combined living/kitchen (9x12')
-- Bathroom and laundry room (9x7' each)
-- Living room: 15x14'
-
-Second Floor Layout:
-- Cut-in portions: 8x6' (left) and 6x6' (right)
-- Master suite with private bath
-- Nursery adjacent to master
-- Den/study with natural lighting
-
-Peer Review & Refinement (Weeks 4-6):
-- Received feedback to swap bottom floor locations
-- Combined best elements from both partners' designs
-- Added furniture: beds, cribs, kitchen appliances
-- Designed right-triangle kitchen countertop
-- Added breezeway and garage connection
-- Finalized with bookshelves, carpets, TV placement`,
-    materials: ["Planner5D", "Floor Plans", "Building Codes", "Architectural Standards"],
-    skills: ["Architectural Design", "Space Planning", "CAD Software", "Building Codes"]
+    team: "Aryan & Nivan",
+    overview: "A functional security robot built using Vex IQ components. Features autonomous patrol mode, intruder detection sensors, and remote control capability. Designed to demonstrate robotics principles.",
+    buildProcess: [
+      {
+        phase: "Concept Development",
+        steps: [
+          "Defined security robot requirements",
+          "Sketched chassis and sensor layouts",
+          "Selected Vex IQ for modular building",
+          "Planned patrol route algorithms"
+        ]
+      },
+      {
+        phase: "Chassis Construction",
+        steps: [
+          "Built rectangular base frame",
+          "Installed four-wheel drive system",
+          "Added motor mounts and brackets",
+          "Ensured stable center of gravity"
+        ]
+      },
+      {
+        phase: "Sensor Integration",
+        steps: [
+          "Mounted ultrasonic distance sensors",
+          "Added bump sensors for collision",
+          "Installed touch sensors for manual control",
+          "Connected all sensors to brain unit"
+        ]
+      },
+      {
+        phase: "Programming & Testing",
+        steps: [
+          "Programmed autonomous patrol behavior",
+          "Added intruder detection responses",
+          "Implemented remote override controls",
+          "Tested in simulated environment"
+        ]
+      }
+    ],
+    materials: ["Vex IQ Parts", "Motors", "Ultrasonic Sensors", "Touch Sensors", "Controller"],
+    skills: ["Robotics", "Programming", "Sensor Integration", "System Design"]
   },
   {
-    id: "automata",
+    id: "home-renovation",
+    title: "Home Renovation",
+    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800",
+    duration: "5 Weeks",
+    team: "Solo Project",
+    overview: "A comprehensive CAD project designing a home renovation in Onshape. Includes kitchen redesign, bathroom updates, and living space optimization with full 3D walkthroughs.",
+    buildProcess: [
+      {
+        phase: "Site Survey & Planning",
+        steps: [
+          "Measured existing room dimensions",
+          "Documented current layout limitations",
+          "Created wishlist of improvements",
+          "Researched renovation best practices"
+        ]
+      },
+      {
+        phase: "Kitchen Design",
+        steps: [
+          "Modeled cabinet configurations",
+          "Designed island with seating",
+          "Planned appliance placement",
+          "Created lighting layout"
+        ]
+      },
+      {
+        phase: "Bathroom & Living Areas",
+        steps: [
+          "Redesigned bathroom fixtures layout",
+          "Optimized storage solutions",
+          "Planned living room furniture arrangement",
+          "Added built-in shelving units"
+        ]
+      },
+      {
+        phase: "Visualization",
+        steps: [
+          "Created realistic material renderings",
+          "Produced 3D walkthrough animation",
+          "Generated floor plan views",
+          "Documented all design decisions"
+        ]
+      }
+    ],
+    materials: ["Onshape CAD", "Architectural Drawing", "3D Rendering", "Animation"],
+    skills: ["Architectural Design", "Space Planning", "3D Visualization", "Interior Design"]
+  },
+  {
+    id: "gladiator-automata",
     title: "Gladiator Automata",
-    image: "https://images.unsplash.com/photo-1569144157591-c60f3f82f137?auto=format&fit=crop&q=80&w=800",
-    duration: "2 Weeks",
-    team: "Aryan & Zielig",
-    overview: "A mechanical automaton featuring a gladiator figure with moving sword and shield arms, powered by a hand-crank mechanism using snail cams and offset cams. Designed entirely in Onshape with full animation capabilities.",
-    buildProcess: `Research & Concept (Day 1):
-- Studied motion direction mechanisms
-- Researched different cam types:
-  - Snail cams for sword motion
-  - Offset cams for shield motion
-- Analyzed material options
-- Created 4 initial prototype sketches
-- Selected gladiator concept for build
-
-Onshape CAD Modeling (Days 2-3):
-- Sketched gladiator outline from reference image
-- Modeled base structure
-- Created snail cams using parametric values
-  (Followed tutorial for precise cam profiles)
-- Designed offset cams for shield
-- Built gladiator body as fixed part
-- Modeled arms separately for articulation
-- Added connecting rods for cam-to-arm linkage
-
-Assembly Challenges (Days 4-5):
-- Connected arms to body with proper mates
-- Attached rods to snail cams
-- Issue: Rods floating instead of following cams
-- Solution: Added fillets on joining faces
-- Used tangent mates for smooth motion
-- Fixed base and body parts (non-moving)
-
-Animation & Refinement (Days 6+):
-- Configured rotation mates for crank
-- Set up slider-crank mechanism
-- Troubleshot rod sliding against arm issue
-- Applied position constraints
-- Final animation shows:
-  - Crank rotation drives cams
-  - Cams push rods up/down
-  - Rods articulate sword and shield arms
-- Note: Onshape performance decreased with
-  complex animation (lag when moving parts)`,
+    image: "https://images.unsplash.com/photo-1569235186275-626cb53b83ce?auto=format&fit=crop&q=80&w=800",
+    duration: "3 Weeks",
+    team: "Solo Project",
+    overview: "A mechanical automata CAD project featuring a gladiator figure with moving sword arm and shield. Uses cam mechanisms to create realistic fighting motions when a crank is turned.",
+    buildProcess: [
+      {
+        phase: "Mechanism Research",
+        steps: [
+          "Studied cam types: snail, offset, eccentric",
+          "Analyzed connecting rod kinematics",
+          "Planned motion sequence for gladiator",
+          "Selected dual-cam system for two arms"
+        ]
+      },
+      {
+        phase: "CAD Modeling - Base",
+        steps: [
+          "Created housing box in Onshape",
+          "Designed crank shaft with handle",
+          "Modeled cam profiles for arm motions",
+          "Added bearings and axle supports"
+        ]
+      },
+      {
+        phase: "CAD Modeling - Figure",
+        steps: [
+          "Designed gladiator torso and head",
+          "Created articulated arm joints",
+          "Modeled sword and shield props",
+          "Connected arms to cam followers"
+        ]
+      },
+      {
+        phase: "Animation & Testing",
+        steps: [
+          "Added mates for rotational motion",
+          "Applied position constraints",
+          "Animated full motion sequence",
+          "Documented cam profile effects"
+        ]
+      }
+    ],
     materials: ["Onshape CAD", "Snail Cams", "Offset Cams", "Connecting Rods"],
     skills: ["CAD Animation", "Mechanism Design", "Cam Profiles", "Assembly Mates"]
   },
@@ -324,44 +403,48 @@ Animation & Refinement (Days 6+):
     duration: "2 Weeks",
     team: "Aryan & Adhiraj",
     overview: "A multi-compartment birdhouse designed for New Jersey bird species (Blue Jays, Sparrows, Mockingbirds). Features three nesting areas, integrated bird feeder, sloped roofs for drainage, and bevel-jointed construction. Designed to be transformed into a STEM kit for elementary/middle school education.",
-    buildProcess: `Research & Design Phase:
-- Studied bird species native to New Jersey
-- Researched entrance hole sizing (1-1.25" diameter)
-- Determined mounting preferred over hanging for bird security
-- Created multiple design concepts in Onshape
-- Selected complex multi-house design with bird feeder
-
-Design Specifications:
-- Base: 5" x 5" x 0.41" thick
-- Roof panels: 3.2" x 5" (10 pieces)
-- Front arrow-shaped panels: 7" x 5" (2 pieces)
-- Back panels: 10" x 5" (4 pieces)
-- Large front: 15" x 5"
-- Side arrow panels: 10" x 10" (2 pieces)
-- Top house sides: 5" x 5" (2 pieces)
-- Total material: 880 sq inches
-
-Fabrication Process:
-- Cut all pieces per cut list using scroll saw
-- Created pilot holes (1.25" diameter) with scroll saw
-- Nailed side panels of small birdhouse together
-- Glued side panels of second small birdhouse
-- Assembled large center house to base with wood glue
-- Attached 5x5 panels to unoccupied edges
-
-Roof & Final Assembly:
-- Adjusted roof dimensions using bandsaw
-- Created bevel joints by angling bandsaw table
-- Glued roofs together at bevel joint
-- Attached roofs with tape to hold during cure
-- Built bird feeder from scrap wood (5x5 + 5x1)
-- Feeder fits precisely between miniature houses
-
-Lessons Learned:
-- Nail gun would provide stronger joints than glue alone
-- Account for wood thickness in cut list measurements
-- Set realistic time goals to avoid rushing
-- Precision cuts require dedicated focus time`,
+    buildProcess: [
+      {
+        phase: "Research & Design",
+        steps: [
+          "Studied bird species native to New Jersey",
+          "Researched entrance hole sizing (1-1.25\" diameter)",
+          "Determined mounting preferred over hanging",
+          "Created design concepts in Onshape",
+          "Selected complex multi-house design with bird feeder"
+        ]
+      },
+      {
+        phase: "Cut List & Materials",
+        steps: [
+          "Base: 5\" x 5\" x 0.41\" thick",
+          "Roof panels: 3.2\" x 5\" (10 pieces)",
+          "Front/Back panels: Various sizes (7 pieces)",
+          "Side panels: 10\" x 10\" (2 pieces)",
+          "Total material: 880 sq inches"
+        ]
+      },
+      {
+        phase: "Fabrication",
+        steps: [
+          "Cut all pieces per cut list using scroll saw",
+          "Created pilot holes (1.25\" diameter)",
+          "Nailed side panels of small birdhouse together",
+          "Glued side panels with wood glue",
+          "Assembled large center house to base"
+        ]
+      },
+      {
+        phase: "Roof & Final Assembly",
+        steps: [
+          "Adjusted roof dimensions using bandsaw",
+          "Created bevel joints by angling bandsaw table",
+          "Glued roofs together at bevel joint",
+          "Built bird feeder from scrap wood (5x5 + 5x1)",
+          "Lessons: Use nail gun for stronger joints"
+        ]
+      }
+    ],
     materials: ["Plywood (0.41\" thick)", "Wood Glue", "Nails", "Scroll Saw", "Bandsaw"],
     skills: ["Woodworking", "Joinery", "Bevel Cuts", "STEM Education Design"]
   }
@@ -528,18 +611,46 @@ export function EngineeringShowcase() {
                   </p>
                 </div>
 
-                {/* Build Process */}
+                {/* Build Process - Visual Timeline */}
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-2 mb-4">
                     <Wrench className="w-4 h-4 text-[#BB86FC]" />
                     <h4 className="font-display font-semibold text-lg text-white">Build Process</h4>
                   </div>
-                  <pre
-                    className="font-mono text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed bg-black/30 p-4 rounded-lg border border-white/5"
-                    data-testid={`eng-process-${activeProject.id}`}
-                  >
-                    {activeProject.buildProcess}
-                  </pre>
+                  <div className="space-y-4" data-testid={`eng-process-${activeProject.id}`}>
+                    {activeProject.buildProcess.map((phase, phaseIndex) => (
+                      <motion.div
+                        key={phase.phase}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: phaseIndex * 0.1 }}
+                        className="relative"
+                      >
+                        {/* Phase Header */}
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-8 h-8 rounded-lg bg-[#BB86FC] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
+                            {phaseIndex + 1}
+                          </div>
+                          <h5 className="font-mono font-semibold text-[#BB86FC] text-sm">{phase.phase}</h5>
+                        </div>
+                        {/* Phase Steps */}
+                        <div className="ml-4 pl-7 border-l-2 border-[#BB86FC]/30 space-y-2 pb-4">
+                          {phase.steps.map((step, stepIndex) => (
+                            <motion.div
+                              key={stepIndex}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: phaseIndex * 0.1 + stepIndex * 0.05 }}
+                              className="flex items-start gap-2"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC]/60 mt-2 flex-shrink-0" />
+                              <span className="text-sm text-muted-foreground">{step}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </ScrollArea>
             </div>
