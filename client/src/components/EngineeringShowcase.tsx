@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users } from "lucide-react";
+import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -8,7 +8,7 @@ const engineeringProjects = [
   {
     id: "device-stand",
     title: "Device Stand",
-    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=800"],
     duration: "4 Days",
     team: "Solo Project",
     overview: "A custom headphone and phone stand designed to solve a personal organization problem. The stand features a built-in charger holder for convenient headphone charging, combining functionality with aesthetic appeal using popsicle sticks and balsa wood.",
@@ -24,7 +24,7 @@ const engineeringProjects = [
   {
     id: "droid-catapult",
     title: "Snail-a-Pult",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800"],
     duration: "14 Days",
     team: "Aryan & Elijah",
     overview: "\"Turbo the Snail-a-Pult\" - A precision catapult designed to launch a tennis ball (droid) into a target ship. Achieved 20/20 perfect accuracy in final testing. Features a snail-themed decorative design with googly eyes.",
@@ -40,7 +40,7 @@ const engineeringProjects = [
   {
     id: "hot-cold",
     title: "Hot n' Cold",
-    image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&q=80&w=800"],
     duration: "3 Weeks",
     team: "Aryan & Elijah",
     overview: "A CAD design challenge creating themed beverage holders: a chicken-shaped kettle for hot drinks and an egg-shaped mug with chicken feet for cold drinks. Explores the question \"What came first - the chicken or the egg?\"",
@@ -56,7 +56,7 @@ const engineeringProjects = [
   {
     id: "ktruss-bridge",
     title: "K-Truss Bridge",
-    image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800"],
     duration: "2 Weeks",
     team: "Aryan, Elijah, Nivan",
     overview: "A structural engineering project designing a K-truss bridge to support maximum load. Achieved 90N capacity (target: 80N) using optimized popsicle stick construction. Scored 87/100 on evaluation.",
@@ -72,7 +72,7 @@ const engineeringProjects = [
   {
     id: "ironman-helmet",
     title: "Iron Man Helmet",
-    image: "https://images.unsplash.com/photo-1635863138275-d9b33299680b?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1635863138275-d9b33299680b?auto=format&fit=crop&q=80&w=800"],
     duration: "4 Weeks",
     team: "Solo Project",
     overview: "A CAD project designing a wearable Iron Man helmet in Onshape. Features ergonomic fit based on head measurements, with detailed surface modeling for the iconic look.",
@@ -88,7 +88,7 @@ const engineeringProjects = [
   {
     id: "security-robot",
     title: "Security Robot",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800"],
     duration: "6 Weeks",
     team: "Aryan & Nivan",
     overview: "A functional security robot built using Vex IQ components. Features autonomous patrol mode, intruder detection sensors, and remote control capability. Designed to demonstrate robotics principles.",
@@ -104,7 +104,7 @@ const engineeringProjects = [
   {
     id: "home-renovation",
     title: "Home Renovation",
-    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800"],
     duration: "5 Weeks",
     team: "Solo Project",
     overview: "A comprehensive CAD project designing a home renovation in Onshape. Includes kitchen redesign, bathroom updates, and living space optimization with full 3D walkthroughs.",
@@ -120,7 +120,7 @@ const engineeringProjects = [
   {
     id: "gladiator-automata",
     title: "Gladiator Automata",
-    image: "https://images.unsplash.com/photo-1569235186275-626cb53b83ce?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1569235186275-626cb53b83ce?auto=format&fit=crop&q=80&w=800"],
     duration: "3 Weeks",
     team: "Solo Project",
     overview: "A mechanical automata CAD project featuring a gladiator figure with moving sword arm and shield. Uses cam mechanisms to create realistic fighting motions when a crank is turned.",
@@ -136,7 +136,7 @@ const engineeringProjects = [
   {
     id: "birdhouse",
     title: "Bird House",
-    image: "https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&q=80&w=800"],
     duration: "2 Weeks",
     team: "Aryan & Adhiraj",
     overview: "A multi-compartment birdhouse designed for New Jersey bird species (Blue Jays, Sparrows, Mockingbirds). Features three nesting areas, integrated bird feeder, sloped roofs for drainage, and bevel-jointed construction. Designed to be transformed into a STEM kit for elementary/middle school education.",
@@ -150,6 +150,66 @@ const engineeringProjects = [
     skills: ["Woodworking", "Joinery", "Bevel Cuts", "STEM Education Design"]
   }
 ];
+
+function ImageCarousel({ images, title }: { images: string[], title: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="relative w-full h-full bg-black/40 rounded-xl overflow-hidden group">
+      <img
+        src={images[currentIndex]}
+        alt={`${title} - Image ${currentIndex + 1}`}
+        className="w-full h-full object-cover"
+        data-testid="eng-carousel-image"
+      />
+      
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={goToPrev}
+            data-testid="eng-carousel-prev"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={goToNext}
+            data-testid="eng-carousel-next"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  idx === currentIndex ? "bg-[#BB86FC] w-4" : "bg-white/40 hover:bg-white/60"
+                }`}
+                data-testid={`eng-carousel-dot-${idx}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+      
+      {images.length > 1 && (
+        <div className="absolute top-2 right-2 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-xs text-white/80 font-mono">
+          {currentIndex + 1} / {images.length}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function EngineeringShowcase() {
   const [selectedProject, setSelectedProject] = useState<typeof engineeringProjects[0] | null>(null);
@@ -193,7 +253,7 @@ export function EngineeringShowcase() {
               className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)]"
             >
               <img
-                src={project.image}
+                src={project.images[0]}
                 alt={project.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -213,31 +273,47 @@ export function EngineeringShowcase() {
             
             {selectedProject && (
               <div className="flex flex-col h-full max-h-[90vh]">
-                {/* Header with Image */}
-                <div className="relative h-48 flex-shrink-0 group cursor-pointer" onClick={() => setZoomImage(true)}>
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                    data-testid={`eng-image-${selectedProject.id}`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent" />
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setSelectedProject(null); }}
-                    data-testid="eng-modal-close"
-                    className="absolute top-4 right-4 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all z-10"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setZoomImage(true); }}
-                    data-testid="eng-zoom-btn"
-                    className="absolute top-4 left-4 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
-                  >
-                    <ZoomIn className="w-5 h-5" />
-                  </button>
-                  <div className="absolute bottom-4 left-6 right-6">
-                    <h3 className="font-display font-bold text-3xl text-white">{selectedProject.title}</h3>
+                {/* Header with Carousel and Title */}
+                <div className="flex flex-shrink-0 border-b border-white/10">
+                  {/* Image Carousel - Top Left Quarter */}
+                  <div className="w-1/3 h-56 p-4 flex-shrink-0">
+                    <ImageCarousel images={selectedProject.images} title={selectedProject.title} />
+                  </div>
+                  
+                  {/* Title and Meta */}
+                  <div className="flex-1 p-6 flex flex-col justify-between">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <span className="font-mono text-xs text-[#BB86FC] uppercase tracking-wider">Engineering Project</span>
+                        <h3 className="font-display font-bold text-3xl text-white mt-1">{selectedProject.title}</h3>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => setZoomImage(true)}
+                          data-testid="eng-zoom-btn"
+                          className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                        >
+                          <ZoomIn className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => setSelectedProject(null)}
+                          data-testid="eng-modal-close"
+                          className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 mt-4">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="w-4 h-4 text-[#BB86FC]" />
+                        <span data-testid={`eng-duration-${selectedProject.id}`}>{selectedProject.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Users className="w-4 h-4 text-[#BB86FC]" />
+                        <span data-testid={`eng-team-${selectedProject.id}`}>{selectedProject.team}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -246,20 +322,6 @@ export function EngineeringShowcase() {
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Left Column */}
                     <div className="space-y-6">
-                      {/* Meta */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                          <Calendar className="w-5 h-5 text-[#BB86FC] mb-2" />
-                          <p className="text-xs text-muted-foreground uppercase mb-1">Duration</p>
-                          <p className="font-mono text-sm text-white" data-testid={`eng-duration-${selectedProject.id}`}>{selectedProject.duration}</p>
-                        </div>
-                        <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                          <Users className="w-5 h-5 text-[#BB86FC] mb-2" />
-                          <p className="text-xs text-muted-foreground uppercase mb-1">Team</p>
-                          <p className="font-mono text-sm text-white" data-testid={`eng-team-${selectedProject.id}`}>{selectedProject.team}</p>
-                        </div>
-                      </div>
-
                       {/* Overview */}
                       <div>
                         <div className="flex items-center gap-2 mb-3">
@@ -337,7 +399,7 @@ export function EngineeringShowcase() {
             </button>
             {selectedProject && (
               <img
-                src={selectedProject.image}
+                src={selectedProject.images[0]}
                 alt={selectedProject.title}
                 className="w-full h-full object-contain max-h-[85vh]"
                 data-testid="eng-zoomed-image"

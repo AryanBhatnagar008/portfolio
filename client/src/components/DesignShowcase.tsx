@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ZoomIn, X, Palette, Wrench } from "lucide-react";
+import { ZoomIn, X, Palette, Wrench, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -16,7 +16,7 @@ const designProjects = [
   {
     id: "comic",
     title: "Comic Art",
-    image: comicArt,
+    images: [comicArt],
     concept: "A dynamic illustration inspired by popular anime aesthetics, capturing the essence of a determined protagonist. The piece explores bold color blocking and dramatic posing to convey strength and resolve.",
     technicalProcess: [
       {
@@ -48,7 +48,7 @@ const designProjects = [
   {
     id: "surrealist",
     title: "Surrealist Scene",
-    image: surrealistScene,
+    images: [surrealistScene],
     concept: "A surrealist composition blending retro automotive aesthetics with sci-fi elements. The piece explores themes of adventure and the unknown, featuring a classic muscle car facing a portal in a desolate landscape.",
     technicalProcess: [
       {
@@ -80,7 +80,7 @@ const designProjects = [
   {
     id: "minimalist",
     title: "Minimalist Icons",
-    image: minimalistIcons,
+    images: [minimalistIcons],
     concept: "A series of minimalist superhero icons reducing complex characters to their most essential visual elements. Each icon uses geometric shapes and a muted color palette to create instantly recognizable symbols.",
     technicalProcess: [
       {
@@ -112,7 +112,7 @@ const designProjects = [
   {
     id: "song-collage",
     title: "Song Collage",
-    image: songCollage,
+    images: [songCollage],
     concept: "A dramatic photo manipulation interpreting music lyrics through visual metaphor. The fiery composition uses silhouettes and typography to evoke feelings of passion, rebellion, and aspiration.",
     technicalProcess: [
       {
@@ -144,7 +144,7 @@ const designProjects = [
   {
     id: "magazine",
     title: "Magazine Cover",
-    image: magazineCover,
+    images: [magazineCover],
     concept: "A futuristic magazine cover exploring themes of AI rights and consciousness. The dystopian aesthetic combines industrial imagery with thought-provoking headlines about artificial intelligence.",
     technicalProcess: [
       {
@@ -176,7 +176,7 @@ const designProjects = [
   {
     id: "logo",
     title: "Logo Variations",
-    image: logoVariations,
+    images: [logoVariations],
     concept: "A comprehensive logo design exploration for 'Newton' brand, showcasing the iterative design process from initial sketches to refined variations. The designs reference Newton's cradle and geometric forms.",
     technicalProcess: [
       {
@@ -208,7 +208,7 @@ const designProjects = [
   {
     id: "ad",
     title: "Ad Design",
-    image: adDesign,
+    images: [adDesign],
     concept: "A striking advertisement exploring transhumanism themes. The cyberpunk aesthetic combines organic and mechanical elements to create a visually arresting promotional piece for a fictional product.",
     technicalProcess: [
       {
@@ -238,6 +238,66 @@ const designProjects = [
     ]
   }
 ];
+
+function ImageCarousel({ images, title }: { images: string[], title: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="relative w-full h-full bg-black/40 rounded-xl overflow-hidden group">
+      <img
+        src={images[currentIndex]}
+        alt={`${title} - Image ${currentIndex + 1}`}
+        className="w-full h-full object-cover"
+        data-testid="carousel-image"
+      />
+      
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={goToPrev}
+            data-testid="carousel-prev"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={goToNext}
+            data-testid="carousel-next"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  idx === currentIndex ? "bg-[#BB86FC] w-4" : "bg-white/40 hover:bg-white/60"
+                }`}
+                data-testid={`carousel-dot-${idx}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+      
+      {images.length > 1 && (
+        <div className="absolute top-2 right-2 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-xs text-white/80 font-mono">
+          {currentIndex + 1} / {images.length}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function DesignShowcase() {
   const [selectedProject, setSelectedProject] = useState<typeof designProjects[0] | null>(null);
@@ -281,7 +341,7 @@ export function DesignShowcase() {
               className="group relative aspect-square rounded-xl overflow-hidden border border-white/10 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)]"
             >
               <img
-                src={project.image}
+                src={project.images[0]}
                 alt={project.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -301,30 +361,40 @@ export function DesignShowcase() {
             
             {selectedProject && (
               <div className="flex flex-col h-full max-h-[90vh]">
-                {/* Header with Image */}
-                <div className="relative h-56 flex-shrink-0 group cursor-pointer" onClick={() => setZoomImage(true)}>
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent" />
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    data-testid="design-modal-close"
-                    className="absolute top-4 right-4 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all z-10"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setZoomImage(true); }}
-                    data-testid="design-zoom-btn"
-                    className="absolute top-4 left-4 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
-                  >
-                    <ZoomIn className="w-5 h-5" />
-                  </button>
-                  <div className="absolute bottom-4 left-6 right-6">
-                    <h3 className="font-display font-bold text-3xl text-white">{selectedProject.title}</h3>
+                {/* Header with Carousel and Title */}
+                <div className="flex flex-shrink-0 border-b border-white/10">
+                  {/* Image Carousel - Top Left Quarter */}
+                  <div className="w-1/3 h-56 p-4 flex-shrink-0">
+                    <ImageCarousel images={selectedProject.images} title={selectedProject.title} />
+                  </div>
+                  
+                  {/* Title and Actions */}
+                  <div className="flex-1 p-6 flex flex-col justify-between">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <span className="font-mono text-xs text-[#BB86FC] uppercase tracking-wider">Design Project</span>
+                        <h3 className="font-display font-bold text-3xl text-white mt-1">{selectedProject.title}</h3>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => setZoomImage(true)}
+                          data-testid="design-zoom-btn"
+                          className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                        >
+                          <ZoomIn className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => setSelectedProject(null)}
+                          data-testid="design-modal-close"
+                          className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-muted-foreground text-sm mt-4 line-clamp-3">
+                      {selectedProject.concept}
+                    </p>
                   </div>
                 </div>
 
@@ -390,7 +460,7 @@ export function DesignShowcase() {
             </button>
             {selectedProject && (
               <img
-                src={selectedProject.image}
+                src={selectedProject.images[0]}
                 alt={selectedProject.title}
                 className="w-full h-full object-contain max-h-[85vh]"
                 data-testid="zoomed-image"

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { X, Code, Clock, Users, Terminal, Lightbulb } from "lucide-react";
+import { X, Code, Clock, Users, Terminal, Lightbulb, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -8,7 +8,7 @@ const programmingProjects = [
   {
     id: "2048-game",
     title: "2048 Game",
-    image: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1611996575749-79a3a250f948?auto=format&fit=crop&q=80&w=800"],
     duration: "2 Weeks",
     team: "Solo Project",
     overview: "A fully functional recreation of the popular 2048 sliding puzzle game, built from scratch using Python and Pygame. Features smooth tile animations, score tracking, win/lose detection, and keyboard controls for an authentic gaming experience.",
@@ -56,7 +56,7 @@ const programmingProjects = [
   {
     id: "eco-car",
     title: "Eco-Car Finder",
-    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800"],
     duration: "Research Project",
     team: "Solo Project",
     overview: "A machine learning application that helps users find the most eco-friendly car matching their criteria. Uses Random Forest and MLP classifiers to analyze CO2 emissions data from 7,385 vehicles, achieving up to 58% prediction accuracy on a complex multi-variable dataset.",
@@ -103,8 +103,69 @@ const programmingProjects = [
   }
 ];
 
+function ImageCarousel({ images, title }: { images: string[], title: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="relative w-full h-full bg-black/40 rounded-xl overflow-hidden group">
+      <img
+        src={images[currentIndex]}
+        alt={`${title} - Image ${currentIndex + 1}`}
+        className="w-full h-full object-cover"
+        data-testid="prog-carousel-image"
+      />
+      
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={goToPrev}
+            data-testid="prog-carousel-prev"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={goToNext}
+            data-testid="prog-carousel-next"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  idx === currentIndex ? "bg-[#BB86FC] w-4" : "bg-white/40 hover:bg-white/60"
+                }`}
+                data-testid={`prog-carousel-dot-${idx}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+      
+      {images.length > 1 && (
+        <div className="absolute top-2 right-2 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-xs text-white/80 font-mono">
+          {currentIndex + 1} / {images.length}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function ProgrammingShowcase() {
   const [selectedProject, setSelectedProject] = useState<typeof programmingProjects[0] | null>(null);
+  const [zoomImage, setZoomImage] = useState(false);
 
   return (
     <section id="programming-showcase" className="py-24 bg-[#121212]">
@@ -146,7 +207,7 @@ export function ProgrammingShowcase() {
               {/* Image */}
               <div className="aspect-video overflow-hidden">
                 <img
-                  src={project.image}
+                  src={project.images[0]}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -170,30 +231,54 @@ export function ProgrammingShowcase() {
         </motion.div>
 
         {/* Project Modal */}
-        <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
+        <Dialog open={!!selectedProject && !zoomImage} onOpenChange={(open) => !open && setSelectedProject(null)}>
           <DialogContent className="max-w-4xl max-h-[90vh] p-0 bg-[#1a1a1a] border-white/10 overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
             <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
             
             {selectedProject && (
               <div className="flex flex-col h-full max-h-[90vh]">
-                {/* Header with Image */}
-                <div className="relative h-48 flex-shrink-0">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/60 to-transparent" />
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    data-testid="prog-modal-close"
-                    className="absolute top-4 right-4 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                  <div className="absolute bottom-4 left-6 right-6">
-                    <h3 className="font-display font-bold text-3xl text-white">{selectedProject.title}</h3>
+                {/* Header with Carousel and Title */}
+                <div className="flex flex-shrink-0 border-b border-white/10">
+                  {/* Image Carousel - Top Left Quarter */}
+                  <div className="w-1/3 h-56 p-4 flex-shrink-0">
+                    <ImageCarousel images={selectedProject.images} title={selectedProject.title} />
+                  </div>
+                  
+                  {/* Title and Meta */}
+                  <div className="flex-1 p-6 flex flex-col justify-between">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <span className="font-mono text-xs text-[#BB86FC] uppercase tracking-wider">Programming Project</span>
+                        <h3 className="font-display font-bold text-3xl text-white mt-1">{selectedProject.title}</h3>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => setZoomImage(true)}
+                          data-testid="prog-zoom-btn"
+                          className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                        >
+                          <ZoomIn className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => setSelectedProject(null)}
+                          data-testid="prog-modal-close"
+                          className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 mt-4">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Clock className="w-4 h-4 text-[#BB86FC]" />
+                        <span>{selectedProject.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Users className="w-4 h-4 text-[#BB86FC]" />
+                        <span>{selectedProject.team}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -202,20 +287,6 @@ export function ProgrammingShowcase() {
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Left Column */}
                     <div className="space-y-6">
-                      {/* Meta */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                          <Clock className="w-5 h-5 text-[#BB86FC] mb-2" />
-                          <p className="text-xs text-muted-foreground uppercase mb-1">Duration</p>
-                          <p className="font-mono text-sm text-white">{selectedProject.duration}</p>
-                        </div>
-                        <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                          <Users className="w-5 h-5 text-[#BB86FC] mb-2" />
-                          <p className="text-xs text-muted-foreground uppercase mb-1">Team</p>
-                          <p className="font-mono text-sm text-white">{selectedProject.team}</p>
-                        </div>
-                      </div>
-
                       {/* Overview */}
                       <div>
                         <div className="flex items-center gap-2 mb-3">
@@ -283,6 +354,29 @@ export function ProgrammingShowcase() {
                   </div>
                 </ScrollArea>
               </div>
+            )}
+          </DialogContent>
+        </Dialog>
+
+        {/* Zoom Modal */}
+        <Dialog open={zoomImage} onOpenChange={setZoomImage}>
+          <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 bg-black/95 border-white/10 overflow-hidden">
+            <DialogTitle className="sr-only">{selectedProject?.title} - Full View</DialogTitle>
+            <DialogDescription className="sr-only">Full resolution view</DialogDescription>
+            <button
+              onClick={() => setZoomImage(false)}
+              data-testid="button-close-prog-zoom"
+              className="absolute top-4 right-4 z-50 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            {selectedProject && (
+              <img
+                src={selectedProject.images[0]}
+                alt={selectedProject.title}
+                className="w-full h-full object-contain max-h-[85vh]"
+                data-testid="prog-zoomed-image"
+              />
             )}
           </DialogContent>
         </Dialog>
