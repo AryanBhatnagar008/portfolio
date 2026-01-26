@@ -7,6 +7,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { SkillBar } from "@/components/SkillBar";
 import { Footer } from "@/components/Footer";
 import { DesignShowcase } from "@/components/DesignShowcase";
+import { EngineeringShowcase } from "@/components/EngineeringShowcase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -443,6 +444,7 @@ export default function Home() {
         <Skills />
         <Portfolio />
         <DesignShowcase />
+        <EngineeringShowcase />
         <Contact />
       </main>
       <Footer />
