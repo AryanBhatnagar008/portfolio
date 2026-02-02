@@ -86,8 +86,8 @@ export default function Home() {
           Mechanical Engineering student crafting the future through design, code, and hands-on builds.
         </p>
 
-        <p className="text-gray-500 text-sm mb-4">
-          From CAD models to 3D prints, from the 2048 game to ML-powered Eco-Car Finder — I'm currently putting the finishing touches on my portfolio.
+        <p className="text-gray-300 text-lg mb-4">
+          I'm currently putting the finishing touches on my portfolio.
         </p>
         
         <div className="flex items-center justify-center gap-2 text-[#BB86FC]/70 text-sm font-mono mb-8">
