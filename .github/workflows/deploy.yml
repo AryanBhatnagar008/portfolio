@@ -31,16 +31,9 @@ jobs:
         run: npm ci
 
       - name: Build for GitHub Pages
-        run: npx vite build --base=/portfolio/
-        working-directory: ./client
+        run: npx vite build --config vite.config.ts --base=/portfolio/
         env:
           NODE_ENV: production
-
-      - name: Copy assets to build
-        run: |
-          if [ -d "attached_assets" ]; then
-            cp -r attached_assets dist/public/assets 2>/dev/null || true
-          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
