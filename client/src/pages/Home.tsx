@@ -79,16 +79,20 @@ export default function Home() {
 
         {/* Main Text */}
         <h1 className="font-bold text-4xl md:text-5xl mb-4 leading-tight">
-          <span className="text-[#BB86FC]">Portfolio</span> Under Construction
+          Hey, I'm <span className="text-[#BB86FC]">Aryan</span>
         </h1>
         
         <p className="text-gray-400 text-lg mb-2">
-          Something amazing is being built here.
+          Mechanical Engineering student crafting the future through design, code, and hands-on builds.
+        </p>
+
+        <p className="text-gray-500 text-sm mb-4">
+          From CAD models to 3D prints, from the 2048 game to ML-powered Eco-Car Finder — I'm currently putting the finishing touches on my portfolio.
         </p>
         
         <div className="flex items-center justify-center gap-2 text-[#BB86FC]/70 text-sm font-mono mb-8">
           <Sparkles className="w-4 h-4" />
-          <span>Coming Soon</span>
+          <span>Launching Soon</span>
           <Sparkles className="w-4 h-4" />
         </div>
 
@@ -141,7 +145,7 @@ export default function Home() {
 
         {/* Footer note */}
         <p className="text-gray-500 text-xs font-mono">
-          Mechanical Engineer | Product Designer | Maker
+          Aryan Bhatnagar — Mechanical Engineering Student
         </p>
       </motion.div>
 
