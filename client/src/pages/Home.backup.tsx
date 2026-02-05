@@ -118,8 +118,8 @@ function About() {
               {/* Using Unsplash placeholder for profile */}
               {/* professional portrait man engineer */}
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop" 
-                alt="Profile" 
+                src="/assets/profile-photo.jpg" 
+                alt="Aryan Bhatnagar" 
                 className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
