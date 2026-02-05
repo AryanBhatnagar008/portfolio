@@ -9,7 +9,7 @@ import { DesignShowcase } from "@/components/DesignShowcase";
 import { EngineeringShowcase } from "@/components/EngineeringShowcase";
 import { ProgrammingShowcase } from "@/components/ProgrammingShowcase";
 import { Button } from "@/components/ui/button";
-import { Send, Download, ChevronRight, CircuitBoard, Palette, Wrench, Code } from "lucide-react";
+import { Send, Download, ChevronRight, CircuitBoard, Palette, Wrench, Code, Loader2 } from "lucide-react";
 
 // --- Hero Section ---
 const roles = ["Mechanical Engineer", "Product Designer", "Maker", "Innovator"];
