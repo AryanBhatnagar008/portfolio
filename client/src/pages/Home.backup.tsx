@@ -10,6 +10,7 @@ import { EngineeringShowcase } from "@/components/EngineeringShowcase";
 import { ProgrammingShowcase } from "@/components/ProgrammingShowcase";
 import { Button } from "@/components/ui/button";
 import { Send, Download, ChevronRight, CircuitBoard, Palette, Wrench, Code, Loader2 } from "lucide-react";
+import { getAssetUrl } from "@/lib/assets";
 
 // --- Hero Section ---
 const roles = ["Mechanical Engineer", "Product Designer", "Maker", "Innovator"];
@@ -112,7 +113,7 @@ function About() {
               {/* Using Unsplash placeholder for profile */}
               {/* professional portrait man engineer */}
               <img 
-                src="/assets/profile-photo.jpg" 
+                src={getAssetUrl("/assets/profile-photo.jpg")} 
                 alt="Aryan Bhatnagar" 
                 className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
               />
@@ -153,7 +154,7 @@ function About() {
             </p>
             
             <div className="pt-6">
-              <a href="/assets/Bhatnagar_Aryan_Resume.pdf" download>
+              <a href={getAssetUrl("/assets/Bhatnagar_Aryan_Resume.pdf")} download>
                 <Button variant="outline" className="group rounded-full border-primary/30 text-primary hover:bg-primary hover:text-white transition-all">
                   Download Resume <Download className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" />
                 </Button>
