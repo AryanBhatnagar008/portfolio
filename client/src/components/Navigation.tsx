@@ -22,7 +22,6 @@ export function Navigation() {
     { name: "Engineering", to: "engineering-showcase" },
     { name: "Programming", to: "programming-showcase" },
     { name: "Design", to: "design-showcase" },
-    { name: "Contact", to: "contact" },
   ];
 
   return (
@@ -64,14 +63,12 @@ export function Navigation() {
               {link.name}
             </ScrollLink>
           ))}
-          <ScrollLink
-            to="contact"
-            smooth={true}
-            duration={500}
+          <a
+            href="mailto:aryanbhatnagar008@gmail.com"
             className="px-6 py-2 rounded-full bg-primary/10 border border-primary/50 text-primary font-mono text-sm font-bold hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer box-glow"
           >
             HIRE ME
-          </ScrollLink>
+          </a>
         </div>
 
         {/* Mobile Toggle */}

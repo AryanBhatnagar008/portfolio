@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
-import { useSkills, useSendMessage } from "@/hooks/use-portfolio";
+import { useSkills } from "@/hooks/use-portfolio";
 import { Navigation } from "@/components/Navigation";
 import { SkillBar } from "@/components/SkillBar";
 import { Footer } from "@/components/Footer";
@@ -9,13 +9,7 @@ import { DesignShowcase } from "@/components/DesignShowcase";
 import { EngineeringShowcase } from "@/components/EngineeringShowcase";
 import { ProgrammingShowcase } from "@/components/ProgrammingShowcase";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { insertMessageSchema, type InsertMessage } from "@shared/schema";
-import { Loader2, Send, Download, ChevronRight, CircuitBoard, Palette, Wrench, Code } from "lucide-react";
+import { Send, Download, ChevronRight, CircuitBoard, Palette, Wrench, Code } from "lucide-react";
 
 // --- Hero Section ---
 const roles = ["Mechanical Engineer", "Product Designer", "Maker", "Innovator"];
@@ -338,45 +332,12 @@ function Portfolio() {
 
 // --- Contact Section ---
 function Contact() {
-  const { toast } = useToast();
-  const sendMessage = useSendMessage();
-  
-  const form = useForm<InsertMessage>({
-    resolver: zodResolver(insertMessageSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: ""
-    }
-  });
-
-  const onSubmit = (data: InsertMessage) => {
-    sendMessage.mutate(data, {
-      onSuccess: () => {
-        toast({
-          title: "Message Sent",
-          description: "Thanks for reaching out! I'll get back to you soon.",
-          className: "bg-green-500 text-white border-none"
-        });
-        form.reset();
-      },
-      onError: (error) => {
-        toast({
-          title: "Error",
-          description: error.message,
-          variant: "destructive"
-        });
-      }
-    });
-  };
-
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-      {/* Decorative */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/30 to-transparent pointer-events-none -z-10" />
 
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="max-w-2xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -385,78 +346,22 @@ function Contact() {
             <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">Get in Touch</span>
             <h2 className="font-display font-bold text-4xl mb-6">Let's build something amazing together.</h2>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-              I'm always open to discussing product design work or partnership opportunities.
-              Whether you have a question or just want to say hi, I'll try my best to get back to you!
+              I'm always open to discussing engineering projects, design work, or collaboration opportunities.
+              Whether you have a question or just want to say hi, feel free to reach out!
             </p>
             
-            <div className="space-y-6 font-mono text-sm">
-              <div className="flex items-center gap-4 text-muted-foreground">
-                <span className="w-12 h-[1px] bg-primary" />
-                <span>San Francisco, CA</span>
-              </div>
-              <div className="flex items-center gap-4 text-muted-foreground">
-                <span className="w-12 h-[1px] bg-primary" />
-                <span>alex.chen@example.com</span>
-              </div>
+            <a 
+              href="mailto:aryanbhatnagar008@gmail.com"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg transition-all duration-300"
+              data-testid="button-send-message"
+            >
+              <Send className="w-5 h-5" />
+              Send Message
+            </a>
+            
+            <div className="mt-8 font-mono text-sm text-muted-foreground">
+              aryanbhatnagar008@gmail.com
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-secondary/10 border border-white/5 p-8 rounded-3xl backdrop-blur-sm"
-          >
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-mono text-muted-foreground">Name</label>
-                  <Input 
-                    {...form.register("name")}
-                    placeholder="John Doe" 
-                    className="bg-black/20 border-white/10 focus:border-primary focus:ring-1 focus:ring-primary/50"
-                  />
-                  {form.formState.errors.name && (
-                    <span className="text-red-500 text-xs">{form.formState.errors.name.message}</span>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-mono text-muted-foreground">Email</label>
-                  <Input 
-                    {...form.register("email")}
-                    placeholder="john@example.com" 
-                    className="bg-black/20 border-white/10 focus:border-primary focus:ring-1 focus:ring-primary/50"
-                  />
-                  {form.formState.errors.email && (
-                    <span className="text-red-500 text-xs">{form.formState.errors.email.message}</span>
-                  )}
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-mono text-muted-foreground">Message</label>
-                <Textarea 
-                  {...form.register("message")}
-                  placeholder="Tell me about your project..." 
-                  className="bg-black/20 border-white/10 min-h-[150px] focus:border-primary focus:ring-1 focus:ring-primary/50"
-                />
-                {form.formState.errors.message && (
-                  <span className="text-red-500 text-xs">{form.formState.errors.message.message}</span>
-                )}
-              </div>
-              
-              <Button 
-                type="submit" 
-                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg"
-                disabled={sendMessage.isPending}
-              >
-                {sendMessage.isPending ? (
-                  <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                ) : (
-                  <Send className="w-5 h-5 mr-2" />
-                )}
-                Send Message
-              </Button>
-            </form>
           </motion.div>
         </div>
       </div>
