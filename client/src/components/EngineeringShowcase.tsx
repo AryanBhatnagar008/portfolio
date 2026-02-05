@@ -24,18 +24,19 @@ const engineeringProjects = [
   {
     id: "gladiator-automata",
     title: "Gladiator Automata",
-    images: ["https://images.unsplash.com/photo-1569235186275-626cb53b83ce?auto=format&fit=crop&q=80&w=800"],
-    duration: "3 Weeks",
-    team: "Solo Project",
-    overview: "A mechanical automata CAD project featuring a gladiator figure with moving sword arm and shield. Uses cam mechanisms to create realistic fighting motions when a crank is turned.",
+    images: ["/assets/automata-1.png", "/assets/automata-2.png", "/assets/automata-3.png", "/assets/automata-4.png", "/assets/automata-5.png", "/assets/automata-6.png"],
+    duration: "6 Days",
+    team: "Aryan & Zielig",
+    overview: "A mechanical automata CAD project featuring a gladiator figure with moving sword arm and shield. Uses snail cams for sword motion and offset cams for shield movement. Built in Onshape with full animation using tangent mates, slider cranks, and position constraints.",
     buildProcess: [
-      { phase: "Mechanism Research", steps: ["Studied cam types: snail, offset, eccentric", "Analyzed connecting rod kinematics", "Planned motion sequence for gladiator", "Selected dual-cam system for two arms"] },
-      { phase: "CAD Modeling - Base", steps: ["Created housing box in Onshape", "Designed crank shaft with handle", "Modeled cam profiles for arm motions", "Added bearings and axle supports"] },
-      { phase: "CAD Modeling - Figure", steps: ["Designed gladiator torso and head", "Created articulated arm joints", "Modeled sword and shield props", "Connected arms to cam followers"] },
-      { phase: "Animation & Testing", steps: ["Added mates for rotational motion", "Applied position constraints", "Animated full motion sequence", "Documented cam profile effects"] }
+      { phase: "Day 1-2: Research & Design", steps: ["Researched motion direction changes and cam types", "Studied snail cams, offset cams, and eccentric cams", "Decided on gladiator theme with dual-arm motion", "Sketched gladiator outline using reference images", "Selected snail cams for swords, offset cams for shields"] },
+      { phase: "Day 3: CAD Modeling", steps: ["Built base housing box in Onshape", "Created snail cam profiles following tutorial", "Modeled gladiator body with separate arm parts", "Designed sword and shield as individual components", "Added rods connecting arms to cam followers"] },
+      { phase: "Day 4-5: Assembly & Animation", steps: ["Used connection mates for proper rotation", "Fixed non-moving parts (base, gladiator body)", "Applied tangent mates and position constraints", "Troubleshot rod sliding against arm mechanism", "Added fillets to joining faces for smooth motion"] },
+      { phase: "Day 6: Final Refinement", steps: ["Adjusted fasten mate positions for rod alignment", "Completed all arm animations", "Tested full motion sequence with slider crank", "Documented cam profile effects on movement"] }
     ],
-    materials: ["Onshape CAD", "Snail Cams", "Offset Cams", "Connecting Rods"],
-    skills: ["CAD Animation", "Mechanism Design", "Cam Profiles", "Assembly Mates"]
+    materials: ["Onshape CAD", "Snail Cams", "Offset Cams", "Connecting Rods", "Slider Crank"],
+    skills: ["CAD Animation", "Mechanism Design", "Cam Profiles", "Assembly Mates", "Tangent Constraints"],
+    notebookUrl: "/assets/Automata_Notebook.pdf"
   },
   {
     id: "ktruss-bridge",
