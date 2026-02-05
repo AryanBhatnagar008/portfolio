@@ -81,3 +81,27 @@ Preferred communication style: Simple, everyday language.
 ### Replit-Specific
 - **@replit/vite-plugin-runtime-error-modal**: Error overlay during development
 - **@replit/vite-plugin-cartographer**: Development tooling
+
+## Important: Adding New Project Images
+
+When adding new images to engineering/programming/design projects:
+
+1. **Copy images to `client/public/assets/`** - This is where all project images are stored
+2. **Reference images with `/assets/` prefix** - e.g., `/assets/project_image.png`
+3. **Use `getAssetUrl()` function** - Import from `@/lib/assets` and wrap asset paths to ensure they work on both local dev and GitHub Pages
+4. **For engineering notebooks** - Copy PDFs to `client/public/assets/` and add `notebookUrl` property to the project
+
+Example in EngineeringShowcase.tsx:
+```typescript
+images: ["/assets/project_1.png", "/assets/project_2.png"],
+notebookUrl: "/assets/Project_Notebook.pdf"
+```
+
+The `getAssetUrl()` function automatically adds the correct base URL (`/portfolio/`) for GitHub Pages deployment.
+
+## GitHub Pages Deployment
+
+- Site deploys to: `https://[username].github.io/portfolio/`
+- Workflow: `.github/workflows/deploy.yml` runs on push to main
+- After adding new images, push changes to GitHub to trigger deployment
+- Password protection: Site uses temporary password "helloshutup" during development
