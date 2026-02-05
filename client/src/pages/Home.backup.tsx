@@ -125,7 +125,7 @@ function About() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
               <div className="absolute bottom-6 left-6">
                 <p className="font-mono text-primary text-sm mb-1">HELLO_WORLD</p>
-                <h3 className="font-display font-bold text-2xl">Alex Chen</h3>
+                <h3 className="font-display font-bold text-2xl">Aryan Bhatnagar</h3>
               </div>
             </div>
             {/* Decorative border */}
@@ -148,20 +148,22 @@ function About() {
               <span className="text-primary">Design & Engineering</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              I am a mechanical engineer with a passion for functional design and rapid prototyping. 
-              My work focuses on creating elegant solutions to complex physical problems, leveraging 
-              both traditional manufacturing and modern additive techniques.
+              I'm a Mechanical Engineering student at Stevens Institute of Technology, passionate about 
+              designing and building innovative solutions. From autonomous robots to IoT-integrated systems, 
+              I combine CAD expertise in SolidWorks and Onshape with hands-on fabrication skills.
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              When I'm not in CAD or the machine shop, I'm coding interactive experiences 
-              or building custom furniture. I believe the best products come from a deep 
-              understanding of both the materials and the user experience.
+              Currently a member of Stevens Robotics Club and SAE Baja, I work on everything from 
+              pneumatic actuation systems to off-road vehicle fabrication. When I'm not in the machine shop, 
+              I'm developing ML applications or prototyping with 3D printing.
             </p>
             
             <div className="pt-6">
-              <Button variant="outline" className="group rounded-full border-primary/30 text-primary hover:bg-primary hover:text-white transition-all">
-                Download Resume <Download className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" />
-              </Button>
+              <a href="/assets/Bhatnagar_Aryan_Resume.pdf" download>
+                <Button variant="outline" className="group rounded-full border-primary/30 text-primary hover:bg-primary hover:text-white transition-all">
+                  Download Resume <Download className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -472,9 +474,9 @@ export default function Home() {
         <About />
         <Skills />
         <Portfolio />
-        <DesignShowcase />
         <EngineeringShowcase />
         <ProgrammingShowcase />
+        <DesignShowcase />
         <Contact />
       </main>
       <Footer />

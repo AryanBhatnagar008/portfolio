@@ -19,8 +19,9 @@ export function Navigation() {
   const navLinks = [
     { name: "About", to: "about" },
     { name: "Skills", to: "skills" },
-    { name: "Design", to: "design-showcase" },
     { name: "Engineering", to: "engineering-showcase" },
+    { name: "Programming", to: "programming-showcase" },
+    { name: "Design", to: "design-showcase" },
     { name: "Contact", to: "contact" },
   ];
 

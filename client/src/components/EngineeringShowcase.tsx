@@ -228,7 +228,7 @@ export function EngineeringShowcase() {
           <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">
             Hands-On Engineering
           </span>
-          <h2 className="font-display font-bold text-4xl mb-4">Engineering Notebook</h2>
+          <h2 className="font-display font-bold text-4xl mb-4">Engineering Projects</h2>
           <p className="text-muted-foreground">
             Documented builds from concept to completion. Click any project to view details.
           </p>
