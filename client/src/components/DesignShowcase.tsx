@@ -239,7 +239,7 @@ const designProjects = [
   }
 ];
 
-function ImageCarousel({ images, title, onImageClick }: { images: string[], title: string, onImageClick?: () => void }) {
+function ImageCarousel({ images, title, onImageClick }: { images: string[], title: string, onImageClick?: (index: number) => void }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrev = (e: React.MouseEvent) => {
@@ -260,7 +260,7 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
   return (
     <div 
       className="relative w-full h-full bg-black/40 rounded-xl overflow-hidden group cursor-pointer"
-      onClick={() => onImageClick?.()}
+      onClick={() => onImageClick?.(currentIndex)}
     >
       <img
         src={images[currentIndex]}
@@ -318,7 +318,7 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
 
 export function DesignShowcase() {
   const [selectedProject, setSelectedProject] = useState<typeof designProjects[0] | null>(null);
-  const [zoomImage, setZoomImage] = useState(false);
+  const [zoomImageIndex, setZoomImageIndex] = useState<number | null>(null);
 
   return (
     <section id="design-showcase" className="py-24 bg-[#121212]">
@@ -371,7 +371,7 @@ export function DesignShowcase() {
         </motion.div>
 
         {/* Project Modal */}
-        <Dialog open={!!selectedProject && !zoomImage} onOpenChange={(open) => !open && setSelectedProject(null)}>
+        <Dialog open={!!selectedProject && zoomImageIndex === null} onOpenChange={(open) => !open && setSelectedProject(null)}>
           <DialogContent hideCloseButton className="max-w-4xl max-h-[90vh] p-0 bg-[#1a1a1a] border-white/10 overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
             <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
@@ -385,7 +385,7 @@ export function DesignShowcase() {
                     <ImageCarousel 
                       images={selectedProject.images} 
                       title={selectedProject.title}
-                      onImageClick={() => setZoomImage(true)}
+                      onImageClick={(idx) => setZoomImageIndex(idx)}
                     />
                   </div>
                   
@@ -459,21 +459,21 @@ export function DesignShowcase() {
         </Dialog>
 
         {/* Zoom Modal */}
-        <Dialog open={zoomImage} onOpenChange={setZoomImage}>
+        <Dialog open={zoomImageIndex !== null} onOpenChange={(open) => !open && setZoomImageIndex(null)}>
           <DialogContent hideCloseButton className="max-w-[90vw] max-h-[90vh] p-0 bg-black/95 border-white/10 overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title} - Full View</DialogTitle>
             <DialogDescription className="sr-only">Full resolution view</DialogDescription>
             <button
-              onClick={() => setZoomImage(false)}
+              onClick={() => setZoomImageIndex(null)}
               data-testid="button-close-zoom"
               className="absolute top-4 right-4 z-50 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
             >
               <X className="w-5 h-5" />
             </button>
-            {selectedProject && (
+            {selectedProject && zoomImageIndex !== null && (
               <img
-                src={selectedProject.images[0]}
-                alt={selectedProject.title}
+                src={selectedProject.images[zoomImageIndex]}
+                alt={`${selectedProject.title} - Image ${zoomImageIndex + 1}`}
                 className="w-full h-full object-contain max-h-[85vh]"
                 data-testid="zoomed-image"
               />

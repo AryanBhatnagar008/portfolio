@@ -24,7 +24,7 @@ const engineeringProjects = [
   {
     id: "gladiator-automata",
     title: "Gladiator Automata",
-    images: ["/assets/automata-1.png", "/assets/automata-2.png", "/assets/automata-3.png", "/assets/automata-4.png", "/assets/automata-5.png", "/assets/automata-6.png"],
+    images: ["/assets/automata-2.png", "/assets/automata-cad.png", "/assets/automata-1.png", "/assets/automata-3.png", "/assets/automata-4.png", "/assets/automata-5.png", "/assets/automata-6.png"],
     duration: "6 Days",
     team: "Aryan & Zielig",
     overview: "A mechanical automata CAD project featuring a gladiator figure with moving sword arm and shield. Uses snail cams for sword motion and offset cams for shield movement. Built in Onshape with full animation using tangent mates, slider cranks, and position constraints.",
@@ -201,7 +201,7 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
 
 export function EngineeringShowcase() {
   const [selectedProject, setSelectedProject] = useState<typeof engineeringProjects[0] | null>(null);
-  const [zoomImage, setZoomImage] = useState(false);
+  const [zoomImageIndex, setZoomImageIndex] = useState<number | null>(null);
 
   return (
     <section id="engineering-showcase" className="py-24 bg-[#121212]">
@@ -254,7 +254,7 @@ export function EngineeringShowcase() {
         </motion.div>
 
         {/* Project Modal */}
-        <Dialog open={!!selectedProject && !zoomImage} onOpenChange={(open) => !open && setSelectedProject(null)}>
+        <Dialog open={!!selectedProject && zoomImageIndex === null} onOpenChange={(open) => !open && setSelectedProject(null)}>
           <DialogContent hideCloseButton className="max-w-4xl max-h-[90vh] p-0 bg-[#1a1a1a] border-white/10 overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
             <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
@@ -268,7 +268,7 @@ export function EngineeringShowcase() {
                     <ImageCarousel 
                       images={selectedProject.images} 
                       title={selectedProject.title}
-                      onImageClick={() => setZoomImage(true)}
+                      onImageClick={(idx) => setZoomImageIndex(idx)}
                     />
                   </div>
                   
@@ -383,21 +383,21 @@ export function EngineeringShowcase() {
         </Dialog>
 
         {/* Zoom Modal */}
-        <Dialog open={zoomImage} onOpenChange={setZoomImage}>
+        <Dialog open={zoomImageIndex !== null} onOpenChange={(open) => !open && setZoomImageIndex(null)}>
           <DialogContent hideCloseButton className="max-w-[90vw] max-h-[90vh] p-0 bg-black/95 border-white/10 overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title} - Full View</DialogTitle>
             <DialogDescription className="sr-only">Full resolution view</DialogDescription>
             <button
-              onClick={() => setZoomImage(false)}
+              onClick={() => setZoomImageIndex(null)}
               data-testid="button-close-eng-zoom"
               className="absolute top-4 right-4 z-50 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
             >
               <X className="w-5 h-5" />
             </button>
-            {selectedProject && (
+            {selectedProject && zoomImageIndex !== null && (
               <img
-                src={selectedProject.images[0]}
-                alt={selectedProject.title}
+                src={selectedProject.images[zoomImageIndex]}
+                alt={`${selectedProject.title} - Image ${zoomImageIndex + 1}`}
                 className="w-full h-full object-contain max-h-[85vh]"
                 data-testid="eng-zoomed-image"
               />
