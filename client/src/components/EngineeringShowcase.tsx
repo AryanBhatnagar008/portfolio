@@ -41,7 +41,10 @@ const engineeringProjects = [
   {
     id: "ktruss-bridge",
     title: "K-Truss Bridge",
-    images: ["https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800"],
+    images: [
+      "/assets/ktruss_1.png",
+      "/assets/ktruss_2.png"
+    ],
     duration: "2 Weeks",
     team: "Aryan, Elijah, Nivan",
     overview: "A structural engineering project designing a K-truss bridge to support maximum load. Achieved 90N capacity (target: 80N) using optimized popsicle stick construction. Scored 87/100 on evaluation.",
@@ -52,7 +55,8 @@ const engineeringProjects = [
       { phase: "Testing & Results", steps: ["Conducted incremental load testing", "Bridge supported 90N (exceeded 80N target)", "Documented failure mode for analysis", "Final score: 87/100 on project evaluation"] }
     ],
     materials: ["Popsicle Sticks", "Wood Glue", "Clamps", "Measuring Tools"],
-    skills: ["Structural Engineering", "Load Analysis", "Teamwork", "Precision Construction"]
+    skills: ["Structural Engineering", "Load Analysis", "Teamwork", "Precision Construction"],
+    notebookUrl: "/assets/KTruss_Notebook.pdf"
   },
   {
     id: "home-renovation",
