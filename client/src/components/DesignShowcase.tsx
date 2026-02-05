@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ZoomIn, X, Palette, Wrench, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getAssetUrl } from "@/lib/assets";
 
 import comicArt from "@assets/Comic_-_Aryan_Bhatnagar_1769383707760.png";
 import surrealistScene from "@assets/Surrealist_Scenes_-_Aryan_Bhatnagar_copy_1769383707760.jpg";

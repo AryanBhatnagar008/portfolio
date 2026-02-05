@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users, ChevronLeft, ChevronRight, FileText } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getAssetUrl } from "@/lib/assets";
 
 const engineeringProjects = [
   {
@@ -135,6 +136,13 @@ const engineeringProjects = [
 function ImageCarousel({ images, title, onImageClick }: { images: string[], title: string, onImageClick?: (index: number) => void }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const getImageSrc = (src: string) => {
+    if (src.startsWith('/assets/')) {
+      return getAssetUrl(src);
+    }
+    return src;
+  };
+
   const goToPrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -156,7 +164,7 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
       onClick={() => onImageClick?.(currentIndex)}
     >
       <img
-        src={images[currentIndex]}
+        src={getImageSrc(images[currentIndex])}
         alt={`${title} - Image ${currentIndex + 1}`}
         className="w-full h-full object-cover"
         data-testid="eng-carousel-image"
@@ -252,7 +260,7 @@ export function EngineeringShowcase() {
               className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)]"
             >
               <img
-                src={project.images[0]}
+                src={project.images[0].startsWith('/assets/') ? getAssetUrl(project.images[0]) : project.images[0]}
                 alt={project.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -347,7 +355,7 @@ export function EngineeringShowcase() {
                       {/* View Notebook Link */}
                       {'notebookUrl' in selectedProject && selectedProject.notebookUrl && (
                         <a
-                          href={selectedProject.notebookUrl}
+                          href={selectedProject.notebookUrl.startsWith('/assets/') ? getAssetUrl(selectedProject.notebookUrl) : selectedProject.notebookUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           data-testid="eng-notebook-link"
@@ -407,7 +415,7 @@ export function EngineeringShowcase() {
             </button>
             {selectedProject && zoomImageIndex !== null && (
               <img
-                src={selectedProject.images[zoomImageIndex]}
+                src={selectedProject.images[zoomImageIndex].startsWith('/assets/') ? getAssetUrl(selectedProject.images[zoomImageIndex]) : selectedProject.images[zoomImageIndex]}
                 alt={`${selectedProject.title} - Image ${zoomImageIndex + 1}`}
                 className="w-full h-full object-contain max-h-[85vh]"
                 data-testid="eng-zoomed-image"

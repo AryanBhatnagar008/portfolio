@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { X, Code, Clock, Users, Terminal, Lightbulb, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getAssetUrl } from "@/lib/assets";
 
 const programmingProjects = [
   {
