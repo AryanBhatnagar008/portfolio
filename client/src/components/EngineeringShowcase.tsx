@@ -90,7 +90,13 @@ const engineeringProjects = [
   {
     id: "hot-cold",
     title: "Hot n' Cold",
-    images: ["https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&q=80&w=800"],
+    images: [
+      "/assets/hot_cold_1.png",
+      "/assets/hot_cold_2.png",
+      "/assets/hot_cold_3.png",
+      "/assets/hot_cold_4.png",
+      "/assets/hot_cold_5.png"
+    ],
     duration: "3 Weeks",
     team: "Aryan & Elijah",
     overview: "A CAD design challenge creating themed beverage holders: a chicken-shaped kettle for hot drinks and an egg-shaped mug with chicken feet for cold drinks. Explores the question \"What came first - the chicken or the egg?\"",
@@ -101,7 +107,8 @@ const engineeringProjects = [
       { phase: "Final Presentation", steps: ["Exploded view assembly in Onshape", "Rendered both designs with realistic materials", "Documented CAD techniques used", "Created design rationale presentation"] }
     ],
     materials: ["Onshape CAD", "Loft Tool", "Revolve", "Shell", "Fillet", "Boolean"],
-    skills: ["CAD Modeling", "Surface Design", "Creative Problem Solving", "3D Visualization"]
+    skills: ["CAD Modeling", "Surface Design", "Creative Problem Solving", "3D Visualization"],
+    notebookUrl: "/assets/HotCold_Notebook.pdf"
   },
   {
     id: "ironman-helmet",
