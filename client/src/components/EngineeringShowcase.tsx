@@ -6,52 +6,36 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const engineeringProjects = [
   {
-    id: "device-stand",
-    title: "Device Stand",
-    images: ["https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=800"],
-    duration: "4 Days",
-    team: "Solo Project",
-    overview: "A custom headphone and phone stand designed to solve a personal organization problem. The stand features a built-in charger holder for convenient headphone charging, combining functionality with aesthetic appeal using popsicle sticks and balsa wood.",
+    id: "security-robot",
+    title: "Security Robot",
+    images: ["https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800"],
+    duration: "6 Weeks",
+    team: "Aryan & Nivan",
+    overview: "A functional security robot built using Vex IQ components. Features autonomous patrol mode, intruder detection sensors, and remote control capability. Designed to demonstrate robotics principles.",
     buildProcess: [
-      { phase: "Day 1: Problem Definition & Sketching", steps: ["Identified need for headphone storage with integrated charging", "Sketched 4 different designs (2 popsicle stick, 2 cardboard)", "Selected popsicle stick design for durability", "Chose design with charger integration feature"] },
-      { phase: "Day 2: Base Construction", steps: ["Built the base using popsicle sticks with cut edges", "Added balsa wood accents for premium look", "Created foundation structure with cross-supports", "Tested stability with headphone weight"] },
-      { phase: "Day 3: Vertical Assembly", steps: ["Cut vertical support sticks to headphone height", "Constructed the headphone rest/head piece", "Added decorative detailing on sides", "Attached small balsa wood trim pieces"] },
-      { phase: "Day 4: Final Modifications", steps: ["Added phone stand attachment", "Integrated charger cable routing", "Final assembly and testing", "Achieved dual-device functionality"] }
+      { phase: "Concept Development", steps: ["Defined security robot requirements", "Sketched chassis and sensor layouts", "Selected Vex IQ for modular building", "Planned patrol route algorithms"] },
+      { phase: "Chassis Construction", steps: ["Built rectangular base frame", "Installed four-wheel drive system", "Added motor mounts and brackets", "Ensured stable center of gravity"] },
+      { phase: "Sensor Integration", steps: ["Mounted ultrasonic distance sensors", "Added bump sensors for collision", "Installed touch sensors for manual control", "Connected all sensors to brain unit"] },
+      { phase: "Programming & Testing", steps: ["Programmed autonomous patrol behavior", "Added intruder detection responses", "Implemented remote override controls", "Tested in simulated environment"] }
     ],
-    materials: ["Popsicle Sticks", "Balsa Wood", "Hot Glue", "Wood Glue"],
-    skills: ["Woodworking", "Design Thinking", "Prototyping"]
+    materials: ["Vex IQ Parts", "Motors", "Ultrasonic Sensors", "Touch Sensors", "Controller"],
+    skills: ["Robotics", "Programming", "Sensor Integration", "System Design"]
   },
   {
-    id: "droid-catapult",
-    title: "Snail-a-Pult",
-    images: ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800"],
-    duration: "14 Days",
-    team: "Aryan & Elijah",
-    overview: "\"Turbo the Snail-a-Pult\" - A precision catapult designed to launch a tennis ball (droid) into a target ship. Achieved 20/20 perfect accuracy in final testing. Features a snail-themed decorative design with googly eyes.",
-    buildProcess: [
-      { phase: "Design Phase (Days 1-3)", steps: ["Brainstormed 4 catapult concepts", "Created decision matrix scoring functionality, design, durability, accuracy", "Selected traditional catapult with rubber band propulsion", "Drafted top-down and side-view technical drawings"] },
-      { phase: "Construction Phase (Days 4-8)", steps: ["Cut 12\"x5\" wooden base using hand saw", "Reduced dowels from 12\" to 8\" for optimal leverage", "Built support structure with hot glue + popsicle sticks", "Arm length: 10.5 inches for trajectory control"] },
-      { phase: "Mechanism Development (Days 9-11)", steps: ["Tested cardboard, tape, and string for arm pivot (all failed)", "Solution: Plastic straw on thin wood dowel for rotation", "Attached rubber bands for launch force", "Added nail reinforcements after initial failure"] },
-      { phase: "Final Assembly (Days 12-14)", steps: ["Reinforced with additional hot glue and tape", "Added snail decorations (cardboard shell, googly eyes)", "Calibrated for 10-foot launch distance", "Final test: 20/20 successful launches into target box"] }
-    ],
-    materials: ["Wooden Dowels", "Popsicle Sticks", "Rubber Bands", "Hot Glue", "Plastic Straw", "Cardboard"],
-    skills: ["Mechanical Design", "Physics", "Iteration", "Problem Solving"]
-  },
-  {
-    id: "hot-cold",
-    title: "Hot n' Cold",
-    images: ["https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&q=80&w=800"],
+    id: "gladiator-automata",
+    title: "Gladiator Automata",
+    images: ["https://images.unsplash.com/photo-1569235186275-626cb53b83ce?auto=format&fit=crop&q=80&w=800"],
     duration: "3 Weeks",
-    team: "Aryan & Elijah",
-    overview: "A CAD design challenge creating themed beverage holders: a chicken-shaped kettle for hot drinks and an egg-shaped mug with chicken feet for cold drinks. Explores the question \"What came first - the chicken or the egg?\"",
+    team: "Solo Project",
+    overview: "A mechanical automata CAD project featuring a gladiator figure with moving sword arm and shield. Uses cam mechanisms to create realistic fighting motions when a crank is turned.",
     buildProcess: [
-      { phase: "Research Phase", steps: ["Analyzed 30 existing beverage holder designs", "Documented pros/cons of dispensers, mugs, bottles, thermoses", "Created mind map exploring hot vs cold holder differences", "Selected \"Chicken & Egg\" theme for cohesive design story"] },
-      { phase: "Onshape CAD - Chicken Kettle", steps: ["Used Loft tool for organic body shape", "Revolve for main body structure", "Extrude for wings/handles", "Added Wattle and Comb details", "Created curved lid using projected curves", "Applied Fillet for smooth transitions"] },
-      { phase: "Onshape CAD - Egg Mug", steps: ["Ellipse sketch (4.5\" height, 1.09\" radius opening)", "Revolve for egg shape generation", "Shell tool for hollow interior", "Designed chicken feet with claw geometry", "Circle pattern for toe arrangement", "Combined elements using boolean operations"] },
-      { phase: "Final Presentation", steps: ["Exploded view assembly in Onshape", "Rendered both designs with realistic materials", "Documented CAD techniques used", "Created design rationale presentation"] }
+      { phase: "Mechanism Research", steps: ["Studied cam types: snail, offset, eccentric", "Analyzed connecting rod kinematics", "Planned motion sequence for gladiator", "Selected dual-cam system for two arms"] },
+      { phase: "CAD Modeling - Base", steps: ["Created housing box in Onshape", "Designed crank shaft with handle", "Modeled cam profiles for arm motions", "Added bearings and axle supports"] },
+      { phase: "CAD Modeling - Figure", steps: ["Designed gladiator torso and head", "Created articulated arm joints", "Modeled sword and shield props", "Connected arms to cam followers"] },
+      { phase: "Animation & Testing", steps: ["Added mates for rotational motion", "Applied position constraints", "Animated full motion sequence", "Documented cam profile effects"] }
     ],
-    materials: ["Onshape CAD", "Loft Tool", "Revolve", "Shell", "Fillet", "Boolean"],
-    skills: ["CAD Modeling", "Surface Design", "Creative Problem Solving", "3D Visualization"]
+    materials: ["Onshape CAD", "Snail Cams", "Offset Cams", "Connecting Rods"],
+    skills: ["CAD Animation", "Mechanism Design", "Cam Profiles", "Assembly Mates"]
   },
   {
     id: "ktruss-bridge",
@@ -68,38 +52,6 @@ const engineeringProjects = [
     ],
     materials: ["Popsicle Sticks", "Wood Glue", "Clamps", "Measuring Tools"],
     skills: ["Structural Engineering", "Load Analysis", "Teamwork", "Precision Construction"]
-  },
-  {
-    id: "ironman-helmet",
-    title: "Iron Man Helmet",
-    images: ["https://images.unsplash.com/photo-1635863138275-d9b33299680b?auto=format&fit=crop&q=80&w=800"],
-    duration: "4 Weeks",
-    team: "Solo Project",
-    overview: "A CAD project designing a wearable Iron Man helmet in Onshape. Features ergonomic fit based on head measurements, with detailed surface modeling for the iconic look.",
-    buildProcess: [
-      { phase: "Reference & Planning", steps: ["Gathered reference images from multiple angles", "Took head measurements for proper fit", "Planned component breakdown", "Selected Onshape for parametric modeling"] },
-      { phase: "Base Geometry", steps: ["Created main helmet shell using loft", "Shaped faceplate contours", "Designed eye apertures with precise curves", "Built jaw section separately for articulation"] },
-      { phase: "Detail Modeling", steps: ["Added panel lines and surface details", "Created ear sections with vents", "Modeled forehead crest geometry", "Applied fillets for smooth transitions"] },
-      { phase: "Assembly & Refinement", steps: ["Assembled all components in Onshape", "Verified measurements for wearability", "Created exploded view for documentation", "Rendered final design with metallic materials"] }
-    ],
-    materials: ["Onshape CAD", "Loft", "Extrude", "Fillet", "Surface Modeling"],
-    skills: ["Advanced CAD", "Organic Modeling", "Ergonomic Design", "Attention to Detail"]
-  },
-  {
-    id: "security-robot",
-    title: "Security Robot",
-    images: ["https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800"],
-    duration: "6 Weeks",
-    team: "Aryan & Nivan",
-    overview: "A functional security robot built using Vex IQ components. Features autonomous patrol mode, intruder detection sensors, and remote control capability. Designed to demonstrate robotics principles.",
-    buildProcess: [
-      { phase: "Concept Development", steps: ["Defined security robot requirements", "Sketched chassis and sensor layouts", "Selected Vex IQ for modular building", "Planned patrol route algorithms"] },
-      { phase: "Chassis Construction", steps: ["Built rectangular base frame", "Installed four-wheel drive system", "Added motor mounts and brackets", "Ensured stable center of gravity"] },
-      { phase: "Sensor Integration", steps: ["Mounted ultrasonic distance sensors", "Added bump sensors for collision", "Installed touch sensors for manual control", "Connected all sensors to brain unit"] },
-      { phase: "Programming & Testing", steps: ["Programmed autonomous patrol behavior", "Added intruder detection responses", "Implemented remote override controls", "Tested in simulated environment"] }
-    ],
-    materials: ["Vex IQ Parts", "Motors", "Ultrasonic Sensors", "Touch Sensors", "Controller"],
-    skills: ["Robotics", "Programming", "Sensor Integration", "System Design"]
   },
   {
     id: "home-renovation",
@@ -119,22 +71,6 @@ const engineeringProjects = [
     notebookUrl: "/assets/ARDC_Notebook.pdf"
   },
   {
-    id: "gladiator-automata",
-    title: "Gladiator Automata",
-    images: ["https://images.unsplash.com/photo-1569235186275-626cb53b83ce?auto=format&fit=crop&q=80&w=800"],
-    duration: "3 Weeks",
-    team: "Solo Project",
-    overview: "A mechanical automata CAD project featuring a gladiator figure with moving sword arm and shield. Uses cam mechanisms to create realistic fighting motions when a crank is turned.",
-    buildProcess: [
-      { phase: "Mechanism Research", steps: ["Studied cam types: snail, offset, eccentric", "Analyzed connecting rod kinematics", "Planned motion sequence for gladiator", "Selected dual-cam system for two arms"] },
-      { phase: "CAD Modeling - Base", steps: ["Created housing box in Onshape", "Designed crank shaft with handle", "Modeled cam profiles for arm motions", "Added bearings and axle supports"] },
-      { phase: "CAD Modeling - Figure", steps: ["Designed gladiator torso and head", "Created articulated arm joints", "Modeled sword and shield props", "Connected arms to cam followers"] },
-      { phase: "Animation & Testing", steps: ["Added mates for rotational motion", "Applied position constraints", "Animated full motion sequence", "Documented cam profile effects"] }
-    ],
-    materials: ["Onshape CAD", "Snail Cams", "Offset Cams", "Connecting Rods"],
-    skills: ["CAD Animation", "Mechanism Design", "Cam Profiles", "Assembly Mates"]
-  },
-  {
     id: "birdhouse",
     title: "Bird House",
     images: ["https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&q=80&w=800"],
@@ -149,6 +85,38 @@ const engineeringProjects = [
     ],
     materials: ["Plywood (0.41\" thick)", "Wood Glue", "Nails", "Scroll Saw", "Bandsaw"],
     skills: ["Woodworking", "Joinery", "Bevel Cuts", "STEM Education Design"]
+  },
+  {
+    id: "hot-cold",
+    title: "Hot n' Cold",
+    images: ["https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&q=80&w=800"],
+    duration: "3 Weeks",
+    team: "Aryan & Elijah",
+    overview: "A CAD design challenge creating themed beverage holders: a chicken-shaped kettle for hot drinks and an egg-shaped mug with chicken feet for cold drinks. Explores the question \"What came first - the chicken or the egg?\"",
+    buildProcess: [
+      { phase: "Research Phase", steps: ["Analyzed 30 existing beverage holder designs", "Documented pros/cons of dispensers, mugs, bottles, thermoses", "Created mind map exploring hot vs cold holder differences", "Selected \"Chicken & Egg\" theme for cohesive design story"] },
+      { phase: "Onshape CAD - Chicken Kettle", steps: ["Used Loft tool for organic body shape", "Revolve for main body structure", "Extrude for wings/handles", "Added Wattle and Comb details", "Created curved lid using projected curves", "Applied Fillet for smooth transitions"] },
+      { phase: "Onshape CAD - Egg Mug", steps: ["Ellipse sketch (4.5\" height, 1.09\" radius opening)", "Revolve for egg shape generation", "Shell tool for hollow interior", "Designed chicken feet with claw geometry", "Circle pattern for toe arrangement", "Combined elements using boolean operations"] },
+      { phase: "Final Presentation", steps: ["Exploded view assembly in Onshape", "Rendered both designs with realistic materials", "Documented CAD techniques used", "Created design rationale presentation"] }
+    ],
+    materials: ["Onshape CAD", "Loft Tool", "Revolve", "Shell", "Fillet", "Boolean"],
+    skills: ["CAD Modeling", "Surface Design", "Creative Problem Solving", "3D Visualization"]
+  },
+  {
+    id: "ironman-helmet",
+    title: "Iron Man Helmet",
+    images: ["https://images.unsplash.com/photo-1635863138275-d9b33299680b?auto=format&fit=crop&q=80&w=800"],
+    duration: "4 Weeks",
+    team: "Solo Project",
+    overview: "A CAD project designing a wearable Iron Man helmet in Onshape. Features ergonomic fit based on head measurements, with detailed surface modeling for the iconic look.",
+    buildProcess: [
+      { phase: "Reference & Planning", steps: ["Gathered reference images from multiple angles", "Took head measurements for proper fit", "Planned component breakdown", "Selected Onshape for parametric modeling"] },
+      { phase: "Base Geometry", steps: ["Created main helmet shell using loft", "Shaped faceplate contours", "Designed eye apertures with precise curves", "Built jaw section separately for articulation"] },
+      { phase: "Detail Modeling", steps: ["Added panel lines and surface details", "Created ear sections with vents", "Modeled forehead crest geometry", "Applied fillets for smooth transitions"] },
+      { phase: "Assembly & Refinement", steps: ["Assembled all components in Onshape", "Verified measurements for wearability", "Created exploded view for documentation", "Rendered final design with metallic materials"] }
+    ],
+    materials: ["Onshape CAD", "Loft", "Extrude", "Fillet", "Surface Modeling"],
+    skills: ["Advanced CAD", "Organic Modeling", "Ergonomic Design", "Attention to Detail"]
   }
 ];
 
