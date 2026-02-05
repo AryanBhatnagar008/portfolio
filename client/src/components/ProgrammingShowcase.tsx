@@ -103,19 +103,29 @@ const programmingProjects = [
   }
 ];
 
-function ImageCarousel({ images, title }: { images: string[], title: string }) {
+function ImageCarousel({ images, title, onImageClick }: { images: string[], title: string, onImageClick?: () => void }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToPrev = () => {
+  const goToPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  const goToNext = () => {
+  const goToNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  const handleDotClick = (e: React.MouseEvent, idx: number) => {
+    e.stopPropagation();
+    setCurrentIndex(idx);
+  };
+
   return (
-    <div className="relative w-full h-full bg-black/40 rounded-xl overflow-hidden group">
+    <div 
+      className="relative w-full h-full bg-black/40 rounded-xl overflow-hidden group cursor-pointer"
+      onClick={() => onImageClick?.()}
+    >
       <img
         src={images[currentIndex]}
         alt={`${title} - Image ${currentIndex + 1}`}
@@ -123,19 +133,26 @@ function ImageCarousel({ images, title }: { images: string[], title: string }) {
         data-testid="prog-carousel-image"
       />
       
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        <div className="bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs text-white/80 flex items-center gap-1.5">
+          <ZoomIn className="w-3 h-3" />
+          Click to enlarge
+        </div>
+      </div>
+      
       {images.length > 1 && (
         <>
           <button
             onClick={goToPrev}
             data-testid="prog-carousel-prev"
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black opacity-0 group-hover:opacity-100"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={goToNext}
             data-testid="prog-carousel-next"
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all opacity-0 group-hover:opacity-100"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black opacity-0 group-hover:opacity-100"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -143,8 +160,8 @@ function ImageCarousel({ images, title }: { images: string[], title: string }) {
             {images.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                className={`w-2 h-2 rounded-full transition-all ${
+                onClick={(e) => handleDotClick(e, idx)}
+                className={`w-2 h-2 rounded-full ${
                   idx === currentIndex ? "bg-[#BB86FC] w-4" : "bg-white/40 hover:bg-white/60"
                 }`}
                 data-testid={`prog-carousel-dot-${idx}`}
@@ -232,7 +249,7 @@ export function ProgrammingShowcase() {
 
         {/* Project Modal */}
         <Dialog open={!!selectedProject && !zoomImage} onOpenChange={(open) => !open && setSelectedProject(null)}>
-          <DialogContent className="max-w-4xl max-h-[90vh] p-0 bg-[#1a1a1a] border-white/10 overflow-hidden">
+          <DialogContent hideCloseButton className="max-w-4xl max-h-[90vh] p-0 bg-[#1a1a1a] border-white/10 overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
             <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
             
@@ -242,7 +259,11 @@ export function ProgrammingShowcase() {
                 <div className="flex flex-shrink-0 border-b border-white/10">
                   {/* Image Carousel - Top Left Quarter */}
                   <div className="w-1/3 h-56 p-4 flex-shrink-0">
-                    <ImageCarousel images={selectedProject.images} title={selectedProject.title} />
+                    <ImageCarousel 
+                      images={selectedProject.images} 
+                      title={selectedProject.title}
+                      onImageClick={() => setZoomImage(true)}
+                    />
                   </div>
                   
                   {/* Title and Meta */}
@@ -252,22 +273,13 @@ export function ProgrammingShowcase() {
                         <span className="font-mono text-xs text-[#BB86FC] uppercase tracking-wider">Programming Project</span>
                         <h3 className="font-display font-bold text-3xl text-white mt-1">{selectedProject.title}</h3>
                       </div>
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => setZoomImage(true)}
-                          data-testid="prog-zoom-btn"
-                          className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
-                        >
-                          <ZoomIn className="w-5 h-5" />
-                        </button>
-                        <button
-                          onClick={() => setSelectedProject(null)}
-                          data-testid="prog-modal-close"
-                          className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
-                        >
-                          <X className="w-5 h-5" />
-                        </button>
-                      </div>
+                      <button
+                        onClick={() => setSelectedProject(null)}
+                        data-testid="prog-modal-close"
+                        className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                      >
+                        <X className="w-5 h-5" />
+                      </button>
                     </div>
                     <div className="flex gap-4 mt-4">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -360,7 +372,7 @@ export function ProgrammingShowcase() {
 
         {/* Zoom Modal */}
         <Dialog open={zoomImage} onOpenChange={setZoomImage}>
-          <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 bg-black/95 border-white/10 overflow-hidden">
+          <DialogContent hideCloseButton className="max-w-[90vw] max-h-[90vh] p-0 bg-black/95 border-white/10 overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title} - Full View</DialogTitle>
             <DialogDescription className="sr-only">Full resolution view</DialogDescription>
             <button
