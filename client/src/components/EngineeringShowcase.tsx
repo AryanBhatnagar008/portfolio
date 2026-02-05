@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users, ChevronLeft, ChevronRight, FileText } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -104,18 +104,19 @@ const engineeringProjects = [
   {
     id: "home-renovation",
     title: "Home Renovation",
-    images: ["https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800"],
+    images: ["/assets/ardc-floorplan.png", "/assets/ardc-3d-1.png", "/assets/ardc-3d-2.png", "/assets/ardc-mindmap.png"],
     duration: "5 Weeks",
-    team: "Solo Project",
-    overview: "A comprehensive CAD project designing a home renovation in Onshape. Includes kitchen redesign, bathroom updates, and living space optimization with full 3D walkthroughs.",
+    team: "Aryan & Jascha",
+    overview: "Architectural Renovation Design Challenge (ARDC) - A comprehensive home renovation project designing a two-story family home. Features include 2-car garage with breezeway, great room living area, kitchen with work triangle layout, master bedroom with bath, nursery, den/study, and outdoor living space. Created using Planner5D with detailed floor plans and 3D renders.",
     buildProcess: [
-      { phase: "Site Survey & Planning", steps: ["Measured existing room dimensions", "Documented current layout limitations", "Created wishlist of improvements", "Researched renovation best practices"] },
-      { phase: "Kitchen Design", steps: ["Modeled cabinet configurations", "Designed island with seating", "Planned appliance placement", "Created lighting layout"] },
-      { phase: "Bathroom & Living Areas", steps: ["Redesigned bathroom fixtures layout", "Optimized storage solutions", "Planned living room furniture arrangement", "Added built-in shelving units"] },
-      { phase: "Visualization", steps: ["Created realistic material renderings", "Produced 3D walkthrough animation", "Generated floor plan views", "Documented all design decisions"] }
+      { phase: "Research & Planning", steps: ["Defined requirements: 2-car garage, living area, powder room, den, kitchen triangle", "Created mind map exploring room layouts and dimensions", "Researched bedroom sizes: Master (200-400 sq ft), Nursery (70-100 sq ft)", "Selected Planner5D for digital modeling after evaluating FloorPlanner"] },
+      { phase: "First Floor Design", steps: ["Guest bedroom in top left (9x12')", "Great room with combined living and kitchen (9x12')", "Bathroom and laundry room (9x7' each)", "Living room (15x14') with stairs area (6x12')"] },
+      { phase: "Second Floor Design", steps: ["Master bedroom with connected closet", "Nursery positioned near master bedroom", "Secondary bedroom with bathroom access", "Cut-in portions: 8x6' left, 6x6' right"] },
+      { phase: "Peer Review & Refinement", steps: ["Received feedback to swap bottom floor locations", "Combined best elements from both team members' designs", "Added furniture and appliances to all rooms", "Created 3D renders for visualization"] }
     ],
-    materials: ["Onshape CAD", "Architectural Drawing", "3D Rendering", "Animation"],
-    skills: ["Architectural Design", "Space Planning", "3D Visualization", "Interior Design"]
+    materials: ["Planner5D", "Architectural Sketching", "Graph Paper", "3D Rendering"],
+    skills: ["Architectural Design", "Space Planning", "3D Visualization", "Collaboration"],
+    notebookUrl: "/assets/ARDC_Notebook.pdf"
   },
   {
     id: "gladiator-automata",
@@ -349,6 +350,20 @@ export function EngineeringShowcase() {
                           ))}
                         </div>
                       </div>
+
+                      {/* View Notebook Link */}
+                      {'notebookUrl' in selectedProject && selectedProject.notebookUrl && (
+                        <a
+                          href={selectedProject.notebookUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-testid="eng-notebook-link"
+                          className="flex items-center gap-2 px-4 py-3 bg-[#BB86FC]/10 border border-[#BB86FC]/30 rounded-xl text-[#BB86FC] hover:bg-[#BB86FC] hover:text-black transition-all font-mono text-sm"
+                        >
+                          <FileText className="w-4 h-4" />
+                          View Engineering Notebook
+                        </a>
+                      )}
                     </div>
 
                     {/* Right Column - Build Process */}
