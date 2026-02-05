@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
-import { useSkills } from "@/hooks/use-portfolio";
 import { Navigation } from "@/components/Navigation";
 import { SkillBar } from "@/components/SkillBar";
 import { Footer } from "@/components/Footer";
@@ -9,8 +8,29 @@ import { DesignShowcase } from "@/components/DesignShowcase";
 import { EngineeringShowcase } from "@/components/EngineeringShowcase";
 import { ProgrammingShowcase } from "@/components/ProgrammingShowcase";
 import { Button } from "@/components/ui/button";
-import { Send, Download, ChevronRight, CircuitBoard, Palette, Wrench, Code, Loader2 } from "lucide-react";
+import { Send, Download, ChevronRight, CircuitBoard, Palette, Wrench, Code } from "lucide-react";
 import { getAssetUrl } from "@/lib/assets";
+
+// Static skills data for GitHub Pages (no backend)
+const skillsData = [
+  { id: 1, name: "SolidWorks", category: "Design", proficiency: 90 },
+  { id: 2, name: "Onshape", category: "Design", proficiency: 85 },
+  { id: 3, name: "Flashprint", category: "Design", proficiency: 80 },
+  { id: 4, name: "Adobe Photoshop", category: "Design", proficiency: 70 },
+  { id: 5, name: "Adobe Illustrator", category: "Design", proficiency: 65 },
+  { id: 6, name: "C/C++", category: "Programming", proficiency: 75 },
+  { id: 7, name: "Java", category: "Programming", proficiency: 75 },
+  { id: 8, name: "Python", category: "Programming", proficiency: 60 },
+  { id: 9, name: "Arduino", category: "Programming", proficiency: 75 },
+  { id: 10, name: "MATLAB", category: "Programming", proficiency: 55 },
+  { id: 11, name: "3D Printing", category: "Manufacturing", proficiency: 90 },
+  { id: 12, name: "Welding", category: "Manufacturing", proficiency: 70 },
+  { id: 13, name: "Soldering", category: "Manufacturing", proficiency: 75 },
+  { id: 14, name: "Bandsaw", category: "Manufacturing", proficiency: 80 },
+  { id: 15, name: "Tablesaw", category: "Manufacturing", proficiency: 80 },
+  { id: 16, name: "Google Workspace", category: "Admin Tools", proficiency: 90 },
+  { id: 17, name: "Microsoft Office", category: "Admin Tools", proficiency: 85 },
+];
 
 // --- Hero Section ---
 const roles = ["Mechanical Engineer", "Product Designer", "Maker", "Innovator"];
@@ -169,12 +189,11 @@ function About() {
 
 // --- Skills Section ---
 function Skills() {
-  const { data: skills, isLoading } = useSkills();
+  // Use static data instead of API for GitHub Pages compatibility
+  const skills = skillsData;
 
   // Group skills by category
-  const categories = skills 
-    ? Array.from(new Set(skills.map(s => s.category)))
-    : [];
+  const categories = Array.from(new Set(skills.map(s => s.category)));
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
@@ -192,41 +211,35 @@ function Skills() {
           </p>
         </motion.div>
 
-        {isLoading ? (
-          <div className="flex justify-center">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category, idx) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-secondary/10 border border-white/5 rounded-2xl p-6 hover:border-primary/20 transition-colors"
-              >
-                <h3 className="font-display font-bold text-xl mb-6 flex items-center gap-2">
-                  <ChevronRight className="w-5 h-5 text-primary" />
-                  {category}
-                </h3>
-                <div className="space-y-6">
-                  {skills
-                    ?.filter(s => s.category === category)
-                    .map((skill, i) => (
-                      <SkillBar 
-                        key={skill.id} 
-                        name={skill.name} 
-                        proficiency={skill.proficiency} 
-                        delay={i}
-                      />
-                    ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {categories.map((category, idx) => (
+            <motion.div
+              key={category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-secondary/10 border border-white/5 rounded-2xl p-6 hover:border-primary/20 transition-colors"
+            >
+              <h3 className="font-display font-bold text-xl mb-6 flex items-center gap-2">
+                <ChevronRight className="w-5 h-5 text-primary" />
+                {category}
+              </h3>
+              <div className="space-y-6">
+                {skills
+                  .filter(s => s.category === category)
+                  .map((skill, i) => (
+                    <SkillBar 
+                      key={skill.id} 
+                      name={skill.name} 
+                      proficiency={skill.proficiency} 
+                      delay={i}
+                    />
+                  ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
