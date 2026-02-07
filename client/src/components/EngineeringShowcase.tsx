@@ -80,18 +80,19 @@ const engineeringProjects = [
   {
     id: "birdhouse",
     title: "Bird House",
-    images: ["https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&q=80&w=800"],
+    images: ["/assets/birdhouse_main.png", "/assets/birdhouse_cad.png", "/assets/birdhouse_brainstorm.png"],
+    notebookUrl: "/assets/Bird_House_Notebook.pdf",
     duration: "2 Weeks",
     team: "Aryan & Adhiraj",
-    overview: "A multi-compartment birdhouse designed for New Jersey bird species (Blue Jays, Sparrows, Mockingbirds). Features three nesting areas, integrated bird feeder, sloped roofs for drainage, and bevel-jointed construction. Designed to be transformed into a STEM kit for elementary/middle school education.",
+    overview: "A multi-compartment birdhouse designed for New Jersey bird species (Blue Jays, Sparrows, Mockingbirds). Features three nesting areas, integrated bird feeder, sloped roofs for drainage, and bevel-jointed construction. Designed in Onshape and built with precision woodworking. Created to be transformed into a STEM kit for elementary/middle school education.",
     buildProcess: [
-      { phase: "Research & Design", steps: ["Studied bird species native to New Jersey", "Researched entrance hole sizing (1-1.25\" diameter)", "Determined mounting preferred over hanging", "Created design concepts in Onshape", "Selected complex multi-house design with bird feeder"] },
-      { phase: "Cut List & Materials", steps: ["Base: 5\" x 5\" x 0.41\" thick", "Roof panels: 3.2\" x 5\" (10 pieces)", "Front/Back panels: Various sizes (7 pieces)", "Side panels: 10\" x 10\" (2 pieces)", "Total material: 880 sq inches"] },
-      { phase: "Fabrication", steps: ["Cut all pieces per cut list using scroll saw", "Created pilot holes (1.25\" diameter)", "Nailed side panels of small birdhouse together", "Glued side panels with wood glue", "Assembled large center house to base"] },
-      { phase: "Roof & Final Assembly", steps: ["Adjusted roof dimensions using bandsaw", "Created bevel joints by angling bandsaw table", "Glued roofs together at bevel joint", "Built bird feeder from scrap wood (5x5 + 5x1)", "Lessons: Use nail gun for stronger joints"] }
+      { phase: "Research & Design", steps: ["Studied bird species native to New Jersey", "Researched entrance hole sizing (1-1.25\" diameter)", "Determined mounting preferred over hanging for bird safety", "Created mind map exploring materials, placement, and themes", "Modeled possible solutions in Onshape CAD with full dimensioned drawings"] },
+      { phase: "Cut List & Materials", steps: ["Base: 5\" x 5\" x 0.41\" thick", "Roof panels: 3.2\" x 5\" (10 pieces)", "Front/Back panels: Various sizes (7 pieces)", "Side panels: 10\" x 10\" (2 pieces)", "Total material area: 880 sq inches of plywood"] },
+      { phase: "Fabrication", steps: ["Cut all pieces per cut list using scroll saw and bandsaw", "Used scroll saw to create 1.25\" diameter pilot holes", "Nailed and glued side panels of small birdhouses together", "Assembled large center house onto the base", "Glued miniature birdhouses to main structure"] },
+      { phase: "Roof & Final Assembly", steps: ["Adjusted roof dimensions using bandsaw", "Angled bandsaw table to create bevel joints for roof panels", "Glued roofs together at bevel joints with tape clamps", "Built bird feeder from scrap wood (5x5 + 5x1) to fit between houses", "Lessons learned: nail gun for stronger joints, account for wood depth in cut list"] }
     ],
     materials: ["Plywood (0.41\" thick)", "Wood Glue", "Nails", "Scroll Saw", "Bandsaw"],
-    skills: ["Woodworking", "Joinery", "Bevel Cuts", "STEM Education Design"]
+    skills: ["Woodworking", "Onshape CAD", "Bevel Joints", "STEM Kit Design"]
   },
   {
     id: "hot-cold",
