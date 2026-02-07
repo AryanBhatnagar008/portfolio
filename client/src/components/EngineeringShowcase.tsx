@@ -185,16 +185,12 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
       className="relative w-full h-full bg-black/40 rounded-xl overflow-hidden group cursor-pointer"
       onClick={() => onImageClick?.(currentIndex)}
     >
-      {resolvedImages.map((src, idx) => (
-        <img
-          key={idx}
-          src={src}
-          alt={`${title} - Image ${idx + 1}`}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${idx === 0 ? 'relative' : 'absolute inset-0'} ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          data-testid={idx === currentIndex ? "eng-carousel-image" : undefined}
-          loading={idx === 0 ? "eager" : "lazy"}
-        />
-      ))}
+      <img
+        src={resolvedImages[currentIndex]}
+        alt={`${title} - Image ${currentIndex + 1}`}
+        className="w-full h-full object-cover"
+        data-testid="eng-carousel-image"
+      />
       
       {/* Click to zoom hint */}
       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
