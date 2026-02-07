@@ -9,18 +9,19 @@ const engineeringProjects = [
   {
     id: "security-robot",
     title: "Security Robot",
-    images: ["https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800"],
+    images: ["/assets/security_robot_main.png", "/assets/security_robot_sketch.png"],
+    notebookUrl: "/assets/Security_Robot_Notebook.pdf",
     duration: "6 Weeks",
-    team: "Aryan & Nivan",
-    overview: "A functional security robot built using Vex IQ components. Features autonomous patrol mode, intruder detection sensors, and remote control capability. Designed to demonstrate robotics principles.",
+    team: "Aryan, Arnav & Anikait",
+    overview: "A VEX V5 security robot built as a Robotics Engineering capstone project. Features a rotating vision sensor for intruder detection, a built-in catapult defense mechanism, distance sensors, and autonomous patrol within a 5ft x 5ft zone. Programmed in VEXcode with pseudocode-driven development and alarm functionality.",
     buildProcess: [
-      { phase: "Concept Development", steps: ["Defined security robot requirements", "Sketched chassis and sensor layouts", "Selected Vex IQ for modular building", "Planned patrol route algorithms"] },
-      { phase: "Chassis Construction", steps: ["Built rectangular base frame", "Installed four-wheel drive system", "Added motor mounts and brackets", "Ensured stable center of gravity"] },
-      { phase: "Sensor Integration", steps: ["Mounted ultrasonic distance sensors", "Added bump sensors for collision", "Installed touch sensors for manual control", "Connected all sensors to brain unit"] },
-      { phase: "Programming & Testing", steps: ["Programmed autonomous patrol behavior", "Added intruder detection responses", "Implemented remote override controls", "Tested in simulated environment"] }
+      { phase: "Concept & Pseudocode", steps: ["Defined security robot requirements for guarding a 5ft x 5ft area", "Wrote detailed pseudocode for patrol, detection, and response logic", "Planned intruder detection using vision sensor and distance sensor", "Designed owner remote control override capability"] },
+      { phase: "Chassis & Drivetrain", steps: ["Built base frame with VEX V5 metal components", "Installed mecanum wheel drivetrain for omnidirectional movement", "Tightened all loose screws across the robot", "Ensured stable center of gravity for patrol movement"] },
+      { phase: "Sensor & Catapult Integration", steps: ["Added rotating vision sensor on motor-driven mount", "Adjusted vision sensor height to avoid interfering with the brain", "Built catapult arm with rubber band tensioning system", "Changed gear ratio to allow catapult to rewind automatically"] },
+      { phase: "Programming & Testing", steps: ["Coded vision sensor to detect missing objects and intruders", "Programmed catapult launch sequence with motor control", "Added alarm system that plays notes when intruder detected", "Ran multiple test iterations to configure sensor reliability"] }
     ],
-    materials: ["Vex IQ Parts", "Motors", "Ultrasonic Sensors", "Touch Sensors", "Controller"],
-    skills: ["Robotics", "Programming", "Sensor Integration", "System Design"]
+    materials: ["VEX V5 Brain & Motors", "Mecanum Wheels", "Vision Sensor", "Distance Sensor", "Catapult Mechanism", "Rubber Bands"],
+    skills: ["Robotics", "VEXcode Programming", "Sensor Integration", "Mechanical Design", "Pseudocode Development"]
   },
   {
     id: "gladiator-automata",
