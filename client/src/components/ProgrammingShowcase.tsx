@@ -192,7 +192,8 @@ export function ProgrammingShowcase() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
           className="text-center max-w-2xl mx-auto mb-12"
         >
           <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">
@@ -208,16 +209,13 @@ export function ProgrammingShowcase() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4 }}
           className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto"
         >
           {programmingProjects.map((project, idx) => (
-            <motion.button
+            <button
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
               onClick={() => setSelectedProject(project)}
               data-testid={`prog-tab-${project.id}`}
               className="group relative rounded-2xl overflow-hidden border border-white/10 bg-secondary/20 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)] text-left"
@@ -227,7 +225,8 @@ export function ProgrammingShowcase() {
                 <img
                   src={project.images[0]}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/40 to-transparent" />
               </div>
@@ -244,7 +243,7 @@ export function ProgrammingShowcase() {
                   ))}
                 </div>
               </div>
-            </motion.button>
+            </button>
           ))}
         </motion.div>
 

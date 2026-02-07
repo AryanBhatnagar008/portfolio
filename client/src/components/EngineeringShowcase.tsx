@@ -251,7 +251,8 @@ export function EngineeringShowcase() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
           className="text-center max-w-2xl mx-auto mb-12"
         >
           <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">
@@ -267,16 +268,13 @@ export function EngineeringShowcase() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4 }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"
         >
           {engineeringProjects.map((project, idx) => (
-            <motion.button
+            <button
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
               onClick={() => setSelectedProject(project)}
               data-testid={`eng-tab-${project.id}`}
               className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)]"
@@ -284,13 +282,14 @@ export function EngineeringShowcase() {
               <img
                 src={project.images[0].startsWith('/assets/') ? getAssetUrl(project.images[0]) : project.images[0]}
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
               <div className="absolute bottom-0 left-0 right-0 p-3">
                 <h3 className="font-mono text-xs font-medium text-white truncate">{project.title}</h3>
               </div>
-            </motion.button>
+            </button>
           ))}
         </motion.div>
 

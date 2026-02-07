@@ -46,12 +46,9 @@ function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-[96px]" />
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full opacity-40" style={{ filter: 'blur(80px)' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/5 rounded-full opacity-30" style={{ filter: 'blur(60px)' }} />
       </div>
 
       <div className="container relative z-10 px-4 flex flex-col items-center text-center">
@@ -60,7 +57,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-white/10 mb-6 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-white/10 mb-6">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Available for new projects</span>
           </div>
@@ -103,14 +100,9 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* Decorative mechanical element */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-        className="absolute -right-20 -bottom-20 opacity-5 pointer-events-none"
-      >
+      <div className="absolute -right-20 -bottom-20 opacity-5 pointer-events-none">
         <CircuitBoard size={400} />
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -122,10 +114,10 @@ function About() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
             className="relative order-2 md:order-1"
           >
             <div className="aspect-square rounded-2xl overflow-hidden bg-secondary border border-white/10 relative group">
@@ -147,10 +139,10 @@ function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
             className="order-1 md:order-2 space-y-6"
           >
             <div className="flex items-center gap-4 mb-4">
@@ -194,13 +186,9 @@ const categoryMeta: Record<string, { icon: typeof Palette; color: string; gradie
   "Admin Tools": { icon: FolderOpen, color: "#FFB74D", gradient: "from-[#FFB74D] to-[#F57C00]" },
 };
 
-function SkillGlowBar({ name, proficiency, color, delay }: { name: string; proficiency: number; color: string; delay: number }) {
+function SkillBar({ name, proficiency, color, delay }: { name: string; proficiency: number; color: string; delay: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: delay * 0.05, duration: 0.4 }}
+    <div
       className="group"
       data-testid={`skill-bar-${name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
     >
@@ -211,18 +199,15 @@ function SkillGlowBar({ name, proficiency, color, delay }: { name: string; profi
         <div className="flex-1 h-2 rounded-full bg-white/[0.06] overflow-hidden">
           <motion.div
             className="h-full rounded-full"
-            style={{
-              background: `linear-gradient(90deg, ${color}, ${color}CC)`,
-              boxShadow: `0 0 12px ${color}50, 0 0 4px ${color}30`,
-            }}
+            style={{ background: color }}
             initial={{ width: 0 }}
             whileInView={{ width: `${proficiency}%` }}
-            viewport={{ once: true }}
-            transition={{ delay: delay * 0.05 + 0.2, duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ delay: delay * 0.08, duration: 0.6, ease: "easeOut" }}
           />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -231,15 +216,12 @@ function Skills() {
   const categories = Array.from(new Set(skills.map(s => s.category)));
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
-      </div>
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="skills" className="py-24 relative">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">My Arsenal</span>
@@ -260,32 +242,28 @@ function Skills() {
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="relative rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm p-6 hover:border-white/10 transition-all group/card"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: idx * 0.08, duration: 0.4 }}
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 transition-colors"
                 data-testid={`skill-category-${category.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" style={{ background: `linear-gradient(135deg, ${meta.color}08, transparent 60%)` }} />
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${meta.color}15`, border: `1px solid ${meta.color}30` }}>
-                      <Icon className="w-5 h-5" style={{ color: meta.color }} />
-                    </div>
-                    <h3 className="font-display font-bold text-lg text-white">{category}</h3>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${meta.color}15`, border: `1px solid ${meta.color}30` }}>
+                    <Icon className="w-5 h-5" style={{ color: meta.color }} />
                   </div>
+                  <h3 className="font-display font-bold text-lg text-white">{category}</h3>
+                </div>
 
-                  <div className="space-y-3">
-                    {categorySkills.map((skill, i) => (
-                      <SkillGlowBar
-                        key={skill.id}
-                        name={skill.name}
-                        proficiency={skill.proficiency}
-                        color={meta.color}
-                        delay={i + idx * 3}
-                      />
-                    ))}
-                  </div>
+                <div className="space-y-3">
+                  {categorySkills.map((skill, i) => (
+                    <SkillBar
+                      key={skill.id}
+                      name={skill.name}
+                      proficiency={skill.proficiency}
+                      color={meta.color}
+                      delay={i}
+                    />
+                  ))}
                 </div>
               </motion.div>
             );
@@ -331,7 +309,8 @@ function Portfolio() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">
@@ -347,10 +326,10 @@ function Portfolio() {
           {portfolioTabs.map((tab, idx) => (
             <motion.div
               key={tab.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.15 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: idx * 0.1, duration: 0.4 }}
             >
               <ScrollLink
                 to={tab.targetSection}
@@ -368,7 +347,8 @@ function Portfolio() {
                     <img
                       src={tab.image}
                       alt={tab.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-80"
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-60 group-hover:opacity-80"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/60 to-transparent" />
                   </div>
@@ -406,7 +386,8 @@ function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.4 }}
           >
             <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">Get in Touch</span>
             <h2 className="font-display font-bold text-4xl mb-6">Let's build something amazing together.</h2>
