@@ -7,6 +7,24 @@ import { getAssetUrl } from "@/lib/assets";
 
 const engineeringProjects = [
   {
+    id: "plant-pot",
+    title: "Self Watering Plant Pot",
+    images: ["/assets/plant_pot_main.png", "/assets/plant_pot_final.png", "/assets/plant_pot_lid.png", "/assets/plant_pot_base.png", "/assets/plant_pot_inside.png", "/assets/plant_pot_wiring.png"],
+    notebookUrl: "/assets/Plant_Pot_Report.pdf",
+    posterUrl: "/assets/Plant_Pot_Poster.pdf",
+    duration: "10 Weeks",
+    team: "Aryan, Shreesh & Zayd",
+    overview: "An autonomous smart-watering system built for ENGR 111 at Stevens Institute of Technology. Monitors soil moisture, temperature, humidity, and light using an ESP32 microcontroller. Transmits data via MQTT to the cloud and activates a water pump when moisture drops below threshold. 3D printed plant-shaped enclosure designed in SolidWorks, sized at 5x5x8 inches.",
+    buildProcess: [
+      { phase: "Concept Development", steps: ["Created morphological chart exploring power, placement, and casing options", "Sketched 3 concept designs evaluating ease of use, durability, and safety", "Used concept evaluation matrix to select winning design (Concept #1)", "Chose plant-inspired pot shape to blend with real plants"] },
+      { phase: "CAD & 3D Printing", steps: ["Modeled base pot in SolidWorks with extruded outlines for breadboard and Arduino", "Designed lid with water bottle holder and decorative flower accent", "Created cutouts for DHT sensor, soil sensor wires, and tubing", "3D printed base (~2hr 47min) and lid (~2hr 52min) in ABS filament"] },
+      { phase: "Electrical & Wiring", steps: ["Wired ESP32 to capacitive soil moisture sensor, DHT11, photocell, and motor controller", "Used ADC pins for analog sensors and GPIO for digital communication", "Organized voltage and ground wires on breadboard for compact arrangement", "Connected mini water pump through motor controller with PWM control"] },
+      { phase: "Software & Testing", steps: ["Programmed ESP32 to read all sensors every 10 minutes", "Connected to Stevens-IoT WiFi and published data via MQTT to HiveMQ cloud", "Implemented automatic watering when soil moisture drops below threshold", "Deployed for 3-day continuous test with consistent sensor readings"] }
+    ],
+    materials: ["ESP32 Microcontroller", "DHT11 Sensor", "Capacitive Soil Moisture Sensor", "Photocell", "Mini Water Pump", "ABS Filament", "Breadboard"],
+    skills: ["SolidWorks CAD", "3D Printing", "ESP32 Programming", "IoT/MQTT", "Circuit Design"]
+  },
+  {
     id: "security-robot",
     title: "Security Robot",
     images: ["/assets/security_robot_main.png", "/assets/security_robot_sketch.png"],
@@ -118,24 +136,6 @@ const engineeringProjects = [
     notebookUrl: "/assets/HotCold_Notebook.pdf"
   },
   {
-    id: "plant-pot",
-    title: "Self Watering Plant Pot",
-    images: ["/assets/plant_pot_main.png", "/assets/plant_pot_final.png", "/assets/plant_pot_lid.png", "/assets/plant_pot_base.png", "/assets/plant_pot_inside.png", "/assets/plant_pot_wiring.png"],
-    notebookUrl: "/assets/Plant_Pot_Report.pdf",
-    posterUrl: "/assets/Plant_Pot_Poster.pdf",
-    duration: "10 Weeks",
-    team: "Aryan, Shreesh & Zayd",
-    overview: "An autonomous smart-watering system built for ENGR 111 at Stevens Institute of Technology. Monitors soil moisture, temperature, humidity, and light using an ESP32 microcontroller. Transmits data via MQTT to the cloud and activates a water pump when moisture drops below threshold. 3D printed plant-shaped enclosure designed in SolidWorks, sized at 5x5x8 inches.",
-    buildProcess: [
-      { phase: "Concept Development", steps: ["Created morphological chart exploring power, placement, and casing options", "Sketched 3 concept designs evaluating ease of use, durability, and safety", "Used concept evaluation matrix to select winning design (Concept #1)", "Chose plant-inspired pot shape to blend with real plants"] },
-      { phase: "CAD & 3D Printing", steps: ["Modeled base pot in SolidWorks with extruded outlines for breadboard and Arduino", "Designed lid with water bottle holder and decorative flower accent", "Created cutouts for DHT sensor, soil sensor wires, and tubing", "3D printed base (~2hr 47min) and lid (~2hr 52min) in ABS filament"] },
-      { phase: "Electrical & Wiring", steps: ["Wired ESP32 to capacitive soil moisture sensor, DHT11, photocell, and motor controller", "Used ADC pins for analog sensors and GPIO for digital communication", "Organized voltage and ground wires on breadboard for compact arrangement", "Connected mini water pump through motor controller with PWM control"] },
-      { phase: "Software & Testing", steps: ["Programmed ESP32 to read all sensors every 10 minutes", "Connected to Stevens-IoT WiFi and published data via MQTT to HiveMQ cloud", "Implemented automatic watering when soil moisture drops below threshold", "Deployed for 3-day continuous test with consistent sensor readings"] }
-    ],
-    materials: ["ESP32 Microcontroller", "DHT11 Sensor", "Capacitive Soil Moisture Sensor", "Photocell", "Mini Water Pump", "ABS Filament", "Breadboard"],
-    skills: ["SolidWorks CAD", "3D Printing", "ESP32 Programming", "IoT/MQTT", "Circuit Design"]
-  },
-  {
     id: "ironman-helmet",
     title: "Iron Man Helmet",
     images: ["https://images.unsplash.com/photo-1635863138275-d9b33299680b?auto=format&fit=crop&q=80&w=800"],
@@ -163,6 +163,8 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
     return src;
   };
 
+  const resolvedImages = images.map(getImageSrc);
+
   const goToPrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -183,12 +185,16 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
       className="relative w-full h-full bg-black/40 rounded-xl overflow-hidden group cursor-pointer"
       onClick={() => onImageClick?.(currentIndex)}
     >
-      <img
-        src={getImageSrc(images[currentIndex])}
-        alt={`${title} - Image ${currentIndex + 1}`}
-        className="w-full h-full object-cover"
-        data-testid="eng-carousel-image"
-      />
+      {resolvedImages.map((src, idx) => (
+        <img
+          key={idx}
+          src={src}
+          alt={`${title} - Image ${idx + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          data-testid={idx === currentIndex ? "eng-carousel-image" : undefined}
+          loading={idx === 0 ? "eager" : "lazy"}
+        />
+      ))}
       
       {/* Click to zoom hint */}
       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
