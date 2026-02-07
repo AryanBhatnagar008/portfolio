@@ -194,44 +194,34 @@ const categoryMeta: Record<string, { icon: typeof Palette; color: string; gradie
   "Admin Tools": { icon: FolderOpen, color: "#FFB74D", gradient: "from-[#FFB74D] to-[#F57C00]" },
 };
 
-function SkillRing({ name, proficiency, color, delay }: { name: string; proficiency: number; color: string; delay: number }) {
-  const radius = 28;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (proficiency / 100) * circumference;
-
+function SkillGlowBar({ name, proficiency, color, delay }: { name: string; proficiency: number; color: string; delay: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: delay * 0.06, duration: 0.4 }}
-      className="flex flex-col items-center gap-2 group"
-      data-testid={`skill-ring-${name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+      transition={{ delay: delay * 0.05, duration: 0.4 }}
+      className="group"
+      data-testid={`skill-bar-${name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
     >
-      <div className="relative w-[72px] h-[72px]">
-        <svg className="w-full h-full -rotate-90" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r={radius} fill="none" stroke="white" strokeOpacity="0.06" strokeWidth="4" />
-          <motion.circle
-            cx="32" cy="32" r={radius}
-            fill="none"
-            stroke={color}
-            strokeWidth="4"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            initial={{ strokeDashoffset: circumference }}
-            whileInView={{ strokeDashoffset }}
+      <div className="flex items-center gap-3">
+        <span className="font-mono text-sm text-white/80 group-hover:text-white transition-colors w-[130px] shrink-0 truncate">
+          {name}
+        </span>
+        <div className="flex-1 h-2 rounded-full bg-white/[0.06] overflow-hidden">
+          <motion.div
+            className="h-full rounded-full"
+            style={{
+              background: `linear-gradient(90deg, ${color}, ${color}CC)`,
+              boxShadow: `0 0 12px ${color}50, 0 0 4px ${color}30`,
+            }}
+            initial={{ width: 0 }}
+            whileInView={{ width: `${proficiency}%` }}
             viewport={{ once: true }}
-            transition={{ delay: delay * 0.06 + 0.3, duration: 1, ease: "easeOut" }}
-            style={{ filter: `drop-shadow(0 0 6px ${color}40)` }}
+            transition={{ delay: delay * 0.05 + 0.2, duration: 0.8, ease: "easeOut" }}
           />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-mono text-xs font-bold" style={{ color }}>{proficiency}%</span>
         </div>
       </div>
-      <span className="font-mono text-xs text-muted-foreground group-hover:text-white transition-colors text-center leading-tight max-w-[80px]">
-        {name}
-      </span>
     </motion.div>
   );
 }
@@ -275,22 +265,19 @@ function Skills() {
                 className="relative rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm p-6 hover:border-white/10 transition-all group/card"
                 data-testid={`skill-category-${category.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" style={{ background: `linear-gradient(135deg, ${meta.color}08, transparent 60%)` }} />
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" style={{ background: `linear-gradient(135deg, ${meta.color}08, transparent 60%)` }} />
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center gap-3 mb-5">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${meta.color}15`, border: `1px solid ${meta.color}30` }}>
                       <Icon className="w-5 h-5" style={{ color: meta.color }} />
                     </div>
-                    <div>
-                      <h3 className="font-display font-bold text-lg text-white">{category}</h3>
-                      <span className="font-mono text-xs text-muted-foreground">{categorySkills.length} skills</span>
-                    </div>
+                    <h3 className="font-display font-bold text-lg text-white">{category}</h3>
                   </div>
 
-                  <div className="flex flex-wrap justify-center gap-4">
+                  <div className="space-y-3">
                     {categorySkills.map((skill, i) => (
-                      <SkillRing
+                      <SkillGlowBar
                         key={skill.id}
                         name={skill.name}
                         proficiency={skill.proficiency}
