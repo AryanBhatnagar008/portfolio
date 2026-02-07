@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-2">
           <span className="font-display font-bold text-lg tracking-wider">
-            MECH<span className="text-primary">.ENG</span>
+            ARYAN<span className="text-primary">.B</span>
           </span>
           <span className="text-muted-foreground text-sm font-mono">© {new Date().getFullYear()}</span>
         </div>

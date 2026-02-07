@@ -41,11 +41,11 @@ export function Navigation() {
           <div className="relative">
             <Hexagon className="w-8 h-8 text-primary fill-primary/10 transition-transform group-hover:rotate-180 duration-500" />
             <span className="absolute inset-0 flex items-center justify-center font-mono font-bold text-xs text-primary">
-              M
+              A
             </span>
           </div>
           <span className="font-display font-bold text-lg tracking-wider hidden sm:block">
-            MECH<span className="text-primary">.ENG</span>
+            ARYAN<span className="text-primary">.B</span>
           </span>
         </ScrollLink>
 

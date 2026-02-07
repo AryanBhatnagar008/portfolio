@@ -67,9 +67,9 @@ function Hero() {
           </div>
 
           <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl mb-6 leading-tight">
-            Building the <br />
+            Design. Test. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/50">
-              Physical World
+              Improve.
             </span>
           </h1>
 
