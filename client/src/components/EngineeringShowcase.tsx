@@ -190,7 +190,7 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
           key={idx}
           src={src}
           alt={`${title} - Image ${idx + 1}`}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${idx === 0 ? 'relative' : 'absolute inset-0'} ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
           data-testid={idx === currentIndex ? "eng-carousel-image" : undefined}
           loading={idx === 0 ? "eager" : "lazy"}
         />
