@@ -296,12 +296,12 @@ export function EngineeringShowcase() {
 
         {/* Project Modal */}
         <Dialog open={!!selectedProject && zoomImageIndex === null} onOpenChange={(open) => !open && setSelectedProject(null)}>
-          <DialogContent hideCloseButton className="max-w-4xl max-h-[90vh] p-0 bg-[#1a1a1a] border-white/10 overflow-hidden">
+          <DialogContent hideCloseButton className="w-screen h-screen max-w-none max-h-none rounded-none p-0 bg-[#1a1a1a] border-none overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
             <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
             
             {selectedProject && (
-              <div className="flex flex-col h-full max-h-[90vh]">
+              <div className="flex flex-col h-screen">
                 {/* Header with Carousel and Title */}
                 <div className="flex flex-shrink-0 border-b border-white/10">
                   {/* Image Carousel - Top Left Quarter */}
@@ -450,12 +450,35 @@ export function EngineeringShowcase() {
               <X className="w-5 h-5" />
             </button>
             {selectedProject && zoomImageIndex !== null && (
-              <img
-                src={selectedProject.images[zoomImageIndex].startsWith('/assets/') ? getAssetUrl(selectedProject.images[zoomImageIndex]) : selectedProject.images[zoomImageIndex]}
-                alt={`${selectedProject.title} - Image ${zoomImageIndex + 1}`}
-                className="w-full h-full object-contain max-h-[85vh]"
-                data-testid="eng-zoomed-image"
-              />
+              <>
+                <img
+                  src={selectedProject.images[zoomImageIndex].startsWith('/assets/') ? getAssetUrl(selectedProject.images[zoomImageIndex]) : selectedProject.images[zoomImageIndex]}
+                  alt={`${selectedProject.title} - Image ${zoomImageIndex + 1}`}
+                  className="w-full h-full object-contain max-h-[85vh]"
+                  data-testid="eng-zoomed-image"
+                />
+                {selectedProject.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => setZoomImageIndex((prev) => prev !== null ? (prev === 0 ? selectedProject.images.length - 1 : prev - 1) : 0)}
+                      data-testid="eng-zoom-prev"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={() => setZoomImageIndex((prev) => prev !== null ? (prev === selectedProject.images.length - 1 ? 0 : prev + 1) : 0)}
+                      data-testid="eng-zoom-next"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-sm text-white/80 font-mono">
+                      {zoomImageIndex + 1} / {selectedProject.images.length}
+                    </div>
+                  </>
+                )}
+              </>
             )}
           </DialogContent>
         </Dialog>

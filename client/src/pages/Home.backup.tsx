@@ -249,14 +249,6 @@ function Skills() {
 function Portfolio() {
   const portfolioTabs = [
     {
-      id: "design",
-      title: "Design",
-      icon: Palette,
-      description: "Adobe Creative Suite work",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=400",
-      targetSection: "design-showcase"
-    },
-    {
       id: "engineering",
       title: "Engineering",
       icon: Wrench,
@@ -271,6 +263,14 @@ function Portfolio() {
       description: "Code & algorithms",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=400",
       targetSection: "programming-showcase"
+    },
+    {
+      id: "design",
+      title: "Design",
+      icon: Palette,
+      description: "Adobe Creative Suite work",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=400",
+      targetSection: "design-showcase"
     }
   ];
 
