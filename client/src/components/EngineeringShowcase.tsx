@@ -118,6 +118,24 @@ const engineeringProjects = [
     notebookUrl: "/assets/HotCold_Notebook.pdf"
   },
   {
+    id: "plant-pot",
+    title: "Self Watering Plant Pot",
+    images: ["/assets/plant_pot_main.png", "/assets/plant_pot_final.png", "/assets/plant_pot_lid.png", "/assets/plant_pot_base.png", "/assets/plant_pot_inside.png", "/assets/plant_pot_wiring.png"],
+    notebookUrl: "/assets/Plant_Pot_Report.pdf",
+    posterUrl: "/assets/Plant_Pot_Poster.pdf",
+    duration: "10 Weeks",
+    team: "Aryan, Shreesh & Zayd",
+    overview: "An autonomous smart-watering system built for ENGR 111 at Stevens Institute of Technology. Monitors soil moisture, temperature, humidity, and light using an ESP32 microcontroller. Transmits data via MQTT to the cloud and activates a water pump when moisture drops below threshold. 3D printed plant-shaped enclosure designed in SolidWorks, sized at 5x5x8 inches.",
+    buildProcess: [
+      { phase: "Concept Development", steps: ["Created morphological chart exploring power, placement, and casing options", "Sketched 3 concept designs evaluating ease of use, durability, and safety", "Used concept evaluation matrix to select winning design (Concept #1)", "Chose plant-inspired pot shape to blend with real plants"] },
+      { phase: "CAD & 3D Printing", steps: ["Modeled base pot in SolidWorks with extruded outlines for breadboard and Arduino", "Designed lid with water bottle holder and decorative flower accent", "Created cutouts for DHT sensor, soil sensor wires, and tubing", "3D printed base (~2hr 47min) and lid (~2hr 52min) in ABS filament"] },
+      { phase: "Electrical & Wiring", steps: ["Wired ESP32 to capacitive soil moisture sensor, DHT11, photocell, and motor controller", "Used ADC pins for analog sensors and GPIO for digital communication", "Organized voltage and ground wires on breadboard for compact arrangement", "Connected mini water pump through motor controller with PWM control"] },
+      { phase: "Software & Testing", steps: ["Programmed ESP32 to read all sensors every 10 minutes", "Connected to Stevens-IoT WiFi and published data via MQTT to HiveMQ cloud", "Implemented automatic watering when soil moisture drops below threshold", "Deployed for 3-day continuous test with consistent sensor readings"] }
+    ],
+    materials: ["ESP32 Microcontroller", "DHT11 Sensor", "Capacitive Soil Moisture Sensor", "Photocell", "Mini Water Pump", "ABS Filament", "Breadboard"],
+    skills: ["SolidWorks CAD", "3D Printing", "ESP32 Programming", "IoT/MQTT", "Circuit Design"]
+  },
+  {
     id: "ironman-helmet",
     title: "Iron Man Helmet",
     images: ["https://images.unsplash.com/photo-1635863138275-d9b33299680b?auto=format&fit=crop&q=80&w=800"],
@@ -355,18 +373,32 @@ export function EngineeringShowcase() {
                       </div>
 
                       {/* View Notebook Link */}
-                      {'notebookUrl' in selectedProject && selectedProject.notebookUrl && (
-                        <a
-                          href={selectedProject.notebookUrl.startsWith('/assets/') ? getAssetUrl(selectedProject.notebookUrl) : selectedProject.notebookUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          data-testid="eng-notebook-link"
-                          className="flex items-center gap-2 px-4 py-3 bg-[#BB86FC]/10 border border-[#BB86FC]/30 rounded-xl text-[#BB86FC] hover:bg-[#BB86FC] hover:text-black transition-all font-mono text-sm"
-                        >
-                          <FileText className="w-4 h-4" />
-                          View Engineering Notebook
-                        </a>
-                      )}
+                      <div className="flex flex-wrap gap-3">
+                        {'notebookUrl' in selectedProject && selectedProject.notebookUrl && (
+                          <a
+                            href={selectedProject.notebookUrl.startsWith('/assets/') ? getAssetUrl(selectedProject.notebookUrl) : selectedProject.notebookUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-testid="eng-notebook-link"
+                            className="flex items-center gap-2 px-4 py-3 bg-[#BB86FC]/10 border border-[#BB86FC]/30 rounded-xl text-[#BB86FC] hover:bg-[#BB86FC] hover:text-black transition-all font-mono text-sm"
+                          >
+                            <FileText className="w-4 h-4" />
+                            View Engineering Notebook
+                          </a>
+                        )}
+                        {'posterUrl' in selectedProject && selectedProject.posterUrl && (
+                          <a
+                            href={selectedProject.posterUrl.startsWith('/assets/') ? getAssetUrl(selectedProject.posterUrl) : selectedProject.posterUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-testid="eng-poster-link"
+                            className="flex items-center gap-2 px-4 py-3 bg-[#BB86FC]/10 border border-[#BB86FC]/30 rounded-xl text-[#BB86FC] hover:bg-[#BB86FC] hover:text-black transition-all font-mono text-sm"
+                          >
+                            <FileText className="w-4 h-4" />
+                            View Project Poster
+                          </a>
+                        )}
+                      </div>
                     </div>
 
                     {/* Right Column - Build Process */}
