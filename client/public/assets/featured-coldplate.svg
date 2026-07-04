@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1620"/>
+      <stop offset="1" stop-color="#0a0a0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- cold plate outline -->
+  <rect x="180" y="140" width="440" height="300" rx="16" stroke="#a855f7" stroke-width="6" fill="none" opacity="0.9"/>
+  <!-- U-manifold channels -->
+  <g stroke="#06b6d4" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M180 190 H 560 V 250 H 240 V 310 H 560 V 370 H 240 V 410"/>
+  </g>
+  <!-- inlet / outlet -->
+  <g stroke="#06b6d4" stroke-width="10" stroke-linecap="round" opacity="0.9">
+    <line x1="130" y1="190" x2="180" y2="190"/>
+    <line x1="240" y1="410" x2="240" y2="470"/>
+  </g>
+  <!-- heat arrows -->
+  <g stroke="#ef4444" stroke-width="4" fill="none" opacity="0.5" stroke-linecap="round">
+    <path d="M300 110 v-40 M400 110 v-40 M500 110 v-40"/>
+    <path d="M292 82 l8 -12 8 12 M392 82 l8 -12 8 12 M492 82 l8 -12 8 12"/>
+  </g>
+  <text x="400" y="565" text-anchor="middle" font-family="monospace" font-size="20" fill="#9d9daa">LIQUID COLD PLATE — CAD &amp; TEST DATA COMING SOON</text>
+</svg>

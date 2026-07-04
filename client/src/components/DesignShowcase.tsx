@@ -5,19 +5,16 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getAssetUrl } from "@/lib/assets";
 
-import comicArt from "@assets/Comic_-_Aryan_Bhatnagar_1769383707760.png";
-import surrealistScene from "@assets/Surrealist_Scenes_-_Aryan_Bhatnagar_copy_1769383707760.jpg";
-import minimalistIcons from "@assets/Minimalist_Final,_Aryan_Bhatnagar_1769383707761.png";
-import songCollage from "@assets/Song_Collage_-_Aryan_Bhatnagar_copy_1769383707761.jpg";
-import magazineCover from "@assets/Magazine_Cover_-_Aryan_Bhatnagar_copy_1769383707761.jpg";
-import logoVariations from "@assets/Logo_Variations_-_Aryan_Bhatnagar_1769383707762.png";
-import adDesign from "@assets/Ad_Design_-_Aryan_Bhatnagar_copy_1769383707762.jpg";
+// Web-optimized copies live in public/assets/design (thumb + "-full" pair per piece).
+// The originals in attached_assets are multi-MB and made the page lag.
+const designImg = (name: string) => getAssetUrl(`/assets/design/${name}.jpg`);
 
 const designProjects = [
   {
     id: "comic",
     title: "Comic Art",
-    images: [comicArt],
+    images: [designImg("comic-full")],
+    thumb: designImg("comic"),
     concept: "A dynamic illustration inspired by popular anime aesthetics, capturing the essence of a determined protagonist. The piece explores bold color blocking and dramatic posing to convey strength and resolve.",
     technicalProcess: [
       {
@@ -49,7 +46,8 @@ const designProjects = [
   {
     id: "surrealist",
     title: "Surrealist Scene",
-    images: [surrealistScene],
+    images: [designImg("surrealist-full")],
+    thumb: designImg("surrealist"),
     concept: "A surrealist composition blending retro automotive aesthetics with sci-fi elements. The piece explores themes of adventure and the unknown, featuring a classic muscle car facing a portal in a desolate landscape.",
     technicalProcess: [
       {
@@ -81,7 +79,8 @@ const designProjects = [
   {
     id: "minimalist",
     title: "Minimalist Icons",
-    images: [minimalistIcons],
+    images: [designImg("minimalist-full")],
+    thumb: designImg("minimalist"),
     concept: "A series of minimalist superhero icons reducing complex characters to their most essential visual elements. Each icon uses geometric shapes and a muted color palette to create instantly recognizable symbols.",
     technicalProcess: [
       {
@@ -113,7 +112,8 @@ const designProjects = [
   {
     id: "song-collage",
     title: "Song Collage",
-    images: [songCollage],
+    images: [designImg("song-collage-full")],
+    thumb: designImg("song-collage"),
     concept: "A dramatic photo manipulation interpreting music lyrics through visual metaphor. The fiery composition uses silhouettes and typography to evoke feelings of passion, rebellion, and aspiration.",
     technicalProcess: [
       {
@@ -145,7 +145,8 @@ const designProjects = [
   {
     id: "magazine",
     title: "Magazine Cover",
-    images: [magazineCover],
+    images: [designImg("magazine-full")],
+    thumb: designImg("magazine"),
     concept: "A futuristic magazine cover exploring themes of AI rights and consciousness. The dystopian aesthetic combines industrial imagery with thought-provoking headlines about artificial intelligence.",
     technicalProcess: [
       {
@@ -177,7 +178,8 @@ const designProjects = [
   {
     id: "logo",
     title: "Logo Variations",
-    images: [logoVariations],
+    images: [designImg("logo-full")],
+    thumb: designImg("logo"),
     concept: "A comprehensive logo design exploration for 'Newton' brand, showcasing the iterative design process from initial sketches to refined variations. The designs reference Newton's cradle and geometric forms.",
     technicalProcess: [
       {
@@ -209,7 +211,8 @@ const designProjects = [
   {
     id: "ad",
     title: "Ad Design",
-    images: [adDesign],
+    images: [designImg("ad-full")],
+    thumb: designImg("ad"),
     concept: "A striking advertisement exploring transhumanism themes. The cyberpunk aesthetic combines organic and mechanical elements to create a visually arresting promotional piece for a fictional product.",
     technicalProcess: [
       {
@@ -357,7 +360,7 @@ export function DesignShowcase() {
               className="group relative aspect-square rounded-xl overflow-hidden border border-white/10 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)]"
             >
               <img
-                src={project.images[0]}
+                src={project.thumb}
                 alt={project.title}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

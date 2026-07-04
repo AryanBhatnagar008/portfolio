@@ -16,13 +16,18 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  const navLinks: { name: string; to: string; tab?: string }[] = [
     { name: "About", to: "about" },
+    { name: "Experience", to: "experience" },
     { name: "Skills", to: "skills" },
-    { name: "Engineering", to: "engineering-showcase" },
-    { name: "Programming", to: "programming-showcase" },
-    { name: "Design", to: "design-showcase" },
+    { name: "Engineering", to: "projects", tab: "engineering" },
+    { name: "Programming", to: "projects", tab: "programming" },
+    { name: "Design", to: "projects", tab: "design" },
   ];
+
+  const openTab = (tab?: string) => {
+    if (tab) window.dispatchEvent(new CustomEvent("projects:tab", { detail: tab }));
+  };
 
   return (
     <nav
@@ -50,7 +55,7 @@ export function Navigation() {
         </ScrollLink>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <ScrollLink
               key={link.name}
@@ -58,6 +63,7 @@ export function Navigation() {
               smooth={true}
               duration={500}
               offset={-100}
+              onClick={() => openTab(link.tab)}
               className="text-sm font-medium text-muted-foreground hover:text-primary cursor-pointer transition-colors font-mono tracking-wide uppercase hover:text-glow"
             >
               {link.name}
@@ -73,7 +79,7 @@ export function Navigation() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-foreground p-2"
+          className="lg:hidden text-foreground p-2"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X /> : <Menu />}
@@ -87,7 +93,7 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-white/10 overflow-hidden"
+            className="lg:hidden bg-background border-b border-white/10 overflow-hidden"
           >
             <div className="flex flex-col p-4 space-y-4">
               {navLinks.map((link) => (
@@ -96,7 +102,7 @@ export function Navigation() {
                   to={link.to}
                   smooth={true}
                   duration={500}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => { openTab(link.tab); setIsOpen(false); }}
                   className="text-lg font-medium text-foreground/80 hover:text-primary py-2 border-l-2 border-transparent hover:border-primary pl-4 transition-all"
                 >
                   {link.name}

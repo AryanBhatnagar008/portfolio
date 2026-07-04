@@ -1,11 +1,128 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users, ChevronLeft, ChevronRight, FileText } from "lucide-react";
+import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users, ChevronLeft, ChevronRight, FileText, Target, Star } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getAssetUrl } from "@/lib/assets";
 
-const engineeringProjects = [
+interface EngProject {
+  id: string;
+  title: string;
+  images: string[];
+  notebookUrl?: string;
+  posterUrl?: string;
+  duration: string;
+  team: string;
+  role?: string;
+  status?: string;
+  featured?: boolean;
+  tagline?: string;
+  overview: string;
+  buildProcess: { phase: string; steps: string[] }[];
+  results?: string[];
+  materials: string[];
+  skills: string[];
+}
+
+const engineeringProjects: EngProject[] = [
+  {
+    id: "six-dof-arm",
+    title: "6-DOF Robotic Arm",
+    featured: true,
+    status: "In Progress",
+    tagline: "Ground-up robotic arm: SolidWorks structure, ROS2 inverse kinematics, PID trajectory control.",
+    images: ["/assets/featured-arm.svg"],
+    duration: "Jun 2026 – Present",
+    team: "Solo Project",
+    role: "Design Engineer",
+    overview: "A 6-degree-of-freedom robotic arm designed from scratch in SolidWorks with a PLA+ printed structure driven by ST3215 serial-bus servos. Joints, links, and load paths are sized for stiffness and payload capacity, while inverse kinematics and PID trajectory control run in ROS2 and MATLAB/Simulink. The goal: autonomous pick-and-place of blocks from commanded task-space coordinates.",
+    buildProcess: [
+      { phase: "Mechanical Design", steps: ["Modeled the full arm from scratch in SolidWorks: base, shoulder, elbow, and wrist joints with printable link geometry", "Sized joints, links, and load paths for stiffness and payload capacity at full reach", "Designed around ST3215 serial-bus servo envelopes and mounting patterns", "Optimized parts for FDM printing in PLA+ with print orientation in mind"] },
+      { phase: "Kinematics & Controls", steps: ["Developing the inverse kinematics solution so the arm can reach commanded XYZ coordinates", "Implementing PID trajectory control in ROS2 and MATLAB/Simulink for smooth, repeatable paths", "Simulating joint trajectories before running them on hardware"] },
+      { phase: "Electronics & Integration", steps: ["Daisy-chained ST3215 serial-bus servos for clean single-cable joint wiring", "Integrating Arduino-based servo control with task/coordinate command handling", "Building toward end-to-end actuation: command in, coordinated motion out"] },
+      { phase: "Testing (Upcoming)", steps: ["Bench-test joint stiffness and repeatability against design targets", "Validate pick-and-place cycles on standard blocks", "Iterate link geometry based on deflection measured under load"] }
+    ],
+    results: [
+      "Full 6-DOF structure designed from scratch in SolidWorks around ST3215 serial-bus servos",
+      "IK + PID trajectory control pipeline in development in ROS2 and MATLAB/Simulink",
+      "Targeting autonomous pick-and-place of blocks from task-space commands"
+    ],
+    materials: ["SolidWorks", "PLA+ (FDM)", "ST3215 Serial-Bus Servos", "Arduino", "ROS2", "MATLAB / Simulink"],
+    skills: ["Mechanical Design", "Inverse Kinematics", "PID Control", "ROS2", "DFM for 3D Printing"]
+  },
+  {
+    id: "autonomous-nav-robot",
+    title: "Autonomous Navigation Robot",
+    featured: true,
+    tagline: "Camera-localized waypoint navigation that finished the course about twice as fast as the field average.",
+    images: ["/assets/featured-autonav.svg"],
+    duration: "Feb 2026 – Apr 2026",
+    team: "Aryan, Abilash & Jaiden",
+    role: "Mechanical Design & Navigation Software",
+    overview: "An autonomous mobile robot that navigates to four target locations on an obstacle course using real-time pose data from an overhead ArUco-marker camera system streamed over MQTT to an ESP8266. I designed the complete modular chassis in SolidWorks under a strict print-time budget and wrote the waypoint navigation logic with PID heading correction. It ran fully closed loop with zero collisions.",
+    buildProcess: [
+      { phase: "Concept Development", steps: ["Built a morphological chart covering sensor placement, board positioning, cable management, and fastening", "Sketched 3 concept designs and scored them in a weighted evaluation matrix (size, durability, ease of manufacture, safety)", "Selected the winning concept: elevated side sensors, screw-fastened casing, wires routed underneath"] },
+      { phase: "Mechanical Design (DFM)", steps: ["Designed a modular 3-part chassis in SolidWorks: base plate, dual-sensor bracket, and standalone third-sensor mount", "Applied DFM under a strict print budget, cutting non-essential geometry while keeping rigidity through snap-fit datums and fastener-located joints", "Added a rod-mounted ArUco marker platform for overhead camera tracking", "Total print time: 4 hr 44 min, under the 5-hour budget"] },
+      { phase: "Electrical Design", steps: ["Organized power distribution with dedicated voltage and ground buses since no breadboard was allowed", "Integrated a master power switch between battery and the WEMOS D1R2 (ESP8266)", "Color-coded wiring harness with mounting holes left throughout the base so the power bus could be relocated after wiring"] },
+      { phase: "Navigation Software", steps: ["Computed heading with atan2 and distance-to-target from live MQTT pose data", "Wrote a smallest-angle-turn function keeping error within ±180° so the robot always turns the short way", "Implemented a state machine that stops 2 s at each target and advances to the next waypoint", "Fused three ultrasonic sensors for real-time obstacle avoidance during waypoint runs"] },
+      { phase: "Testing & Iteration", steps: ["Mounted an OLED display to cross-check camera pose against onboard readings during calibration", "Tuned sensor thresholds and motor speeds across repeated trials to cut wasted corrections", "Reduced course time from 60 s to sub-50 s runs across test iterations"] }
+    ],
+    results: [
+      "Completed the course in about 40 seconds against an 80 second field average, roughly twice as fast",
+      "All 4 targets reached with zero collisions; flawless scored run of 214.5 points",
+      "Chassis printed in 4 hr 44 min, under the strict 5-hour print budget"
+    ],
+    materials: ["SolidWorks", "WEMOS D1R2 (ESP8266)", "3× Ultrasonic Sensors", "Zumo Chassis", "MQTT", "ArUco Markers", "OLED Display"],
+    skills: ["DFM", "PID Heading Control", "Path Planning", "C++ / Arduino", "Sensor Integration", "Concept Selection"]
+  },
+  {
+    id: "battery-cold-plate",
+    title: "EV Battery Cold Plate (Research)",
+    featured: true,
+    status: "Ongoing Research",
+    tagline: "Liquid cold plate holding a 500 W battery load below 40 °C with far less pumping power.",
+    images: ["/assets/featured-coldplate.svg"],
+    duration: "Apr 2025 – Present",
+    team: "Stevens Institute of Technology",
+    role: "Research Assistant",
+    overview: "Research on liquid cold-plate thermal management for EV and aircraft battery packs. I'm designing a custom cold plate in SolidWorks that holds the battery below the 40 °C limit that guards against cell degradation and thermal runaway, dissipating a 500 W load through a 6-channel U-manifold sized for uniform flow, all validated by a MATLAB thermal solver I built from first principles.",
+    buildProcess: [
+      { phase: "Thermal Modeling", steps: ["Built a self-consistent ε-NTU wall-temperature solver in MATLAB", "Cross-checked the solver against an LMTD energy balance and hand calculations", "Benchmarked three channel topologies on thermal duty and parasitic pumping power"] },
+      { phase: "Analysis Pipeline Hardening", steps: ["Debugged and rebuilt the analysis pipeline: corrected specific-heat unit and extrapolation errors, per-channel bookkeeping, pump-efficiency handling, and the thermal-resistance reference", "Produced trustworthy figures of merit (h, NTU, ΔP, FOM) that now drive coolant and geometry selection"] },
+      { phase: "Cold Plate Design", steps: ["Designed a 6-channel U-manifold cold plate in SolidWorks sized for uniform per-channel flow", "Showed the U-manifold meets the 500 W thermal duty with 6 to 9 times less pumping power than a serpentine baseline"] },
+      { phase: "Coolant Characterization & Prototyping", steps: ["Characterizing PAO-based nanofluid coolants for temperature-dependent properties (k, μ, cp, ρ)", "Iterating FDM-printed cold-plate geometries toward a bench-tested prototype to validate the model"] }
+    ],
+    results: [
+      "Meets the 500 W thermal duty with 6 to 9 times less pumping power than a serpentine baseline",
+      "ε-NTU solver validated against LMTD energy balance and hand calculations",
+      "Battery held below the 40 °C limit that guards against degradation and thermal runaway"
+    ],
+    materials: ["SolidWorks", "MATLAB", "ε-NTU / LMTD Methods", "PAO Nanofluids", "FDM Prototyping"],
+    skills: ["Heat Transfer", "Thermal-Fluid Modeling", "Numerical Methods", "Design Iteration", "Research Documentation"]
+  },
+  {
+    id: "vexu-robot",
+    title: "VEXU Competition Robot",
+    featured: true,
+    tagline: "Leading the mechanical design of Stevens' VEXU robot: pneumatics, conveyor, and precision scoring.",
+    images: ["/assets/featured-vexu.svg"],
+    duration: "Sep 2025 – Present",
+    team: "Stevens Robotics Club · 20 members",
+    role: "Mechanical Design Lead & Treasurer",
+    overview: "As Mechanical Design Lead of the Stevens VEXU team, I own the SolidWorks design of our competition robot: custom 3D-printed sensor housings, modular battery mounts, a rigid mechanical aligner for repeatable high-speed scoring, and a high-pressure pneumatic actuation system with a custom conveyor. The robot scored reliably throughout competition.",
+    buildProcess: [
+      { phase: "Mechanical Design", steps: ["Led the SolidWorks design of the full competition robot", "Designed custom 3D-printed sensor housings and modular battery mounts", "Built a rigid mechanical aligner enabling repeatable high-speed scoring"] },
+      { phase: "Pneumatics & Conveyor", steps: ["Designed and integrated a high-pressure pneumatic actuation system", "Optimized cylinder placement and spatial tolerances for fast, reliable field deployment", "Developed a custom conveyor for game-piece handling"] },
+      { phase: "Team Operations", steps: ["Manage team finances and procurement as Treasurer", "Run university budgets and purchase orders to fund iterative rapid prototyping cycles", "Coordinate design reviews across a 20-member team"] }
+    ],
+    results: [
+      "Robot scored reliably throughout competition with repeatable high-speed alignment",
+      "Pneumatic system and conveyor deployed reliably on the field",
+      "Prototyping cycles kept funded and on schedule across the season"
+    ],
+    materials: ["SolidWorks", "VEX Hardware", "Pneumatics", "3D-Printed Fixtures", "Sensors"],
+    skills: ["Mechanical Design Leadership", "Pneumatic Systems", "Tolerance Analysis", "Rapid Prototyping", "Budget Management"]
+  },
   {
     id: "plant-pot",
     title: "Self Watering Plant Pot",
@@ -241,8 +358,11 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
 }
 
 export function EngineeringShowcase() {
-  const [selectedProject, setSelectedProject] = useState<typeof engineeringProjects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<EngProject | null>(null);
   const [zoomImageIndex, setZoomImageIndex] = useState<number | null>(null);
+
+  const featuredProjects = engineeringProjects.filter((p) => p.featured);
+  const otherProjects = engineeringProjects.filter((p) => !p.featured);
 
   return (
     <section id="engineering-showcase" className="py-24 bg-[#121212]">
@@ -260,19 +380,19 @@ export function EngineeringShowcase() {
           </span>
           <h2 className="font-display font-bold text-4xl mb-4">Engineering Projects</h2>
           <p className="text-muted-foreground">
-            Documented builds from concept to completion. Click any project to view details.
+            Every project here went from a sketch to a working build. Click one for the full design story.
           </p>
         </motion.div>
 
-        {/* Project Grid */}
+        {/* Project Grid (featured first) */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.4 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
         >
-          {engineeringProjects.map((project, idx) => (
+          {[...featuredProjects, ...otherProjects].map((project) => (
             <button
               key={project.id}
               onClick={() => setSelectedProject(project)}
@@ -286,6 +406,11 @@ export function EngineeringShowcase() {
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+              {project.featured && (
+                <span className="absolute top-2 left-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#BB86FC]/20 border border-[#BB86FC]/40 backdrop-blur-sm text-[10px] font-mono text-[#BB86FC]">
+                  <Star className="w-3 h-3 fill-[#BB86FC]" /> FEATURED
+                </span>
+              )}
               <div className="absolute bottom-0 left-0 right-0 p-3">
                 <h3 className="font-mono text-xs font-medium text-white truncate">{project.title}</h3>
               </div>
@@ -327,7 +452,7 @@ export function EngineeringShowcase() {
                         <X className="w-5 h-5" />
                       </button>
                     </div>
-                    <div className="flex gap-4 mt-4">
+                    <div className="flex flex-wrap gap-4 mt-4">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Calendar className="w-4 h-4 text-[#BB86FC]" />
                         <span data-testid={`eng-duration-${selectedProject.id}`}>{selectedProject.duration}</span>
@@ -336,6 +461,12 @@ export function EngineeringShowcase() {
                         <Users className="w-4 h-4 text-[#BB86FC]" />
                         <span data-testid={`eng-team-${selectedProject.id}`}>{selectedProject.team}</span>
                       </div>
+                      {selectedProject.role && (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Wrench className="w-4 h-4 text-[#BB86FC]" />
+                          <span data-testid={`eng-role-${selectedProject.id}`}>{selectedProject.role}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -355,6 +486,24 @@ export function EngineeringShowcase() {
                           {selectedProject.overview}
                         </p>
                       </div>
+
+                      {/* Results */}
+                      {selectedProject.results && (
+                        <div className="bg-[#BB86FC]/5 rounded-xl p-4 border border-[#BB86FC]/20">
+                          <div className="flex items-center gap-2 mb-3">
+                            <Target className="w-4 h-4 text-[#BB86FC]" />
+                            <h4 className="font-display font-semibold text-white">Results</h4>
+                          </div>
+                          <ul className="space-y-2" data-testid={`eng-results-${selectedProject.id}`}>
+                            {selectedProject.results.map((result, i) => (
+                              <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC] mt-2 flex-shrink-0" />
+                                <span>{result}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
                       {/* Materials & Skills */}
                       <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">

@@ -7,6 +7,54 @@ import { getAssetUrl } from "@/lib/assets";
 
 const programmingProjects = [
   {
+    id: "vetiver",
+    title: "Vetiver: AI Fragrance App",
+    images: [getAssetUrl("/assets/featured-vetiver.svg")],
+    duration: "2026 – Present",
+    team: "Solo Project",
+    overview: "A full stack mobile app I'm building that helps people discover and manage fragrances. A scent quiz builds your profile, an AI advisor named Vito recommends perfumes from a live database of 53,000 scents, and a gamified hub keeps users coming back with daily minigames, streaks, and unlockable mascot cosmetics. React Native (Expo) on the front end, an Express + TypeScript API with SQLite and Supabase behind it, deployed to the cloud.",
+    buildProcess: [
+      {
+        phase: "Mobile App",
+        steps: [
+          "Built the app in React Native with Expo Router and TypeScript",
+          "Designed every screen against Figma mockups using a shared design token system for colors and fonts",
+          "Implemented email sign-up with verification codes and JWT auth, with tokens stored in the device keychain",
+          "Screens include a scent quiz, discovery search, wardrobe, journal, wear tests, and an AI chat"
+        ]
+      },
+      {
+        phase: "Backend & Database",
+        steps: [
+          "Wrote an Express + TypeScript REST API with a SQLite database for user data",
+          "Connected a Supabase database of 53,000 perfumes with fuzzy text search on names and brands",
+          "Scoped every query by user id so no user can ever read another user's data",
+          "Deployed the API to the cloud with a persistent database volume"
+        ]
+      },
+      {
+        phase: "AI Advisor (Vito)",
+        steps: [
+          "Integrated GPT-4o for free-form fragrance questions through a mascot character named Vito",
+          "Wrote a deterministic recommendation engine as the fallback: keyword and accord matching ranked by popularity and rating",
+          "Chat replies resolve perfume names into real product cards with images pulled from the database",
+          "Built a dupe finder that suggests similar scents from community data"
+        ]
+      },
+      {
+        phase: "Gamification",
+        steps: [
+          "Built daily minigames: a betting check-in casino, a scent social credit game, and blind sniff quizzes",
+          "Minigames feed EXP, streaks, and a mood system for the mascot",
+          "Made a points shop where users unlock poses, colors, and accessories for Vito",
+          "Reputation titles change based on how you play"
+        ]
+      }
+    ],
+    technologies: ["React Native / Expo", "TypeScript", "Express", "SQLite", "Supabase", "OpenAI GPT-4o"],
+    skills: ["Full Stack Development", "REST API Design", "AI Integration", "Mobile UI", "Auth & Security"]
+  },
+  {
     id: "2048-game",
     title: "2048 Game",
     images: ["https://images.unsplash.com/photo-1611996575749-79a3a250f948?auto=format&fit=crop&q=80&w=800"],
