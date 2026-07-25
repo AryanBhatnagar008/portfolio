@@ -156,7 +156,7 @@ function About() {
               <img
                 src={getAssetUrl("/assets/profile-photo.jpg")}
                 alt="Aryan Bhatnagar"
-                className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent" />
               <div className="absolute top-3 left-3 font-mono text-[10px] text-primary/90 uppercase tracking-[0.2em] bg-background/70 px-2 py-1 border border-primary/30">Fig. 01 — Profile</div>
