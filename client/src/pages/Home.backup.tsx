@@ -441,20 +441,20 @@ function ProjectsSection() {
           <span className="font-mono text-primary text-sm tracking-widest uppercase mb-2 block">My Work</span>
           <h2 className="font-display font-bold text-4xl mb-6">Projects</h2>
         </div>
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-1 p-1 rounded-full border border-white/10 bg-white/[0.03]">
+        <div className="flex justify-center px-2">
+          <div className="flex w-full max-w-md sm:w-auto sm:max-w-none items-center gap-1 p-1 rounded-full border border-white/10 bg-white/[0.03]">
             {projectTabs.map((t) => (
               <button
                 key={t.id}
                 onClick={() => setTab(t.id)}
                 data-testid={`projects-tab-${t.id}`}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-mono text-sm transition-all ${
+                className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-5 py-2.5 rounded-full font-mono text-xs sm:text-sm whitespace-nowrap transition-all ${
                   tab === t.id
                     ? "bg-primary text-primary-foreground font-bold"
                     : "text-muted-foreground hover:text-white"
                 }`}
               >
-                <t.icon className="w-4 h-4" />
+                <t.icon className="w-4 h-4 flex-shrink-0" />
                 {t.label}
               </button>
             ))}
