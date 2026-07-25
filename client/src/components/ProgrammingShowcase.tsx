@@ -194,14 +194,14 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
           <button
             onClick={goToPrev}
             data-testid="prog-carousel-prev"
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black opacity-0 group-hover:opacity-100"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black opacity-0 group-hover:opacity-100"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={goToNext}
             data-testid="prog-carousel-next"
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black opacity-0 group-hover:opacity-100"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black opacity-0 group-hover:opacity-100"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -211,7 +211,7 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
                 key={idx}
                 onClick={(e) => handleDotClick(e, idx)}
                 className={`w-2 h-2 rounded-full ${
-                  idx === currentIndex ? "bg-[#BB86FC] w-4" : "bg-white/40 hover:bg-white/60"
+                  idx === currentIndex ? "bg-[#45a6dd] w-4" : "bg-white/40 hover:bg-white/60"
                 }`}
                 data-testid={`prog-carousel-dot-${idx}`}
               />
@@ -234,7 +234,7 @@ export function ProgrammingShowcase() {
   const [zoomImageIndex, setZoomImageIndex] = useState<number | null>(null);
 
   return (
-    <section id="programming-showcase" className="py-24 bg-[#121212]">
+    <section id="programming-showcase" className="py-24 bg-secondary/10">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -266,7 +266,7 @@ export function ProgrammingShowcase() {
               key={project.id}
               onClick={() => setSelectedProject(project)}
               data-testid={`prog-tab-${project.id}`}
-              className="group relative rounded-2xl overflow-hidden border border-white/10 bg-secondary/20 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)] text-left"
+              className="group relative rounded-2xl overflow-hidden border border-white/10 bg-secondary/20 hover:border-[#45a6dd]/50 transition-all hover:shadow-[0_0_30px_rgba(69,166,221,0.18)] text-left"
             >
               {/* Image */}
               <div className="aspect-video overflow-hidden">
@@ -276,7 +276,7 @@ export function ProgrammingShowcase() {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
               </div>
               
               {/* Content */}
@@ -285,7 +285,7 @@ export function ProgrammingShowcase() {
                 <p className="text-sm text-muted-foreground line-clamp-2">{project.overview}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {project.technologies.slice(0, 3).map((tech) => (
-                    <span key={tech} className="px-2 py-1 text-xs font-mono bg-[#BB86FC]/20 text-[#BB86FC] rounded-full">
+                    <span key={tech} className="px-2 py-1 text-xs font-mono bg-[#45a6dd]/20 text-[#45a6dd] rounded-full">
                       {tech}
                     </span>
                   ))}
@@ -297,7 +297,7 @@ export function ProgrammingShowcase() {
 
         {/* Project Modal */}
         <Dialog open={!!selectedProject && zoomImageIndex === null} onOpenChange={(open) => !open && setSelectedProject(null)}>
-          <DialogContent hideCloseButton className="w-screen h-screen max-w-none max-h-none rounded-none p-0 bg-[#1a1a1a] border-none overflow-hidden">
+          <DialogContent hideCloseButton className="w-screen h-screen max-w-none max-h-none rounded-none p-0 bg-background border-none overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
             <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
             
@@ -318,24 +318,24 @@ export function ProgrammingShowcase() {
                   <div className="flex-1 p-6 flex flex-col justify-between">
                     <div className="flex items-start justify-between">
                       <div>
-                        <span className="font-mono text-xs text-[#BB86FC] uppercase tracking-wider">Programming Project</span>
+                        <span className="font-mono text-xs text-[#45a6dd] uppercase tracking-wider">Programming Project</span>
                         <h3 className="font-display font-bold text-3xl text-white mt-1">{selectedProject.title}</h3>
                       </div>
                       <button
                         onClick={() => setSelectedProject(null)}
                         data-testid="prog-modal-close"
-                        className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                        className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black transition-all"
                       >
                         <X className="w-5 h-5" />
                       </button>
                     </div>
                     <div className="flex gap-4 mt-4">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Clock className="w-4 h-4 text-[#BB86FC]" />
+                        <Clock className="w-4 h-4 text-[#45a6dd]" />
                         <span>{selectedProject.duration}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Users className="w-4 h-4 text-[#BB86FC]" />
+                        <Users className="w-4 h-4 text-[#45a6dd]" />
                         <span>{selectedProject.team}</span>
                       </div>
                     </div>
@@ -350,7 +350,7 @@ export function ProgrammingShowcase() {
                       {/* Overview */}
                       <div>
                         <div className="flex items-center gap-2 mb-3">
-                          <Lightbulb className="w-4 h-4 text-[#BB86FC]" />
+                          <Lightbulb className="w-4 h-4 text-[#45a6dd]" />
                           <h4 className="font-display font-semibold text-white">Overview</h4>
                         </div>
                         <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`prog-overview-${selectedProject.id}`}>
@@ -360,11 +360,11 @@ export function ProgrammingShowcase() {
 
                       {/* Technologies */}
                       <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                        <Terminal className="w-5 h-5 text-[#BB86FC] mb-3" />
+                        <Terminal className="w-5 h-5 text-[#45a6dd] mb-3" />
                         <p className="text-xs text-muted-foreground uppercase mb-3">Technologies</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedProject.technologies.map((tech) => (
-                            <span key={tech} className="px-3 py-1 text-xs font-mono bg-[#BB86FC]/10 text-[#BB86FC] rounded-full border border-[#BB86FC]/20">
+                            <span key={tech} className="px-3 py-1 text-xs font-mono bg-[#45a6dd]/10 text-[#45a6dd] rounded-full border border-[#45a6dd]/20">
                               {tech}
                             </span>
                           ))}
@@ -387,22 +387,22 @@ export function ProgrammingShowcase() {
                     {/* Right Column - Build Process */}
                     <div>
                       <div className="flex items-center gap-2 mb-4">
-                        <Code className="w-5 h-5 text-[#BB86FC]" />
+                        <Code className="w-5 h-5 text-[#45a6dd]" />
                         <h4 className="font-display font-semibold text-white">Development Process</h4>
                       </div>
                       <div className="space-y-4" data-testid={`prog-process-${selectedProject.id}`}>
                         {selectedProject.buildProcess.map((phase, phaseIndex) => (
                           <div key={phase.phase} className="relative">
                             <div className="flex items-center gap-3 mb-3">
-                              <div className="w-8 h-8 rounded-lg bg-[#BB86FC] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
+                              <div className="w-8 h-8 rounded-lg bg-[#45a6dd] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
                                 {phaseIndex + 1}
                               </div>
-                              <h5 className="font-mono font-semibold text-[#BB86FC] text-sm">{phase.phase}</h5>
+                              <h5 className="font-mono font-semibold text-[#45a6dd] text-sm">{phase.phase}</h5>
                             </div>
-                            <div className="ml-4 pl-7 border-l-2 border-[#BB86FC]/30 space-y-2 pb-4">
+                            <div className="ml-4 pl-7 border-l-2 border-[#45a6dd]/30 space-y-2 pb-4">
                               {phase.steps.map((step, stepIndex) => (
                                 <div key={stepIndex} className="flex items-start gap-2">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC]/60 mt-2 flex-shrink-0" />
+                                  <div className="w-1.5 h-1.5 rounded-full bg-[#45a6dd]/60 mt-2 flex-shrink-0" />
                                   <span className="text-sm text-muted-foreground">{step}</span>
                                 </div>
                               ))}
@@ -426,7 +426,7 @@ export function ProgrammingShowcase() {
             <button
               onClick={() => setZoomImageIndex(null)}
               data-testid="button-close-prog-zoom"
-              className="absolute top-4 right-4 z-50 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+              className="absolute top-4 right-4 z-50 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black transition-all"
             >
               <X className="w-5 h-5" />
             </button>
@@ -443,14 +443,14 @@ export function ProgrammingShowcase() {
                     <button
                       onClick={() => setZoomImageIndex((prev) => prev !== null ? (prev === 0 ? selectedProject.images.length - 1 : prev - 1) : 0)}
                       data-testid="prog-zoom-prev"
-                      className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black transition-all"
                     >
                       <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button
                       onClick={() => setZoomImageIndex((prev) => prev !== null ? (prev === selectedProject.images.length - 1 ? 0 : prev + 1) : 0)}
                       data-testid="prog-zoom-next"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black transition-all"
                     >
                       <ChevronRight className="w-6 h-6" />
                     </button>

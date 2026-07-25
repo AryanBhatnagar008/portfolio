@@ -322,14 +322,14 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
           <button
             onClick={goToPrev}
             data-testid="eng-carousel-prev"
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black opacity-0 group-hover:opacity-100"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black opacity-0 group-hover:opacity-100"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={goToNext}
             data-testid="eng-carousel-next"
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black opacity-0 group-hover:opacity-100"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black opacity-0 group-hover:opacity-100"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -339,7 +339,7 @@ function ImageCarousel({ images, title, onImageClick }: { images: string[], titl
                 key={idx}
                 onClick={(e) => handleDotClick(e, idx)}
                 className={`w-2 h-2 rounded-full ${
-                  idx === currentIndex ? "bg-[#BB86FC] w-4" : "bg-white/40 hover:bg-white/60"
+                  idx === currentIndex ? "bg-[#45a6dd] w-4" : "bg-white/40 hover:bg-white/60"
                 }`}
                 data-testid={`eng-carousel-dot-${idx}`}
               />
@@ -365,7 +365,7 @@ export function EngineeringShowcase() {
   const otherProjects = engineeringProjects.filter((p) => !p.featured);
 
   return (
-    <section id="engineering-showcase" className="py-24 bg-[#121212]">
+    <section id="engineering-showcase" className="py-24 bg-secondary/10">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -397,7 +397,7 @@ export function EngineeringShowcase() {
               key={project.id}
               onClick={() => setSelectedProject(project)}
               data-testid={`eng-tab-${project.id}`}
-              className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 hover:border-[#BB86FC]/50 transition-all hover:shadow-[0_0_30px_rgba(187,134,252,0.3)]"
+              className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 hover:border-[#45a6dd]/50 transition-all hover:shadow-[0_0_30px_rgba(69,166,221,0.18)]"
             >
               <img
                 src={project.images[0].startsWith('/assets/') ? getAssetUrl(project.images[0]) : project.images[0]}
@@ -407,8 +407,8 @@ export function EngineeringShowcase() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
               {project.featured && (
-                <span className="absolute top-2 left-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#BB86FC]/20 border border-[#BB86FC]/40 backdrop-blur-sm text-[10px] font-mono text-[#BB86FC]">
-                  <Star className="w-3 h-3 fill-[#BB86FC]" /> FEATURED
+                <span className="absolute top-2 left-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#45a6dd]/20 border border-[#45a6dd]/40 backdrop-blur-sm text-[10px] font-mono text-[#45a6dd]">
+                  <Star className="w-3 h-3 fill-[#45a6dd]" /> FEATURED
                 </span>
               )}
               <div className="absolute bottom-0 left-0 right-0 p-3">
@@ -420,7 +420,7 @@ export function EngineeringShowcase() {
 
         {/* Project Modal */}
         <Dialog open={!!selectedProject && zoomImageIndex === null} onOpenChange={(open) => !open && setSelectedProject(null)}>
-          <DialogContent hideCloseButton className="w-screen h-screen max-w-none max-h-none rounded-none p-0 bg-[#1a1a1a] border-none overflow-hidden">
+          <DialogContent hideCloseButton className="w-screen h-screen max-w-none max-h-none rounded-none p-0 bg-background border-none overflow-hidden">
             <DialogTitle className="sr-only">{selectedProject?.title}</DialogTitle>
             <DialogDescription className="sr-only">Project details for {selectedProject?.title}</DialogDescription>
             
@@ -441,29 +441,29 @@ export function EngineeringShowcase() {
                   <div className="flex-1 p-6 flex flex-col justify-between">
                     <div className="flex items-start justify-between">
                       <div>
-                        <span className="font-mono text-xs text-[#BB86FC] uppercase tracking-wider">Engineering Project</span>
+                        <span className="font-mono text-xs text-[#45a6dd] uppercase tracking-wider">Engineering Project</span>
                         <h3 className="font-display font-bold text-3xl text-white mt-1">{selectedProject.title}</h3>
                       </div>
                       <button
                         onClick={() => setSelectedProject(null)}
                         data-testid="eng-modal-close"
-                        className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                        className="p-2 bg-secondary/50 rounded-full border border-white/10 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black transition-all"
                       >
                         <X className="w-5 h-5" />
                       </button>
                     </div>
                     <div className="flex flex-wrap gap-4 mt-4">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Calendar className="w-4 h-4 text-[#BB86FC]" />
+                        <Calendar className="w-4 h-4 text-[#45a6dd]" />
                         <span data-testid={`eng-duration-${selectedProject.id}`}>{selectedProject.duration}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Users className="w-4 h-4 text-[#BB86FC]" />
+                        <Users className="w-4 h-4 text-[#45a6dd]" />
                         <span data-testid={`eng-team-${selectedProject.id}`}>{selectedProject.team}</span>
                       </div>
                       {selectedProject.role && (
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <Wrench className="w-4 h-4 text-[#BB86FC]" />
+                          <Wrench className="w-4 h-4 text-[#45a6dd]" />
                           <span data-testid={`eng-role-${selectedProject.id}`}>{selectedProject.role}</span>
                         </div>
                       )}
@@ -479,7 +479,7 @@ export function EngineeringShowcase() {
                       {/* Overview */}
                       <div>
                         <div className="flex items-center gap-2 mb-3">
-                          <Lightbulb className="w-4 h-4 text-[#BB86FC]" />
+                          <Lightbulb className="w-4 h-4 text-[#45a6dd]" />
                           <h4 className="font-display font-semibold text-white">Overview</h4>
                         </div>
                         <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`eng-overview-${selectedProject.id}`}>
@@ -489,15 +489,15 @@ export function EngineeringShowcase() {
 
                       {/* Results */}
                       {selectedProject.results && (
-                        <div className="bg-[#BB86FC]/5 rounded-xl p-4 border border-[#BB86FC]/20">
+                        <div className="bg-[#45a6dd]/5 rounded-xl p-4 border border-[#45a6dd]/20">
                           <div className="flex items-center gap-2 mb-3">
-                            <Target className="w-4 h-4 text-[#BB86FC]" />
+                            <Target className="w-4 h-4 text-[#45a6dd]" />
                             <h4 className="font-display font-semibold text-white">Results</h4>
                           </div>
                           <ul className="space-y-2" data-testid={`eng-results-${selectedProject.id}`}>
                             {selectedProject.results.map((result, i) => (
                               <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC] mt-2 flex-shrink-0" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#45a6dd] mt-2 flex-shrink-0" />
                                 <span>{result}</span>
                               </li>
                             ))}
@@ -507,7 +507,7 @@ export function EngineeringShowcase() {
 
                       {/* Materials & Skills */}
                       <div className="bg-secondary/30 rounded-xl p-4 border border-white/5">
-                        <h4 className="font-mono text-xs uppercase text-[#BB86FC] mb-3">Materials & Skills</h4>
+                        <h4 className="font-mono text-xs uppercase text-[#45a6dd] mb-3">Materials & Skills</h4>
                         <div className="flex flex-wrap gap-2">
                           {selectedProject.materials.map((mat, i) => (
                             <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-muted-foreground">
@@ -515,7 +515,7 @@ export function EngineeringShowcase() {
                             </span>
                           ))}
                           {selectedProject.skills.map((skill, i) => (
-                            <span key={i} className="px-3 py-1 bg-[#BB86FC]/10 border border-[#BB86FC]/30 rounded-full text-xs text-[#BB86FC]">
+                            <span key={i} className="px-3 py-1 bg-[#45a6dd]/10 border border-[#45a6dd]/30 rounded-full text-xs text-[#45a6dd]">
                               {skill}
                             </span>
                           ))}
@@ -530,7 +530,7 @@ export function EngineeringShowcase() {
                             target="_blank"
                             rel="noopener noreferrer"
                             data-testid="eng-notebook-link"
-                            className="flex items-center gap-2 px-4 py-3 bg-[#BB86FC]/10 border border-[#BB86FC]/30 rounded-xl text-[#BB86FC] hover:bg-[#BB86FC] hover:text-black transition-all font-mono text-sm"
+                            className="flex items-center gap-2 px-4 py-3 bg-[#45a6dd]/10 border border-[#45a6dd]/30 rounded-xl text-[#45a6dd] hover:bg-[#45a6dd] hover:text-black transition-all font-mono text-sm"
                           >
                             <FileText className="w-4 h-4" />
                             View Engineering Notebook
@@ -542,7 +542,7 @@ export function EngineeringShowcase() {
                             target="_blank"
                             rel="noopener noreferrer"
                             data-testid="eng-poster-link"
-                            className="flex items-center gap-2 px-4 py-3 bg-[#BB86FC]/10 border border-[#BB86FC]/30 rounded-xl text-[#BB86FC] hover:bg-[#BB86FC] hover:text-black transition-all font-mono text-sm"
+                            className="flex items-center gap-2 px-4 py-3 bg-[#45a6dd]/10 border border-[#45a6dd]/30 rounded-xl text-[#45a6dd] hover:bg-[#45a6dd] hover:text-black transition-all font-mono text-sm"
                           >
                             <FileText className="w-4 h-4" />
                             View Project Poster
@@ -554,22 +554,22 @@ export function EngineeringShowcase() {
                     {/* Right Column - Build Process */}
                     <div>
                       <div className="flex items-center gap-2 mb-4">
-                        <Wrench className="w-4 h-4 text-[#BB86FC]" />
+                        <Wrench className="w-4 h-4 text-[#45a6dd]" />
                         <h4 className="font-display font-semibold text-white">Build Process</h4>
                       </div>
                       <div className="space-y-4" data-testid={`eng-process-${selectedProject.id}`}>
                         {selectedProject.buildProcess.map((phase, phaseIndex) => (
                           <div key={phase.phase} className="relative">
                             <div className="flex items-center gap-3 mb-3">
-                              <div className="w-8 h-8 rounded-lg bg-[#BB86FC] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
+                              <div className="w-8 h-8 rounded-lg bg-[#45a6dd] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
                                 {phaseIndex + 1}
                               </div>
-                              <h5 className="font-mono font-semibold text-[#BB86FC] text-sm">{phase.phase}</h5>
+                              <h5 className="font-mono font-semibold text-[#45a6dd] text-sm">{phase.phase}</h5>
                             </div>
-                            <div className="ml-4 pl-7 border-l-2 border-[#BB86FC]/30 space-y-2 pb-4">
+                            <div className="ml-4 pl-7 border-l-2 border-[#45a6dd]/30 space-y-2 pb-4">
                               {phase.steps.map((step, stepIndex) => (
                                 <div key={stepIndex} className="flex items-start gap-2">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-[#BB86FC]/60 mt-2 flex-shrink-0" />
+                                  <div className="w-1.5 h-1.5 rounded-full bg-[#45a6dd]/60 mt-2 flex-shrink-0" />
                                   <span className="text-sm text-muted-foreground">{step}</span>
                                 </div>
                               ))}
@@ -593,7 +593,7 @@ export function EngineeringShowcase() {
             <button
               onClick={() => setZoomImageIndex(null)}
               data-testid="button-close-eng-zoom"
-              className="absolute top-4 right-4 z-50 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+              className="absolute top-4 right-4 z-50 p-2 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black transition-all"
             >
               <X className="w-5 h-5" />
             </button>
@@ -610,14 +610,14 @@ export function EngineeringShowcase() {
                     <button
                       onClick={() => setZoomImageIndex((prev) => prev !== null ? (prev === 0 ? selectedProject.images.length - 1 : prev - 1) : 0)}
                       data-testid="eng-zoom-prev"
-                      className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black transition-all"
                     >
                       <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button
                       onClick={() => setZoomImageIndex((prev) => prev !== null ? (prev === selectedProject.images.length - 1 ? 0 : prev + 1) : 0)}
                       data-testid="eng-zoom-next"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] hover:text-black transition-all"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-[#45a6dd] hover:border-[#45a6dd] hover:text-black transition-all"
                     >
                       <ChevronRight className="w-6 h-6" />
                     </button>

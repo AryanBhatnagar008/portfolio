@@ -33,7 +33,7 @@ export function Navigation() {
     <nav
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent",
-        scrolled ? "bg-background/80 backdrop-blur-md border-white/10 py-4" : "bg-transparent py-6"
+        scrolled ? "bg-background/85 backdrop-blur-md border-border py-4" : "bg-transparent py-6"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -44,13 +44,13 @@ export function Navigation() {
           className="cursor-pointer group flex items-center gap-2"
         >
           <div className="relative">
-            <Hexagon className="w-8 h-8 text-primary fill-primary/10 transition-transform group-hover:rotate-180 duration-500" />
+            <Hexagon className="w-8 h-8 text-primary fill-primary/10 transition-transform group-hover:rotate-90 duration-500" strokeWidth={1.5} />
             <span className="absolute inset-0 flex items-center justify-center font-mono font-bold text-xs text-primary">
-              A
+              AB
             </span>
           </div>
-          <span className="font-display font-bold text-lg tracking-wider hidden sm:block">
-            ARYAN<span className="text-primary">.B</span>
+          <span className="font-display font-bold text-lg tracking-wide hidden sm:block">
+            ARYAN<span className="text-primary"> BHATNAGAR</span>
           </span>
         </ScrollLink>
 
@@ -64,16 +64,16 @@ export function Navigation() {
               duration={500}
               offset={-100}
               onClick={() => openTab(link.tab)}
-              className="text-sm font-medium text-muted-foreground hover:text-primary cursor-pointer transition-colors font-mono tracking-wide uppercase hover:text-glow"
+              className="text-xs font-medium text-muted-foreground hover:text-primary cursor-pointer transition-colors font-mono tracking-[0.15em] uppercase"
             >
               {link.name}
             </ScrollLink>
           ))}
           <a
             href="mailto:aryanbhatnagar008@gmail.com"
-            className="px-6 py-2 rounded-full bg-primary/10 border border-primary/50 text-primary font-mono text-sm font-bold hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer box-glow"
+            className="px-5 py-2 rounded-sm bg-primary/10 border border-primary/50 text-primary font-mono text-xs font-semibold tracking-[0.15em] uppercase hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
           >
-            HIRE ME
+            Contact
           </a>
         </div>
 

@@ -2,16 +2,16 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="py-8 border-t border-white/5 bg-[#0a0a0b]">
+    <footer className="py-8 border-t border-border bg-background">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="flex items-center gap-2">
-          <span className="font-display font-bold text-lg tracking-wider">
-            ARYAN<span className="text-primary">.B</span>
+        <div className="flex items-center gap-3">
+          <span className="font-display font-bold text-lg tracking-wide">
+            ARYAN<span className="text-primary"> BHATNAGAR</span>
           </span>
-          <span className="text-muted-foreground text-sm font-mono">© {new Date().getFullYear()}</span>
+          <span className="text-muted-foreground text-xs font-mono">© {new Date().getFullYear()}</span>
         </div>
-        
-        <div className="flex gap-6">
+
+        <div className="flex gap-5">
           <a href="https://github.com/AryanBhatnagar008" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground hover:text-primary transition-colors">
             <Github className="w-5 h-5" />
           </a>
