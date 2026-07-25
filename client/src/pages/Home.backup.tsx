@@ -219,7 +219,7 @@ const experiences = [
   {
     role: "Research Assistant, Battery Thermal Management",
     org: "Stevens Institute of Technology",
-    period: "Apr 2025 – Present",
+    period: "Apr 2026 – Present",
     icon: FlaskConical,
     bullets: [
       "Designing a liquid cold plate in SolidWorks that keeps an EV/aircraft battery below its 40 °C limit while dissipating a 500 W load through a 6-channel U-manifold.",
