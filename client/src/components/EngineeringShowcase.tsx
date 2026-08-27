@@ -119,7 +119,13 @@ const engineeringProjects: EngProject[] = [
     title: "VEXU Competition Robot",
     featured: true,
     tagline: "Leading the mechanical design of Stevens' VEXU robot: pneumatics, conveyor, and precision scoring.",
-    images: ["/assets/featured-vexu.svg"],
+    images: [
+      "/assets/vexu/assembly.jpg",
+      "/assets/vexu/bracket.jpg",
+      "/assets/vexu/battery-mount.jpg",
+      "/assets/vexu/rail.jpg"
+    ],
+    notebookUrl: "/assets/VEXU_Engineering_Notebook.pdf",
     duration: "Sep 2025 – Present",
     team: "Stevens Robotics Club · 20 members",
     role: "Mechanical Design Lead & Treasurer",
