@@ -222,9 +222,10 @@ const experiences = [
     period: "Apr 2026 – Present",
     icon: FlaskConical,
     bullets: [
-      "Designing a liquid cold plate in SolidWorks that keeps an EV/aircraft battery below its 40 °C limit while dissipating a 500 W load through a 6-channel U-manifold.",
-      "Built an ε-NTU thermal solver in MATLAB and validated it against an LMTD energy balance. My design uses 6 to 9 times less pumping power than a serpentine baseline.",
-      "Currently characterizing nanofluid coolants and 3D printing cold plate prototypes for bench testing.",
+      "Designing a custom liquid cold plate in SolidWorks to hold an EV/aircraft battery below the 40 °C limit that guards against cell degradation and thermal runaway, dissipating a 500 W load through a 6-channel U-manifold sized for uniform flow.",
+      "Built and validated a self-consistent ε-NTU wall-temperature solver (MATLAB), cross-checked against an LMTD energy balance and hand calculations, to benchmark three channel topologies; showed the U-manifold design meets the 500 W thermal duty at ~6-9 times lower parasitic pumping power than a serpentine baseline.",
+      "Debugged and rebuilt the analysis pipeline by correcting specific-heat unit and extrapolation errors, per-channel bookkeeping, pump-efficiency handling, and the thermal-resistance reference, producing trustworthy figures of merit (h, NTU, ΔP, FOM) that drive coolant and geometry selection.",
+      "Characterizing PAO-based nanofluid coolants for temperature-dependent properties (k, μ, cp, ρ) and iterating FDM-printed cold-plate geometries toward a bench-tested prototype to validate the model.",
     ],
     tags: ["SolidWorks", "MATLAB", "Heat Transfer", "Nanofluids"],
   },

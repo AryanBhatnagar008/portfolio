@@ -31,11 +31,16 @@ const engineeringProjects: EngProject[] = [
     featured: true,
     status: "In Progress",
     tagline: "Ground-up robotic arm: SolidWorks structure, ROS2 inverse kinematics, PID trajectory control.",
-    images: ["/assets/featured-arm.svg"],
+    images: [
+      "/assets/arm/main.jpg",
+      "/assets/arm/profile.jpg",
+      "/assets/arm/vertical.jpg",
+      "/assets/arm/gears.jpg"
+    ],
     duration: "Jun 2026 – Present",
     team: "Solo Project",
     role: "Design Engineer",
-    overview: "A 6-degree-of-freedom robotic arm designed from scratch in SolidWorks with a PLA+ printed structure driven by ST3215 serial-bus servos. Joints, links, and load paths are sized for stiffness and payload capacity, while inverse kinematics and PID trajectory control run in ROS2 and MATLAB/Simulink. The goal: autonomous pick-and-place of blocks from commanded task-space coordinates.",
+    overview: "A 6-degree-of-freedom robotic arm I'm designing from scratch in SolidWorks, with a PLA+ printed structure driven by ST3215 serial-bus servos. I size the joints, links, and load paths for stiffness and payload capacity, using truss-lightened links and a gear-driven wrist to keep the arm rigid without adding mass. On the controls side, I'm developing inverse kinematics and PID trajectory control in ROS2 and MATLAB/Simulink so the arm follows commanded paths and coordinates, with Arduino-based servo control handling end-to-end actuation. The goal is autonomous pick-and-place of blocks from commanded task-space coordinates.",
     buildProcess: [
       { phase: "Mechanical Design", steps: ["Modeled the full arm from scratch in SolidWorks: base, shoulder, elbow, and wrist joints with printable link geometry", "Sized joints, links, and load paths for stiffness and payload capacity at full reach", "Designed around ST3215 serial-bus servo envelopes and mounting patterns", "Optimized parts for FDM printing in PLA+ with print orientation in mind"] },
       { phase: "Kinematics & Controls", steps: ["Developing the inverse kinematics solution so the arm can reach commanded XYZ coordinates", "Implementing PID trajectory control in ROS2 and MATLAB/Simulink for smooth, repeatable paths", "Simulating joint trajectories before running them on hardware"] },
