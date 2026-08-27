@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users, ChevronLeft, ChevronRight, FileText, Target, Star } from "lucide-react";
+import { ZoomIn, X, Lightbulb, Wrench, Calendar, Users, ChevronLeft, ChevronRight, FileText, Target, Star, PlayCircle } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getAssetUrl } from "@/lib/assets";
@@ -39,6 +39,8 @@ const engineeringProjects: EngProject[] = [
       "/assets/arm/vertical.jpg",
       "/assets/arm/gears.jpg"
     ],
+    videoUrl: "https://drive.google.com/file/d/1mILxJGddEsYLb3MjaAQ9W8i6Wfw0eak2/view?usp=sharing",
+    videoLabel: "Watch it cut a cake",
     duration: "Jun 2026 – Present",
     team: "Solo Project",
     role: "Design Engineer",
@@ -496,6 +498,18 @@ export function EngineeringShowcase() {
                         </div>
                       )}
                     </div>
+                    {'videoUrl' in selectedProject && selectedProject.videoUrl && (
+                      <a
+                        href={selectedProject.videoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-testid="eng-video-link"
+                        className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-[#45a6dd] text-black font-semibold text-sm hover:bg-[#45a6dd]/90 transition-colors w-fit"
+                      >
+                        <PlayCircle className="w-5 h-5" />
+                        {('videoLabel' in selectedProject && selectedProject.videoLabel) || 'Watch Demo'}
+                      </a>
+                    )}
                   </div>
                 </div>
 
