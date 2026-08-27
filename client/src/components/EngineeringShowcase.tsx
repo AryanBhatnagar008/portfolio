@@ -56,6 +56,7 @@ const engineeringProjects: EngProject[] = [
     featured: true,
     tagline: "Camera-localized waypoint navigation that finished the course about twice as fast as the field average.",
     images: ["/assets/autonav/front.jpg", "/assets/autonav/slide8-cad.jpg", "/assets/autonav/side.jpg", "/assets/autonav/top-markers.jpg", "/assets/autonav/electronics.jpg"],
+    notebookUrl: "/assets/AutonomousNav_FinalReport.pdf",
     presentationUrl: "/assets/AutonomousNav_Presentation.pdf",
     duration: "Feb 2026 – Apr 2026",
     team: "Aryan, Abilash & Jaiden",
