@@ -33,7 +33,9 @@ const engineeringProjects: EngProject[] = [
     tagline: "Ground-up robotic arm: SolidWorks structure, ROS2 inverse kinematics, PID trajectory control.",
     images: [
       "/assets/arm/main.jpg",
+      "/assets/arm/cad-angled.jpg",
       "/assets/arm/profile.jpg",
+      "/assets/arm/cad-folded.jpg",
       "/assets/arm/vertical.jpg",
       "/assets/arm/gears.jpg"
     ],
