@@ -78,7 +78,7 @@ const engineeringProjects: EngProject[] = [
   },
   {
     id: "battery-cold-plate",
-    title: "eVTOL Battery Cold Plate (Research)",
+    title: "Cool-Nexus: Battery Thermal Management",
     featured: true,
     status: "Summer Research 2026",
     tagline: "\"Cool-Nexus\": a PAO-cooled cold plate that holds an eVTOL battery pack at 34 °C under a 500 W load, validated against CFD.",
@@ -87,7 +87,6 @@ const engineeringProjects: EngProject[] = [
       "/assets/coldplate/cad-iso.jpg",
       "/assets/coldplate/cad-alt.jpg",
       "/assets/coldplate/drawing.jpg",
-      "/assets/coldplate/enclosure.jpg",
       "/assets/coldplate/cad-render.jpg",
       "/assets/coldplate/fluid-properties.jpg",
       "/assets/coldplate/specific-heat.jpg",
