@@ -78,28 +78,41 @@ const engineeringProjects: EngProject[] = [
   },
   {
     id: "battery-cold-plate",
-    title: "EV Battery Cold Plate (Research)",
+    title: "eVTOL Battery Cold Plate (Research)",
     featured: true,
-    status: "Ongoing Research",
-    tagline: "Liquid cold plate holding a 500 W battery load below 40 °C with far less pumping power.",
-    images: ["/assets/featured-coldplate.svg"],
-    duration: "Apr 2025 – Present",
-    team: "Stevens Institute of Technology",
-    role: "Research Assistant",
-    overview: "Research on liquid cold-plate thermal management for EV and aircraft battery packs. I'm designing a custom cold plate in SolidWorks that holds the battery below the 40 °C limit that guards against cell degradation and thermal runaway, dissipating a 500 W load through a 6-channel U-manifold sized for uniform flow, all validated by a MATLAB thermal solver I built from first principles.",
+    status: "Summer Research 2026",
+    tagline: "\"Cool-Nexus\": a PAO-cooled cold plate that holds an eVTOL battery pack at 34 °C under a 500 W load, validated against CFD.",
+    images: [
+      "/assets/coldplate/cfd-thermal.jpg",
+      "/assets/coldplate/cad-iso.jpg",
+      "/assets/coldplate/cad-alt.jpg",
+      "/assets/coldplate/drawing.jpg",
+      "/assets/coldplate/enclosure.jpg",
+      "/assets/coldplate/cad-render.jpg",
+      "/assets/coldplate/fluid-properties.jpg",
+      "/assets/coldplate/specific-heat.jpg",
+      "/assets/coldplate/results-sweep.jpg",
+      "/assets/coldplate/flow-distribution.jpg"
+    ],
+    posterUrl: "/assets/ColdPlate_Research_Poster.pdf",
+    duration: "Apr 2026 – Present",
+    team: "Aryan Bhatnagar, Angelina Liclican (CFD), Javier Ramirez (model) · Advisor: Dr. Zahra Pournorouz",
+    role: "Fluid Selection & Cold Plate Design",
+    overview: "Cool-Nexus is a Stevens Scholars Summer Research project on thermal management for an eVTOL (electric aircraft) battery pack. The standard 60/40 ethylene-glycol/water coolant conducts electricity and freezes near −45 °C — both dangerous next to a high-voltage pack — so we moved to PAO, an electrically insulating oil that stays fluid in the cold, and asked whether nanoparticles could boost its cooling without spiking viscosity. I led the coolant selection and designed the cold plate that dissipates the pack's 500 W landing-hover peak while holding the cell interface under 40 °C with less than 5 °C of spread across the plate.",
     buildProcess: [
-      { phase: "Thermal Modeling", steps: ["Built a self-consistent ε-NTU wall-temperature solver in MATLAB", "Cross-checked the solver against an LMTD energy balance and hand calculations", "Benchmarked three channel topologies on thermal duty and parasitic pumping power"] },
-      { phase: "Analysis Pipeline Hardening", steps: ["Debugged and rebuilt the analysis pipeline: corrected specific-heat unit and extrapolation errors, per-channel bookkeeping, pump-efficiency handling, and the thermal-resistance reference", "Produced trustworthy figures of merit (h, NTU, ΔP, FOM) that now drive coolant and geometry selection"] },
-      { phase: "Cold Plate Design", steps: ["Designed a 6-channel U-manifold cold plate in SolidWorks sized for uniform per-channel flow", "Showed the U-manifold meets the 500 W thermal duty with 6 to 9 times less pumping power than a serpentine baseline"] },
-      { phase: "Coolant Characterization & Prototyping", steps: ["Characterizing PAO-based nanofluid coolants for temperature-dependent properties (k, μ, cp, ρ)", "Iterating FDM-printed cold-plate geometries toward a bench-tested prototype to validate the model"] }
+      { phase: "Coolant Selection", steps: ["Compared three PAO nanofluids: alumina (Al2O3), hexagonal boron nitride (hBN), and a MWCNT + MoS2 hybrid", "Al2O3 and hBN lacked data below 30 °C, so I selected the hybrid, which had measured properties across the full 20–80 °C range", "The hybrid gave 21% higher thermal conductivity at nearly unchanged viscosity and density, trading 18% lower specific heat", "Flagged a specific-heat discrepancy (2900 vs ~1950 J/kg·K from the Cragoe correlation) and carried it as a bounded uncertainty"] },
+      { phase: "Cold Plate Design (SolidWorks)", steps: ["PAO is viscous, so limiting pressure drop was the primary design goal", "Compared three channel layouts — parallel, serpentine, and a U+U manifold — at identical flow, heat load, and fluid properties", "Selected Design 3: a U+U manifold with six 30 × 6 mm channels in a 500 × 250 mm aluminium 6061 plate", "Flow is deeply laminar at Re ≈ 26"] },
+      { phase: "Modeling & CFD Validation", steps: ["Built the analytical sizing/thermal model in MATLAB and validated it against Ansys Discovery CFD", "Outlet temperature agreed to 0.2% (22.54 vs 22.5 °C) and max plate temperature to 0.41% (33.86 vs 34.0 °C)", "Reconciled the wall-temperature difference: the model reports an average channel-wall temp while CFD reports the peak local plate temp", "Used outlet temperature and pressure drop as the validation metrics, with max temperature evaluated as a design limit"] },
+      { phase: "Results & Findings", steps: ["Met both requirements (Tmax ≤ 40 °C, ΔT ≤ 5 °C) across the 0.05–0.10 kg/s flow sweep", "CFD revealed the outer channels carry ~27% more flow than the inner channels (CV 9% at baseline, 13% at low flow)", "Traced the maldistribution to the manifold pressure gradient, not channel length — the key correction to the equal-flow hand assumption", "Showed the result is sensitive to the PAO specific heat: the low estimate would push uniformity from 4.4 °C to ~5.6 °C and fail at all but the highest flow"] }
     ],
     results: [
-      "Meets the 500 W thermal duty with 6 to 9 times less pumping power than a serpentine baseline",
-      "ε-NTU solver validated against LMTD energy balance and hand calculations",
-      "Battery held below the 40 °C limit that guards against degradation and thermal runaway"
+      "Held the cell interface at 34.0 °C (limit 40 °C) with 4.4 °C uniformity (limit 5 °C) under a 500 W load — both requirements PASS",
+      "MATLAB model matched Ansys CFD within 0.2% on outlet temperature and 0.41% on peak plate temperature",
+      "Selected a PAO hybrid nanofluid delivering +21% thermal conductivity at nearly unchanged viscosity",
+      "Uncovered ~27% outer-vs-inner channel flow maldistribution (CV 9–13%) that the hand model had missed"
     ],
-    materials: ["SolidWorks", "MATLAB", "ε-NTU / LMTD Methods", "PAO Nanofluids", "FDM Prototyping"],
-    skills: ["Heat Transfer", "Thermal-Fluid Modeling", "Numerical Methods", "Design Iteration", "Research Documentation"]
+    materials: ["SolidWorks", "MATLAB", "Ansys Discovery (CFD)", "Aluminium 6061", "PAO Hybrid Nanofluid"],
+    skills: ["Heat Transfer", "Thermal-Fluid Modeling", "CFD Validation", "GD&T / Drafting", "Fluid Selection", "Research Documentation"]
   },
   {
     id: "vexu-robot",
