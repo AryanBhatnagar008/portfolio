@@ -55,7 +55,8 @@ const engineeringProjects: EngProject[] = [
     title: "Autonomous Navigation Robot",
     featured: true,
     tagline: "Camera-localized waypoint navigation that finished the course about twice as fast as the field average.",
-    images: ["/assets/featured-autonav.svg"],
+    images: ["/assets/autonav/front.jpg", "/assets/autonav/slide8-cad.jpg", "/assets/autonav/side.jpg", "/assets/autonav/top-markers.jpg", "/assets/autonav/electronics.jpg"],
+    presentationUrl: "/assets/AutonomousNav_Presentation.pdf",
     duration: "Feb 2026 – Apr 2026",
     team: "Aryan, Abilash & Jaiden",
     role: "Mechanical Design & Navigation Software",
@@ -546,6 +547,18 @@ export function EngineeringShowcase() {
                           >
                             <FileText className="w-4 h-4" />
                             View Project Poster
+                          </a>
+                        )}
+                        {'presentationUrl' in selectedProject && selectedProject.presentationUrl && (
+                          <a
+                            href={selectedProject.presentationUrl.startsWith('/assets/') ? getAssetUrl(selectedProject.presentationUrl) : selectedProject.presentationUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-testid="eng-presentation-link"
+                            className="flex items-center gap-2 px-4 py-3 bg-[#45a6dd]/10 border border-[#45a6dd]/30 rounded-xl text-[#45a6dd] hover:bg-[#45a6dd] hover:text-black transition-all font-mono text-sm"
+                          >
+                            <FileText className="w-4 h-4" />
+                            View Presentation
                           </a>
                         )}
                       </div>
