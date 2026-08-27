@@ -83,6 +83,7 @@ const engineeringProjects: EngProject[] = [
     status: "Summer Research 2026",
     tagline: "\"Cool-Nexus\": a PAO-cooled cold plate that holds an eVTOL battery pack at 34 °C under a 500 W load, validated against CFD.",
     images: [
+      "/assets/coldplate/enclosure-render.jpg",
       "/assets/coldplate/cfd-thermal.jpg",
       "/assets/coldplate/cad-iso.jpg",
       "/assets/coldplate/cad-alt.jpg",
